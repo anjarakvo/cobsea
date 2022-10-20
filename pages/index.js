@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Home() {
   return (
@@ -10,7 +11,12 @@ export default function Home() {
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
       <div id="landing">
-        <Image src="/cobsea.svg" alt="COBSEA" width={162} height={42} />
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <Image src="/cobsea.svg" alt="COBSEA" width={162} height={42} />
+          <div style={{ display: 'flex', marginTop: 15 }}>
+            <Link href="/knowledge-library">Knowledge lib</Link>&nbsp;| Research database
+          </div>
+        </div>
       </div>
     </div>
   )

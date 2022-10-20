@@ -22,4 +22,9 @@ a {
   justify-content: center;
   height: calc(100vh);
   background: url(../public/waves.svg) repeat center #357079;
+  color: white;
+  font-size: 14px;
+  a {
+    text-decoration: underline;
+  }
 }
