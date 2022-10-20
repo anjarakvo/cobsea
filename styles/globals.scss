@@ -16,7 +16,6 @@ a {
 }
 
 #landing {
-  background-color: #357079;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,5 +25,31 @@ a {
   font-size: 14px;
   a {
     text-decoration: underline;
+  }
+}
+
+.topbar {
+  background: url(../public/waves.svg) repeat center #357079;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  .container {
+    display: flex;
+    nav {
+      display: flex;
+      color: white;
+      margin-left: 40px;
+      margin-top: 10px;
+      a {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+.container {
+  margin: 0 50px;
+  @media screen and (min-width: 1500px) {
+    width: 1440px;
+    margin: 0 auto;
   }
 }

@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import { TopBar } from '..'
 
 export default function KnowledgeLibrary() {
   return (
@@ -8,7 +9,7 @@ export default function KnowledgeLibrary() {
         <title>COBSEA | Knowledge library</title>
       </Head>
       <div id="knowledge-library">
-        <h1>Knowledge library</h1>
+        <TopBar />
       </div>
     </div>
   )
