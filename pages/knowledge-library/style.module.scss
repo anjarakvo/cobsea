@@ -1,0 +1,72 @@
+.overview {
+	ul.categories {
+		display: flex;
+		padding: 15px 0px 15px 30px;
+		margin-bottom: 0;
+		@media screen and (min-width: 0) and (max-width: 1366px) {
+			overflow: scroll;
+			overflow-y: hidden;
+		}
+		li {
+			margin-right: 25px;
+			padding: 10px 20px;
+			display: flex;
+			flex-direction: column;
+			cursor: pointer;
+			text-align: center;
+			font-weight: 500;
+			font-size: 15px;
+			letter-spacing: -0.5px;
+			color: #edf2f7;
+			background: rgba(240, 200, 182, 0.2);
+			mix-blend-mode: normal;
+			border: 0.25px solid #f0c8b6;
+			box-shadow: 1px 1px 0px #f0c8b6;
+			border-radius: 5px;
+			&:first-child {
+				svg {
+					path {
+						transition: fill 0.15s ease-out;
+						fill: #255b87;
+					}
+				}
+			}
+			& > div {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin: 0 5px 10px;
+				svg {
+					path {
+						transition: fill 0.15s ease-out;
+						fill: #91c9c1;
+					}
+					margin-right: 7px;
+				}
+				b {
+					font-weight: 700;
+					font-size: 24px;
+					color: #475657;
+				}
+			}
+			span {
+				font-weight: 500;
+				font-size: 16px;
+				line-height: 20px;
+				letter-spacing: -0.02em;
+				color: #475657;
+			}
+			&:last-child {
+				margin-right: 0;
+			}
+			transition: all 0.15s ease-out;
+			&:hover {
+				color: #ffb800;
+				border-color: #ffb800;
+				& > div svg path {
+					fill: #ffb800;
+				}
+			}
+		}
+	}
+}
