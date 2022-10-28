@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styles from './style.module.scss';
 import { Col, Avatar } from 'antd';
 import { ArrowRightOutlined } from '@ant-design/icons';
@@ -7,6 +7,14 @@ import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination as SwiperPagination, Navigation } from 'swiper';
 import 'swiper/css';
+import { topicNames } from 'utils';
+import technicalResource from 'images/placeholders/technical-resource-placeholder.png';
+import actionPlan from 'images/placeholders/action-plan-placeholder.png';
+import policy from 'images/placeholders/policy-placeholder.png';
+import financingResource from 'images/placeholders/financing-resource-placeholder.png';
+import technology from 'images/placeholders/technology-placeholder.png';
+import initiative from 'images/placeholders/initiative-placeholder.png';
+import event from 'images/placeholders/event-placeholder.png';
 
 const Card = ({ showMoreCardClick, showMoreCardHref, children }) => {
 	if (showMoreCardClick) {
@@ -17,11 +25,7 @@ const Card = ({ showMoreCardClick, showMoreCardHref, children }) => {
 		);
 	}
 	if (showMoreCardHref) {
-		return (
-			<Link className={styles.card} to={showMoreCardHref}>
-				{children}
-			</Link>
-		);
+		return <Link href={showMoreCardHref}>{children}</Link>;
 	}
 	return children;
 };
@@ -151,7 +155,7 @@ export const ResourceCard = ({ item, index, showModal }) => {
 	return (
 		<div className='resource-card' key={index}>
 			<Link
-				to={`/${getType(item?.type)?.replace('_', '-')}/${item.id}`}
+				href={`/${getType(item?.type)?.replace('_', '-')}/${item.id}`}
 				id={item.id}
 				type={getType(item?.type)?.replace('_', '-')}
 				className='description-holder'
@@ -163,56 +167,63 @@ export const ResourceCard = ({ item, index, showModal }) => {
 					backgroundSize: 'cover',
 					backgroundRepeat: 'no-repeat',
 				}}
-				onClick={showModal}
 			>
-				<div>
-					<h3>{item.title}</h3>
-					<h4>{item?.type ? topicNames(item?.type) : ''}</h4>
-				</div>
-				<div className='bottom-panel'>
+				<div onClick={showModal}>
 					<div>
-						<Avatar.Group
-							maxCount={2}
-							size='large'
-							maxStyle={{
-								color: '#f56a00',
-								backgroundColor: '#fde3cf',
-								cursor: 'pointer',
-							}}
-						>
-							{item?.entityConnections?.map((connection, index) => (
-								<Avatar
-									className='related-content-avatar'
-									style={{ border: 'none' }}
-									key={item?.entity || index}
-									src={
-										connection?.image ? (
-											connection?.image
-										) : item?.image ? (
-											item.image
-										) : (
-											<Avatar
-												style={{
-													backgroundColor: '#09689A',
-													verticalAlign: 'middle',
-												}}
-												size={40}
-											>
-												{item?.entity?.substring(0, 2)}
-											</Avatar>
-										)
-									}
-								/>
-							))}
-						</Avatar.Group>
+						<h3>{item.title}</h3>
+						<h4>{item?.type ? topicNames(item?.type) : ''}</h4>
 					</div>
-					<div className='read-more'>
-						Read More <ArrowRightOutlined />
+					<div className='bottom-panel'>
+						<div>
+							<Avatar.Group
+								maxCount={2}
+								size='large'
+								maxStyle={{
+									color: '#f56a00',
+									backgroundColor: '#fde3cf',
+									cursor: 'pointer',
+								}}
+							>
+								{item?.entityConnections?.map((connection, index) => (
+									<Avatar
+										className='related-content-avatar'
+										style={{ border: 'none' }}
+										key={item?.entity || index}
+										src={
+											connection?.image ? (
+												connection?.image
+											) : item?.image ? (
+												item.image
+											) : (
+												<Avatar
+													style={{
+														backgroundColor: '#09689A',
+														verticalAlign: 'middle',
+													}}
+													size={40}
+												>
+													{item?.entity?.substring(0, 2)}
+												</Avatar>
+											)
+										}
+									/>
+								))}
+							</Avatar.Group>
+						</div>
+						<div className='read-more'>
+							Read More <ArrowRightOutlined />
+						</div>
 					</div>
 				</div>
 			</Link>
 			<div className='thumb-container'>
-				<Image src={getThumbnail(item)} alt={item?.type} />
+				<Image
+					loader={() => getThumbnail(item)}
+					src={getThumbnail(item)}
+					alt={item?.type}
+					layout='fill'
+					unoptimized
+				/>
 			</div>
 		</div>
 	);

@@ -1,3 +1,5 @@
+import humps from 'humps';
+
 export const resourceTypes = [
 	{
 		key: 'technical-resource',
@@ -25,3 +27,19 @@ export const resourceTypes = [
 		title: 'case_studies',
 	},
 ];
+
+export const topicNames = (topic) => {
+	const names = {
+		initiative: 'Initiative',
+		actionPlan: 'Action Plan',
+		policy: 'Policy',
+		technicalResource: 'Technical Resource',
+		financingResource: 'Financing Resource',
+		event: 'Event',
+		technology: 'Technology',
+		organisation: 'Entity',
+		stakeholder: 'Individual',
+		capacityBuilding: 'Capacity Building',
+	};
+	return names[humps.camelize(topic)];
+};

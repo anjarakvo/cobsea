@@ -20,12 +20,6 @@ export const config = {
 axios.interceptors.response.use(
 	(response) => response,
 	(error) => {
-		// Any status codes that falls outside the range of 2xx cause this
-		// function to trigger. We capture the exception to Sentry.
-		// NOTE: The request data is visible in Sentry as `config`.
-		// Sentry.captureException(new Error(error.message), { extra: error });
-
-		// Do something with response error
 		return Promise.reject(error);
 	},
 );
