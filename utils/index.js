@@ -1,4 +1,5 @@
 import humps from 'humps';
+import { useRouter } from 'next/router';
 
 export const resourceTypes = [
 	{
@@ -42,4 +43,17 @@ export const topicNames = (topic) => {
 		capacityBuilding: 'Capacity Building',
 	};
 	return names[humps.camelize(topic)];
+};
+
+export const useQuery = () => {
+	const router = useRouter();
+	const srcParams = new URLSearchParams(router.query);
+	const ret = {};
+	for (var key of srcParams.keys()) {
+		ret[key] = srcParams
+			.get(key)
+			.split(',')
+			.filter((it) => it !== '');
+	}
+	return ret;
 };

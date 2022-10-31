@@ -25,7 +25,11 @@ const Card = ({ showMoreCardClick, showMoreCardHref, children }) => {
 		);
 	}
 	if (showMoreCardHref) {
-		return <Link href={showMoreCardHref}>{children}</Link>;
+		return (
+			<Link className={styles.card} href={showMoreCardHref}>
+				{children}
+			</Link>
+		);
 	}
 	return children;
 };
@@ -43,12 +47,14 @@ const ResourceCards = ({
 		if (showMoreCardAfter < items?.length) {
 			showMoreCard = (
 				<Card {...{ showMoreCardClick, showMoreCardHref }}>
-					<div className='resources-count'>
-						<span className='count'>+{items.length - showMoreCardAfter}</span>
+					<div className={styles.resourcesCount}>
+						<span className={styles.count}>
+							+{items.length - showMoreCardAfter}
+						</span>
 						<p>resources</p>
 					</div>
 
-					<div className='read-more'>
+					<div className={styles.readMore}>
 						View All <ArrowRightOutlined />
 					</div>
 				</Card>
@@ -66,7 +72,7 @@ const ResourceCards = ({
 			}}
 			navigation={true}
 			modules={[SwiperPagination, Navigation]}
-			className='resource-cards'
+			className={`resource-cards ${styles.resourceCards}`}
 		>
 			{firstCard && <SwiperSlide>{firstCard}</SwiperSlide>}
 			{items?.slice(0, showMoreCardAfter).map((item) => {
@@ -77,7 +83,9 @@ const ResourceCards = ({
 				);
 			})}
 			{showMoreCard && (
-				<SwiperSlide className='show-more-card'>{showMoreCard}</SwiperSlide>
+				<SwiperSlide className={styles.showMoreCard}>
+					{showMoreCard}
+				</SwiperSlide>
 			)}
 		</Swiper>
 	);
@@ -154,21 +162,21 @@ const getThumbnail = (item) => {
 export const ResourceCard = ({ item, index, showModal }) => {
 	return (
 		<div className='resource-card' key={index}>
-			<Link
-				href={`/${getType(item?.type)?.replace('_', '-')}/${item.id}`}
-				id={item.id}
-				type={getType(item?.type)?.replace('_', '-')}
-				className='description-holder'
-				style={{
-					backgroundImage: `linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url(${getThumbnail(
-						item,
-					)})`,
-					backgroundPosition: 'center',
-					backgroundSize: 'cover',
-					backgroundRepeat: 'no-repeat',
-				}}
-			>
-				<div onClick={showModal}>
+			<Link href={`/${getType(item?.type)?.replace('_', '-')}/${item.id}`}>
+				<a
+					onClick={showModal}
+					id={item.id}
+					type={getType(item?.type)?.replace('_', '-')}
+					className='description-holder'
+					style={{
+						backgroundImage: `linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url(${getThumbnail(
+							item,
+						)})`,
+						backgroundPosition: 'center',
+						backgroundSize: 'cover',
+						backgroundRepeat: 'no-repeat',
+					}}
+				>
 					<div>
 						<h3>{item.title}</h3>
 						<h4>{item?.type ? topicNames(item?.type) : ''}</h4>
@@ -214,7 +222,7 @@ export const ResourceCard = ({ item, index, showModal }) => {
 							Read More <ArrowRightOutlined />
 						</div>
 					</div>
-				</div>
+				</a>
 			</Link>
 			<div className='thumb-container'>
 				<Image
@@ -222,7 +230,6 @@ export const ResourceCard = ({ item, index, showModal }) => {
 					src={getThumbnail(item)}
 					alt={item?.type}
 					layout='fill'
-					unoptimized
 				/>
 			</div>
 		</div>

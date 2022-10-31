@@ -6,6 +6,7 @@ import api from 'utils/api';
 import { Icon } from 'components/svg-icon/svg-icon';
 import styles from './style.module.scss';
 import ResourceCards from 'components/resource-cards/resource-cards';
+import TopicView from './topic-view';
 
 const Overview = ({
 	summaryData,
@@ -22,7 +23,7 @@ const Overview = ({
 }) => {
 	return (
 		<div className={styles.overview}>
-			<ul className={styles.categories}>
+			<ul className='categories'>
 				<li>
 					<div>
 						<Icon name={`all`} fill='#255B87' />
@@ -45,6 +46,51 @@ const Overview = ({
 				<Featured
 					{...{ showModal, setLoginVisible, isAuthenticated, history }}
 				/>
+			</section>
+			<section>
+				<Row gutter={16}>
+					<Col sm={24} md={24} lg={12} xl={12}>
+						<h3>Resources by location</h3>
+						<div
+							className='overlay-btn'
+							// onClick={() => {
+							//   history.push({
+							//     pathname: `/knowledge/library/resource/map`,
+							//   });
+							// }}
+						>
+							{/* <Maps
+                {...{ box, query, countData }}
+                data={landing?.map || []}
+                isLoaded={() => true}
+                useTooltips={false}
+                showLegend={false}
+                zoom={0.9}
+                path="knowledge"
+              /> */}
+						</div>
+					</Col>
+					<Col sm={24} md={24} lg={12} xl={12}>
+						<h3>Resources by topic</h3>
+						<div
+							className='overlay-btn'
+							onClick={() => {
+								// history.push({
+								//   pathname: `/knowledge/library/resource/topic`,
+								// });
+							}}
+						>
+							<TopicView
+								{...{ query, loading }}
+								results={data?.results}
+								fetch={true}
+								countData={countData.filter(
+									(count) => count.topic !== 'gpml_member_entities',
+								)}
+							/>
+						</div>
+					</Col>
+				</Row>
 			</section>
 		</div>
 	);

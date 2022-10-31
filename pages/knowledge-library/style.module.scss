@@ -1,7 +1,20 @@
 .overview {
-	ul.categories {
+	.loading {
+		position: static;
+		height: calc(100vh - 200px);
+		font-size: 50px;
+	}
+	h3 {
+		margin-top: 10px;
+		margin-bottom: 15px;
+		color: #a5b0c9;
+		font-size: 16px;
+		text-transform: uppercase;
+		font-weight: 550;
+	}
+	ul:global(.categories) {
 		display: flex;
-		padding: 15px 0px 15px 30px;
+		padding: 20px 0px 20px 30px;
 		margin-bottom: 0;
 		@media screen and (min-width: 0) and (max-width: 1366px) {
 			overflow: scroll;
@@ -24,6 +37,7 @@
 			box-shadow: 1px 1px 0px #f0c8b6;
 			border-radius: 5px;
 			&:first-child {
+				background: #fff;
 				svg {
 					path {
 						transition: fill 0.15s ease-out;
@@ -67,6 +81,46 @@
 					fill: #ffb800;
 				}
 			}
+		}
+	}
+	section {
+		&.grey {
+			background-color: #f6f8fa;
+			overflow-x: hidden;
+		}
+		padding: 15px 30px 10px;
+		// margin-bottom: 15px;
+		:global(.resource-cards) {
+			min-height: 222px;
+			margin-bottom: 0;
+			padding-bottom: 0px !important;
+			padding-left: 0px !important;
+			padding-right: 0px !important;
+		}
+	}
+	:global(.add-resource-card) {
+		width: 150px;
+		height: 192px;
+		border: 1px solid #00b194;
+		color: #00b194;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		border-radius: 4px;
+		cursor: pointer;
+		b {
+			font-size: 90px;
+			line-height: 90px;
+			font-weight: 500;
+		}
+		span {
+			font-size: 16px;
+			text-transform: uppercase;
+			font-weight: 500;
+		}
+		small {
+			margin-top: auto;
+			margin-bottom: 7px;
 		}
 	}
 }
