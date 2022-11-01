@@ -7,6 +7,7 @@ import { Icon } from 'components/svg-icon/svg-icon';
 import styles from './style.module.scss';
 import ResourceCards from 'components/resource-cards/resource-cards';
 import TopicView from './topic-view';
+import { LoadingOutlined } from '@ant-design/icons';
 
 const Overview = ({
 	summaryData,
@@ -21,21 +22,51 @@ const Overview = ({
 	setLoginVisible,
 	isAuthenticated,
 }) => {
+	const allResources = countData
+		?.filter((array) =>
+			resourceTypes.some(
+				(filter) =>
+					array.topic === filter.title && filter.title !== 'capacity building',
+			),
+		)
+		?.reduce(function (acc, obj) {
+			return acc + obj.count;
+		}, 0);
+
+	if (loading) {
+		return (
+			<div className='overview'>
+				<div className='loading'>
+					<LoadingOutlined spin />
+				</div>
+			</div>
+		);
+	}
+
+	const handleClickCategory = (key) => () => {
+		history.push({
+			pathname: `/knowledge/library/resource/map/${key}`,
+		});
+	};
+
 	return (
 		<div className={styles.overview}>
 			<ul className='categories'>
 				<li>
 					<div>
 						<Icon name={`all`} fill='#255B87' />
-						<b>{12}</b>
+						<b>{allResources}</b>
 					</div>
 					<span>All Resources</span>
 				</li>
 				{resourceTypes.map((type) => (
-					<li key={type.key}>
+					<li onClick={handleClickCategory(type.key)} key={type.key}>
 						<div>
 							<Icon name={`resource-types/${type.key}`} fill='#91C9C1' />
-							<b>21</b>
+							<b>
+								{countData.find((item) => type.title === item.topic)?.count ||
+									'XX'}
+							</b>
 						</div>
 						<span>{type.label}</span>
 					</li>
@@ -74,10 +105,10 @@ const Overview = ({
 						<h3>Resources by topic</h3>
 						<div
 							className='overlay-btn'
-							onClick={() => {
-								// history.push({
-								//   pathname: `/knowledge/library/resource/topic`,
-								// });
+							onClick={(e) => {
+								history.push({
+									pathname: `/knowledge/library/resource/topic`,
+								});
 							}}
 						>
 							<TopicView
