@@ -35,8 +35,8 @@ const Overview = ({
 
 	if (loading) {
 		return (
-			<div className='overview'>
-				<div className='loading'>
+			<div className={styles.overview}>
+				<div className={styles.loading}>
 					<LoadingOutlined spin />
 				</div>
 			</div>
@@ -52,7 +52,13 @@ const Overview = ({
 	return (
 		<div className={styles.overview}>
 			<ul className='categories'>
-				<li>
+				<li
+					onClick={() => {
+						history.push({
+							pathname: `/knowledge-library/resource/category`,
+						});
+					}}
+				>
 					<div>
 						<Icon name={`all`} fill='#255B87' />
 						<b>{allResources}</b>

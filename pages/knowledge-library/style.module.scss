@@ -275,3 +275,18 @@
 		}
 	}
 }
+.loading {
+	padding: 0;
+	font-size: 36px;
+	flex: 1;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	height: 100%;
+	top: 0;
+	position: absolute;
+	width: 100%;
+	background-color: rgba(249, 250, 251, 0.5);
+	z-index: 2;
+	color: #027975;
+}

@@ -53,7 +53,7 @@ const FilterBar = ({
 }) => {
 	const handleClickOverview = () => {
 		history.push({
-			pathname: '/knowledge/library/overview',
+			pathname: '/knowledge-library',
 			search: '',
 		});
 	};

@@ -35,7 +35,7 @@ const ResourceView = () => {
 				<TopBar />
 			</div>
 			<div>
-				<FilterBar />
+				<FilterBar history={router} />
 			</div>
 			<div className={styles.listContent}>
 				<div className={`list-toolbar ${styles.listToolbar}`}>
