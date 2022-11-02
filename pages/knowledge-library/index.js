@@ -6,6 +6,7 @@ import Overview from './overview';
 import { useQuery } from 'utils';
 import api from 'utils/api';
 import { useRouter } from 'next/router';
+import bodyScrollLock from '../../utils/scroll-lock'
 
 const popularTags = [
 	'plastics',

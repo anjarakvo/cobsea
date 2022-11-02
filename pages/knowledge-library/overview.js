@@ -43,39 +43,31 @@ const Overview = ({
 		);
 	}
 
-	const handleClickCategory = (key) => () => {
-		history.push({
-			pathname: `/knowledge/library/resource/map/${key}`,
-		});
-	};
-
 	return (
 		<div className={styles.overview}>
 			<ul className='categories'>
-				<li
-					onClick={() => {
-						history.push({
-							pathname: `/knowledge-library/resource/category`,
-						});
-					}}
-				>
+        <Link href="/knowledge-library/resource/category">
+				<li>
 					<div>
 						<Icon name={`all`} fill='#255B87' />
 						<b>{allResources}</b>
 					</div>
 					<span>All Resources</span>
 				</li>
+        </Link>
 				{resourceTypes.map((type) => (
-					<li onClick={handleClickCategory(type.key)} key={type.key}>
-						<div>
-							<Icon name={`resource-types/${type.key}`} fill='#91C9C1' />
-							<b>
-								{countData.find((item) => type.title === item.topic)?.count ||
-									'XX'}
-							</b>
-						</div>
-						<span>{type.label}</span>
-					</li>
+          <Link href={`/knowledge-library/resource/map/${type.key}`} key={type.key}>
+            <li>
+              <div>
+                <Icon name={`resource-types/${type.key}`} fill='#91C9C1' />
+                <b>
+                  {countData.find((item) => type.title === item.topic)?.count ||
+                    'XX'}
+                </b>
+              </div>
+              <span>{type.label}</span>
+            </li>
+          </Link>
 				))}
 			</ul>
 			<section className={styles.grey}>
