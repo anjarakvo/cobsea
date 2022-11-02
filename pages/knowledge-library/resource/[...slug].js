@@ -11,7 +11,9 @@ import { useRouter } from 'next/router';
 import { useQuery, topicNames } from 'utils';
 import classNames from 'classnames';
 import styles from '../style.module.scss';
-import ResourceCards from 'components/resource-cards/resource-cards';
+import ResourceCards, {
+	ResourceCard,
+} from 'components/resource-cards/resource-cards';
 import api from 'utils/api';
 
 const resourceTopic = [
@@ -47,6 +49,7 @@ const ResourceView = () => {
 	const [gridItems, setGridItems] = useState([]);
 	const [pageNumber, setPageNumber] = useState(false);
 	const [showFilterModal, setShowFilterModal] = useState(false);
+	const { slug: prevSlug, ...rest } = router.query;
 
 	const type = slug?.[1];
 
@@ -81,6 +84,7 @@ const ResourceView = () => {
 		}
 		queryParams.set('incCountsForTags', popularTags);
 		queryParams.set('limit', limit);
+		queryParams.delete('slug');
 
 		const url = `/browse?${String(queryParams)}`;
 		api
@@ -104,8 +108,9 @@ const ResourceView = () => {
 			setPageNumber(null);
 			setGridItems([]);
 		}
-		const newQuery = { ...query };
+		const newQuery = { ...router.query };
 		newQuery[param] = value;
+		console.log(router);
 
 		if (param === 'descending' || query.hasOwnProperty('descending')) {
 			newQuery['orderBy'] = 'title';
@@ -125,18 +130,20 @@ const ResourceView = () => {
 
 		newParams.delete('offset');
 
-		if (param === 'replace')
-			router.replace({
-				pathname: router.pathname,
-				query: newParams.toString(),
-				state: { type: slug?.[1] },
-			});
-		else
-			router.push({
-				pathname: router.pathname,
-				// query: newParams.toString(),
-				// state: { type: slug?.[1] },
-			});
+		// if (router.isReady)
+		// 	if (param === 'replace')
+		// 		router.replace({
+		// 			pathname: router.pathname,
+		// 			query: newParams.toString(),
+		// 			state: { type: slug?.[1] },
+		// 		});
+		// 	else
+		// 		router.push({
+		// 			pathname: router.pathname,
+		// 			query: newParams.toString(),
+		// 			state: { type: slug?.[1] },
+		// 		});
+
 		if (fetch && slug?.[0] !== 'category') fetchData(pureQuery);
 
 		if (slug?.[0] === 'category') loadAllCat(pureQuery);
@@ -170,9 +177,18 @@ const ResourceView = () => {
 			});
 	};
 
+	useMemo(() => {
+		if (router.pathname && !loading) updateQuery('replace');
+	}, [router]);
+
 	useEffect(() => {
-		if (data.length === 0) updateQuery();
-	}, [data, slug?.[0]]);
+		if (router.isReady) {
+			if (data.length === 0) {
+				console.log('SAd');
+				updateQuery();
+			}
+		}
+	}, [router]);
 
 	const clickCountry = (name) => {
 		const val = query['country'];
@@ -190,10 +206,10 @@ const ResourceView = () => {
 
 	const handleCategoryFilter = (key) => {
 		router.push({
-			pathname: `/knowledge/library/resource/${
-				view ? (view === 'category' ? 'grid' : view) : 'map'
+			pathname: `/knowledge-library/resource/${
+				slug?.[0] ? (slug?.[0] === 'category' ? 'grid' : slug?.[0]) : 'map'
 			}/${key.replace(/_/g, '-')}/`,
-			search: search,
+			query: { ...rest },
 			state: { type: key.replace(/-/g, '_') },
 		});
 	};
@@ -217,7 +233,7 @@ const ResourceView = () => {
 				<TopBar />
 			</div>
 			<div>
-				<FilterBar history={router} />
+				<FilterBar history={router} type={slug[1]} view={slug[0]} />
 			</div>
 			<div className={styles.listContent}>
 				<div className={`list-toolbar ${styles.listToolbar}`}>
@@ -265,19 +281,19 @@ const ResourceView = () => {
 							showMoreCardAfter={20}
 							showMoreCardClick={() => {
 								router.push({
-									pathname: `/knowledge/library/resource/grid/${
+									pathname: `/knowledge-library/resource/grid/${
 										slug ? slug?.[1] : ''
 									}`,
 									query: history.location.search,
 								});
 							}}
-							showModal={(e) =>
-								showModal({
-									e,
-									type: e.currentTarget.type,
-									id: e.currentTarget.id,
-								})
-							}
+							// showModal={(e) =>
+							// 	showModal({
+							// 		e,
+							// 		type: e.currentTarget.type,
+							// 		id: e.currentTarget.id,
+							// 	})
+							// }
 						/>
 						{loading && (
 							<div className={styles.loading}>
@@ -339,6 +355,20 @@ const ResourceView = () => {
 						))}
 					</div>
 				)}
+				{slug?.[0] === 'grid' && (
+					<GridView
+						{...{
+							gridItems,
+							totalItems,
+							limit,
+							loading,
+							setPageNumber,
+							pageNumber,
+							updateQuery,
+							// showModal,
+						}}
+					/>
+				)}
 			</div>
 		</div>
 	);
@@ -347,6 +377,8 @@ const ResourceView = () => {
 const ViewSwitch = ({ type, view, history }) => {
 	const viewOptions = ['map', 'topic', 'grid', 'category'];
 	const [visible, setVisible] = useState(false);
+
+	const { slug: slug, ...rest } = history.query;
 
 	return (
 		<div className='view-switch-container'>
@@ -374,12 +406,16 @@ const ViewSwitch = ({ type, view, history }) => {
 									key={viewOption}
 									onClick={() => {
 										setVisible(!visible);
-										history.push({
-											pathname: `/knowledge/library/resource/${viewOption}/${
-												type && viewOption !== 'category' ? type : ''
-											}`,
-											query: history.location.search,
-										});
+										history.push(
+											{
+												pathname: `/knowledge-library/resource/${viewOption}/${
+													type && viewOption !== 'category' ? type : ''
+												}`,
+												query: { ...rest },
+											},
+											undefined,
+											{ shallow: true },
+										);
 									}}
 								>
 									{viewOption} view
@@ -388,6 +424,49 @@ const ViewSwitch = ({ type, view, history }) => {
 					</ul>
 				</div>
 			</CSSTransition>
+		</div>
+	);
+};
+
+const GridView = ({
+	gridItems,
+	loading,
+	updateQuery,
+	totalItems,
+	limit,
+	setPageNumber,
+	pageNumber,
+	showModal,
+}) => {
+	return (
+		<div className={styles.gridView}>
+			<div className='items'>
+				{gridItems?.map((item, index) => (
+					<ResourceCard
+						item={item}
+						key={item.id * index}
+						showModal={(e) =>
+							showModal({
+								e,
+								type: item?.type.replace('_', '-'),
+								id: item?.id,
+							})
+						}
+					/>
+				))}
+			</div>
+			{!loading && gridItems?.length < totalItems && (
+				<Button
+					className='load-more'
+					loading={loading}
+					onClick={() => {
+						setPageNumber((prevNumber) => prevNumber + limit);
+						updateQuery('offset', [pageNumber + limit], true);
+					}}
+				>
+					Load More
+				</Button>
+			)}
 		</div>
 	);
 };

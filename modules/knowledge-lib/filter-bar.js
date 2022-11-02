@@ -57,6 +57,7 @@ const FilterBar = ({
 			search: '',
 		});
 	};
+	const { slug: prevSlug, ...rest } = history.query;
 
 	return (
 		<div className={styles.filterBar}>
@@ -72,17 +73,17 @@ const FilterBar = ({
 						onClick={() => {
 							if (type === it.key)
 								history.push({
-									pathname: `/knowledge/library/resource/${
+									pathname: `/knowledge-library/resource/${
 										view ? view : 'map'
 									}`,
-									search: search,
+									query: { ...rest },
 								});
 							else
 								history.push({
-									pathname: `/knowledge/library/resource/${
+									pathname: `/knowledge-library/resource/${
 										view ? (view === 'category' ? 'grid' : view) : 'map'
 									}/${it.key}/`,
-									search: search,
+									query: { ...rest },
 									state: { type: it.key },
 								});
 						}}
