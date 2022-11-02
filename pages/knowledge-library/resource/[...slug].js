@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState, useMemo } from 'react';
+import { Button } from 'antd';
 import FilterBar from 'modules/knowledge-lib/filter-bar';
 import Head from 'next/head';
 import { TopBar } from 'pages';
@@ -10,6 +11,27 @@ import { useRouter } from 'next/router';
 import { useQuery, topicNames } from 'utils';
 import classNames from 'classnames';
 import styles from '../style.module.scss';
+import ResourceCards from 'components/resource-cards/resource-cards';
+import api from 'utils/api';
+
+const resourceTopic = [
+	'action_plan',
+	'initiative',
+	'policy',
+	'technical_resource',
+	'technology',
+	'event',
+	'financing_resource',
+];
+
+const popularTags = [
+	'plastics',
+	'waste management',
+	'marine litter',
+	'capacity building',
+	'product by design',
+	'source to sea',
+];
 
 const ResourceView = () => {
 	const router = useRouter();
@@ -26,6 +48,166 @@ const ResourceView = () => {
 	const [pageNumber, setPageNumber] = useState(false);
 	const [showFilterModal, setShowFilterModal] = useState(false);
 
+	const type = slug?.[1];
+
+	const limit = 30;
+	const totalItems = resourceTopic.reduce(
+		(acc, topic) =>
+			acc + (countData?.find((it) => it.topic === topic)?.count || 0),
+		0,
+	);
+
+	const uniqueArrayByKey = (array) => [
+		...new Map(array.map((item) => [item['id'], item])).values(),
+	];
+
+	const fetchData = (searchParams) => {
+		setLoading(true);
+		const queryParams = new URLSearchParams(searchParams);
+		if (type || history?.location?.state?.type)
+			queryParams.set(
+				'topic',
+				history?.location?.state?.type
+					? history?.location?.state?.type.replace(/-/g, '_')
+					: type.replace(/-/g, '_'),
+			);
+
+		if (
+			type === 'capacity-building' ||
+			history?.location?.state?.type === 'capacity-building'
+		) {
+			queryParams.set('capacity_building', ['true']);
+			queryParams.delete('topic');
+		}
+		queryParams.set('incCountsForTags', popularTags);
+		queryParams.set('limit', limit);
+
+		const url = `/browse?${String(queryParams)}`;
+		api
+			.get(url)
+			.then((resp) => {
+				setLoading(false);
+				setData(resp?.data);
+				setCountData(resp?.data?.counts);
+				setGridItems((prevItems) => {
+					return uniqueArrayByKey([...prevItems, ...resp?.data?.results]);
+				});
+			})
+			.catch((err) => {
+				console.error(err);
+				setLoading(false);
+			});
+	};
+
+	const updateQuery = (param, value, reset, fetch = true) => {
+		if (!reset) {
+			setPageNumber(null);
+			setGridItems([]);
+		}
+		const newQuery = { ...query };
+		newQuery[param] = value;
+
+		if (param === 'descending' || query.hasOwnProperty('descending')) {
+			newQuery['orderBy'] = 'title';
+		}
+
+		if (newQuery.hasOwnProperty('country'))
+			setFilterCountries(newQuery.country);
+
+		// Remove empty query
+		const arrayOfQuery = Object.entries(newQuery)?.filter(
+			(item) => item[1]?.length !== 0 && typeof item[1] !== 'undefined',
+		);
+
+		const pureQuery = Object.fromEntries(arrayOfQuery);
+
+		const newParams = new URLSearchParams(pureQuery);
+
+		newParams.delete('offset');
+
+		if (param === 'replace')
+			router.replace({
+				pathname: router.pathname,
+				query: newParams.toString(),
+				state: { type: slug?.[1] },
+			});
+		else
+			router.push({
+				pathname: router.pathname,
+				// query: newParams.toString(),
+				// state: { type: slug?.[1] },
+			});
+		if (fetch && slug?.[0] !== 'category') fetchData(pureQuery);
+
+		if (slug?.[0] === 'category') loadAllCat(pureQuery);
+
+		if (param === 'country') {
+			setFilterCountries(value);
+		}
+	};
+
+	const loadAllCat = async (filter) => {
+		setLoading(true);
+
+		const queryParams = new URLSearchParams(filter);
+		const promiseArray = resourceTopic.map((url) =>
+			api.get(`/browse?topic=${url}&${String(queryParams)}`),
+		);
+
+		Promise.all(promiseArray)
+			.then((data) => {
+				const newData = resourceTopic.map((categories, idx) => ({
+					categories,
+					data: data[idx].data.results,
+					count: data[idx]?.data?.counts[0]?.count || 0,
+				}));
+				setCatData(newData);
+				setLoading(false);
+			})
+			.catch((err) => {
+				console.log(err);
+				setLoading(false);
+			});
+	};
+
+	useEffect(() => {
+		if (data.length === 0) updateQuery();
+	}, [data, slug?.[0]]);
+
+	const clickCountry = (name) => {
+		const val = query['country'];
+		let updateVal = [];
+
+		if (isEmpty(val)) {
+			updateVal = [name];
+		} else if (val.includes(name)) {
+			updateVal = val.filter((x) => x !== name);
+		} else {
+			updateVal = [...val, name];
+		}
+		updateQuery('country', updateVal, true);
+	};
+
+	const handleCategoryFilter = (key) => {
+		router.push({
+			pathname: `/knowledge/library/resource/${
+				view ? (view === 'category' ? 'grid' : view) : 'map'
+			}/${key.replace(/_/g, '-')}/`,
+			search: search,
+			state: { type: key.replace(/-/g, '_') },
+		});
+	};
+
+	const sortResults = (ascending) => {
+		setPageNumber(null);
+		if (!ascending) {
+			updateQuery('descending', 'false', true);
+		} else {
+			updateQuery('descending', 'true', true);
+		}
+		setIsAscending(ascending);
+	};
+
 	return (
 		<div>
 			<Head>
@@ -39,7 +221,7 @@ const ResourceView = () => {
 			</div>
 			<div className={styles.listContent}>
 				<div className={`list-toolbar ${styles.listToolbar}`}>
-					<div className='quick-search'>
+					<div className={styles.quickSearch}>
 						<div className='count'>
 							{slug.toString() === 'grid'
 								? `Showing ${gridItems?.length} of ${totalItems}`
@@ -54,7 +236,7 @@ const ResourceView = () => {
 							<SearchIcon />
 						</div>
 					</div>
-					<ViewSwitch history={router} type={slug[0]} view={slug[1]} />
+					<ViewSwitch history={router} type={slug[1]} view={slug[0]} />
 					<button
 						className='sort-by-button'
 						onClick={() => {
@@ -76,6 +258,87 @@ const ResourceView = () => {
 						</div>
 					</button>
 				</div>
+				{(slug?.[0] === 'map' || slug?.[0] === 'topic') && (
+					<div style={{ position: 'relative' }}>
+						<ResourceCards
+							items={data?.results}
+							showMoreCardAfter={20}
+							showMoreCardClick={() => {
+								router.push({
+									pathname: `/knowledge/library/resource/grid/${
+										slug ? slug?.[1] : ''
+									}`,
+									query: history.location.search,
+								});
+							}}
+							showModal={(e) =>
+								showModal({
+									e,
+									type: e.currentTarget.type,
+									id: e.currentTarget.id,
+								})
+							}
+						/>
+						{loading && (
+							<div className={styles.loading}>
+								<LoadingOutlined spin />
+							</div>
+						)}
+					</div>
+				)}
+				{slug?.[0] === 'category' && (
+					<div className={styles.catView}>
+						{loading && (
+							<div className={styles.loading}>
+								<LoadingOutlined spin />
+							</div>
+						)}
+						{catData.map((d) => (
+							<Fragment key={d.categories}>
+								{d?.count > 0 && (
+									<>
+										<div className='header-wrapper'>
+											<div className='title-wrapper'>
+												<h4 className='cat-title'>
+													{topicNames(d.categories)}
+												</h4>
+												<div className={styles.quickSearch}>
+													<div className='count'>{d?.count}</div>
+													<div className='search-icon'>
+														<SearchIcon />
+													</div>
+												</div>
+											</div>
+											<Button
+												type='link'
+												block
+												onClick={() => {
+													handleCategoryFilter(d.categories);
+												}}
+											>
+												See all {`>`}
+											</Button>
+										</div>
+										<ResourceCards
+											items={d?.data}
+											showMoreCardAfter={20}
+											showMoreCardClick={() => {
+												handleCategoryFilter(d.categories);
+											}}
+											showModal={(e) =>
+												showModal({
+													e,
+													type: e.currentTarget.type,
+													id: e.currentTarget.id,
+												})
+											}
+										/>
+									</>
+								)}
+							</Fragment>
+						))}
+					</div>
+				)}
 			</div>
 		</div>
 	);
@@ -115,7 +378,7 @@ const ViewSwitch = ({ type, view, history }) => {
 											pathname: `/knowledge/library/resource/${viewOption}/${
 												type && viewOption !== 'category' ? type : ''
 											}`,
-											search: history.location.search,
+											query: history.location.search,
 										});
 									}}
 								>

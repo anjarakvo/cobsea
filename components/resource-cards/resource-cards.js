@@ -230,6 +230,7 @@ export const ResourceCard = ({ item, index, showModal }) => {
 					src={getThumbnail(item)}
 					alt={item?.type}
 					layout='fill'
+					unoptimized
 				/>
 			</div>
 		</div>
