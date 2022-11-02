@@ -80,14 +80,9 @@ const Overview = ({
 				<Row gutter={16}>
 					<Col sm={24} md={24} lg={12} xl={12}>
 						<h3>Resources by location</h3>
-						<div
-							className='overlay-btn'
-							// onClick={() => {
-							//   history.push({
-							//     pathname: `/knowledge/library/resource/map`,
-							//   });
-							// }}
-						>
+            <Link href="/knowledge-library/resource/map">
+						<div className='overlay-btn'>
+              Maps
 							{/* <Maps
                 {...{ box, query, countData }}
                 data={landing?.map || []}
@@ -98,26 +93,22 @@ const Overview = ({
                 path="knowledge"
               /> */}
 						</div>
+            </Link>
 					</Col>
 					<Col sm={24} md={24} lg={12} xl={12}>
 						<h3>Resources by topic</h3>
-						<div
-							className='overlay-btn'
-							onClick={(e) => {
-								history.push({
-									pathname: `/knowledge/library/resource/topic`,
-								});
-							}}
-						>
-							<TopicView
-								{...{ query, loading }}
-								results={data?.results}
-								fetch={true}
-								countData={countData.filter(
-									(count) => count.topic !== 'gpml_member_entities',
-								)}
-							/>
-						</div>
+            <Link href="/knowledge-library/resource/topic">
+              <div className='overlay-btn'>
+                <TopicView
+                  {...{ query, loading }}
+                  results={data?.results}
+                  fetch={true}
+                  countData={countData.filter(
+                    (count) => count.topic !== 'gpml_member_entities',
+                  )}
+                />
+              </div>
+            </Link>
 					</Col>
 				</Row>
 			</section>
