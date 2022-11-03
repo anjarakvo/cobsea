@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
-import { TopBar } from '..';
 import Overview from './overview';
 import { useQuery } from 'utils';
 import api from 'utils/api';
 import { useRouter } from 'next/router';
-import bodyScrollLock from '../../utils/scroll-lock'
+import bodyScrollLock from '../../utils/scroll-lock';
 
 const popularTags = [
 	'plastics',
@@ -87,20 +86,19 @@ export default function KnowledgeLibrary() {
 				<title>COBSEA | Knowledge library</title>
 			</Head>
 			<div id='knowledge-library'>
-				<TopBar />
+				<Overview
+					summaryData={landing?.summary}
+					history={router}
+					{...{
+						query,
+						countData,
+						landing,
+						data,
+						loading,
+						showModal,
+					}}
+				/>
 			</div>
-			<Overview
-				summaryData={landing?.summary}
-				history={router}
-				{...{
-					query,
-					countData,
-					landing,
-					data,
-					loading,
-					showModal,
-				}}
-			/>
 		</div>
 	);
 }

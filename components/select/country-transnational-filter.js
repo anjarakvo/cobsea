@@ -26,7 +26,6 @@ const CountryTransnationalFilter = ({
 	fetch,
 }) => {
 	const { UIStore } = PullstateCore.useStores();
-
 	const { countries, transnationalOptions, landing } = UIStore.useState(
 		(s) => ({
 			countries: s.countries,

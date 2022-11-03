@@ -1,9 +1,9 @@
 .filterBar {
 	background-color: #fff;
 	height: 95px;
-	padding-left: 15px;
 	display: flex;
 	align-items: center;
+	margin: 5px 15px;
 	:global {
 		ul {
 			display: flex;
@@ -83,13 +83,15 @@
 			align-items: center;
 			width: 73px;
 			height: 73px;
-			border: unset;
+			background: #ffffff;
+			border: 1.5px solid #475657;
+			box-shadow: 2px 2px 0px rgba(240, 200, 182, 0.2);
+			filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.25));
 			border-radius: 4px;
 			cursor: pointer;
-			margin-right: 14px;
 			svg {
-				width: 21px;
-				height: 21px;
+				// width: 21px;
+				// height: 21px;
 				margin-bottom: 11px;
 			}
 			span {
@@ -106,25 +108,25 @@
 			&.selected {
 				svg {
 					path {
-						stroke: #ffa800;
+						stroke: #475657;
 					}
 				}
 			}
 			&.ant-dropdown-open {
 				background: rgba(24, 22, 47, 0.65);
 				span {
-					color: #ffa800;
+					color: #475657;
 				}
 				svg {
 					path {
-						stroke: #ffa800;
+						stroke: #475657;
 					}
 				}
 			}
 			&.location-filter {
 				&.selected {
 					span {
-						color: #ffa800;
+						color: #475657;
 					}
 				}
 			}
@@ -188,7 +190,7 @@
 			margin-left: auto;
 
 			path {
-				stroke: #fff;
+				// stroke: #fff;
 			}
 		}
 		.filter-status {

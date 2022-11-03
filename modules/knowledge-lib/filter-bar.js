@@ -69,8 +69,6 @@ const FilterBar = ({
 		});
 	};
 
-	console.log(rest);
-
 	const countryList = (
 		<CountryTransnationalFilter
 			{...{
@@ -79,8 +77,18 @@ const FilterBar = ({
 				setMultiCountryCountries,
 			}}
 			query={rest}
-			country={[]?.map((x) => parseInt(x)) || []}
-			multiCountry={[]?.map((x) => parseInt(x)) || []}
+			country={
+				rest?.country
+					?.split(',')
+					.filter((it) => it !== '')
+					?.map((x) => parseInt(x)) || []
+			}
+			multiCountry={
+				rest?.transnational
+					?.split(',')
+					.filter((it) => it !== '')
+					?.map((x) => parseInt(x)) || []
+			}
 			multiCountryLabelCustomIcon={true}
 			countrySelectMode='multiple'
 			multiCountrySelectMode='multiple'
