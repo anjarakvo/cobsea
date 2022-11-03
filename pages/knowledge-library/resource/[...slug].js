@@ -15,6 +15,8 @@ import ResourceCards, {
 	ResourceCard,
 } from 'components/resource-cards/resource-cards';
 import api from 'utils/api';
+import { PullstateCore } from '../../../stores';
+import uniqBy from 'lodash/uniqBy';
 
 const resourceTopic = [
 	'action_plan',
@@ -50,6 +52,7 @@ const ResourceView = () => {
 	const [pageNumber, setPageNumber] = useState(false);
 	const [showFilterModal, setShowFilterModal] = useState(false);
 	const { slug: prevSlug, ...rest } = router.query;
+	const { UIStore } = PullstateCore.useStores();
 
 	const type = slug?.[1];
 
@@ -63,6 +66,27 @@ const ResourceView = () => {
 	const uniqueArrayByKey = (array) => [
 		...new Map(array.map((item) => [item['id'], item])).values(),
 	];
+
+	useEffect(() => {
+		Promise.all([
+			api.get('/tag'),
+			api.get('/country'),
+			api.get('/country-group'),
+		]).then((res) => {
+			const [tag, country, countryGroup] = res;
+			UIStore.update((e) => {
+				e.tags = tag.data;
+				e.countries = uniqBy(country.data).sort((a, b) =>
+					a.name.localeCompare(b.name),
+				);
+				e.regionOptions = countryGroup.data.filter((x) => x.type === 'region');
+				e.meaOptions = countryGroup.data.filter((x) => x.type === 'mea');
+				e.transnationalOptions = countryGroup.data.filter(
+					(x) => x.type === 'transnational',
+				);
+			});
+		});
+	}, []);
 
 	const fetchData = (searchParams) => {
 		setLoading(true);
