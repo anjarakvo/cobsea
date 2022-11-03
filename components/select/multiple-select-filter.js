@@ -17,18 +17,6 @@ const MultipleSelectFilter = ({
 		<Col span={span} className={styles.multiselectionFilter}>
 			<Space align='middle'>
 				<div className='filter-title multiple-filter-title'>{title}</div>
-				{!isEmpty(query?.[flag]) && clear ? (
-					<Tag
-						className='clear-selection'
-						closable
-						onClose={() => updateQuery(flag, [])}
-						onClick={() => updateQuery(flag, [])}
-					>
-						Clear Selection
-					</Tag>
-				) : (
-					''
-				)}
 			</Space>
 			<div>
 				<Select

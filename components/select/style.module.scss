@@ -52,7 +52,7 @@
 		align-self: center;
 	}
 
-	.ant-select-selection-item-remove {
+	:global(.ant-select-selection-item-remove) {
 		display: none;
 	}
 

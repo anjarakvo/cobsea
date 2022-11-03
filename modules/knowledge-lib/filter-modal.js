@@ -47,7 +47,7 @@ const FilterModal = ({
 		);
 
 		const pureQuery = Object.fromEntries(arrayOfQuery);
-
+		console.log(pureQuery);
 		setFilter(pureQuery);
 	};
 
@@ -115,6 +115,8 @@ const FilterModal = ({
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [tagsExcludingCapacityBuilding]);
 
+	console.log(filter);
+
 	const handleApplyFilter = () => {
 		setGridItems([]);
 		setShowFilterModal(false);
@@ -124,10 +126,15 @@ const FilterModal = ({
 			...filter,
 		};
 
-		const newParams = new URLSearchParams(newQuery);
-		history.push({
-			pathname: pathname,
-			search: newParams.toString(),
+		console.log(newQuery);
+		// console.log(type, view);
+		// const newParams = new URLSearchParams(newQuery);
+		history.replace({
+			pathname: `/knowledge-library/resource/${view ? view : ''}/${
+				type ? type : ''
+			}`,
+			query: { ...newQuery },
+			state: { type: type },
 		});
 	};
 
@@ -174,9 +181,7 @@ const FilterModal = ({
 					</Col>
 				)} */}
 
-				<KnowledgeLibrarySearch
-					{...{ updateQuery, filter, type: type, view: view }}
-				/>
+				<KnowledgeLibrarySearch {...{ updateQuery, filter }} />
 
 				<div className='select-filter'>
 					{/* Sub-content type */}
@@ -339,19 +344,11 @@ const DatePickerFilter = ({
 	);
 };
 
-const KnowledgeLibrarySearch = ({ updateQuery, filter, view, type }) => {
-	console.log(type, view);
+const KnowledgeLibrarySearch = ({ updateQuery, filter, type }) => {
 	const [search, setSearch] = useState('');
 	const handleSearch = (src) => {
 		if (src) {
 			updateQuery('q', src);
-			history.replace({
-				pathname: `/knowledge-library/resource/${view ? view : ''}/${
-					type ? type : ''
-				}`,
-				query: { q: src },
-				state: { type: type },
-			});
 		} else {
 			updateQuery('q', '');
 		}
