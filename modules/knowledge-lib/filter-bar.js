@@ -5,6 +5,8 @@ import { LeftOutlined, CloseOutlined } from '@ant-design/icons';
 import { withRouter } from 'next/router';
 import styles from './style.module.scss';
 import { Icon } from 'components/svg-icon/svg-icon';
+import LocationDropdown from 'components/location-dropdown/location-dropdown';
+import CountryTransnationalFilter from 'components/select/country-transnational-filter';
 
 export const resourceTypes = [
 	{
@@ -51,13 +53,42 @@ const FilterBar = ({
 	search,
 	pathname,
 }) => {
+	const [country, setCountry] = useState([]);
+	const [multiCountry, setMultiCountry] = useState([]);
+	const [dropdownVisible, setDropdownVisible] = useState(false);
+	const [disable, setDisable] = useState({
+		country: false,
+		multiCountry: false,
+	});
+	const { slug: prevSlug, ...rest } = history.query;
+
 	const handleClickOverview = () => {
 		history.push({
 			pathname: '/knowledge-library',
 			search: '',
 		});
 	};
-	const { slug: prevSlug, ...rest } = history.query;
+
+	console.log(rest);
+
+	const countryList = (
+		<CountryTransnationalFilter
+			{...{
+				updateQuery,
+				multiCountryCountries,
+				setMultiCountryCountries,
+			}}
+			query={rest}
+			country={[]?.map((x) => parseInt(x)) || []}
+			multiCountry={[]?.map((x) => parseInt(x)) || []}
+			multiCountryLabelCustomIcon={true}
+			countrySelectMode='multiple'
+			multiCountrySelectMode='multiple'
+			fetch={true}
+			disable={disable}
+			setDisable={setDisable}
+		/>
+	);
 
 	return (
 		<div className={styles.filterBar}>
@@ -97,7 +128,17 @@ const FilterBar = ({
 						</div>
 					</li>
 				))}
-			</ul>
+			</ul>{' '}
+			<LocationDropdown
+				{...{
+					country,
+					multiCountry,
+					countryList,
+					dropdownVisible,
+					setDropdownVisible,
+				}}
+				query={history.query}
+			/>
 		</div>
 	);
 };
