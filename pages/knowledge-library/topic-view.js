@@ -25,7 +25,7 @@ const TopicChart = ({
 					data={sortedPopularTopics.map((x) => {
 						const topic =
 							x?.topic?.toLowerCase() === 'capacity building'
-								? 'capacity development'
+								? 'capacity building'
 								: x?.topic;
 						return {
 							id: x?.id,
@@ -51,7 +51,15 @@ const TopicChart = ({
 	);
 };
 
-const TopicView = ({ updateQuery, query, results, countData, loading }) => {
+const TopicView = ({
+	updateQuery,
+	query,
+	results,
+	countData,
+	loading,
+	history,
+	type,
+}) => {
 	const [sortedPopularTopics, setSortedPopularTopics] = useState([]);
 	const [selectedTopic, setSelectedTopic] = useState(null);
 	const [data, setData] = useState([]);
@@ -112,14 +120,15 @@ const TopicView = ({ updateQuery, query, results, countData, loading }) => {
 
 	const handlePopularTopicChartClick = (params) => {
 		if (params?.data.name?.toLowerCase() === selectedTopic) {
-			updateQuery(
-				'tag',
-				params?.data.name?.toLowerCase() === selectedTopic
-					? []
-					: [params?.data?.tag],
-				'',
-				false,
-			);
+			history.push({
+				pathname: `/knowledge-library/resource/topic/${type ? type : ''}`,
+				query: {
+					...(params?.data.name?.toLowerCase() !== selectedTopic && {
+						tag: params?.data?.tag,
+					}),
+				},
+				state: { type: type },
+			});
 			setSelectedTopic(
 				params?.data.name?.toLowerCase() === selectedTopic
 					? null
@@ -128,7 +137,11 @@ const TopicView = ({ updateQuery, query, results, countData, loading }) => {
 		} else {
 			const { name, tag } = params?.data;
 			setSelectedTopic(name?.toLowerCase());
-			updateQuery('tag', [tag], '', false);
+			history.replace({
+				pathname: `/knowledge-library/resource/topic/${type ? type : ''}`,
+				query: { tag: tag },
+				state: { type: type },
+			});
 		}
 	};
 

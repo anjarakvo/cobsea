@@ -389,6 +389,8 @@ const ResourceView = () => {
 								)}
 								updateQuery={updateQuery}
 								query={rest}
+								history={router}
+								type={slug[1]}
 							/>
 						</div>
 					)}
