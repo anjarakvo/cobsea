@@ -17,6 +17,7 @@ import ResourceCards, {
 import api from 'utils/api';
 import { PullstateCore } from '../../../stores';
 import uniqBy from 'lodash/uniqBy';
+import TopicView from '../topic-view';
 
 const resourceTopic = [
 	'action_plan',
@@ -375,6 +376,20 @@ const ResourceView = () => {
 									)}
 								</Fragment>
 							))}
+						</div>
+					)}
+					{slug?.[0] === 'topic' && (
+						<div className='topic-view-container'>
+							<TopicView
+								results={data?.results}
+								fetch={true}
+								loading={loading}
+								countData={countData.filter(
+									(count) => count.topic !== 'gpml_member_entities',
+								)}
+								updateQuery={updateQuery}
+								query={rest}
+							/>
 						</div>
 					)}
 					{slug?.[0] === 'grid' && (
