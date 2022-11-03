@@ -1,9 +1,21 @@
 @import '../../styles/vars.scss';
 
-.multiselection-filter,
-.country-filter-tab .ant-select-multiple {
-	.ant-select-multiple {
-		width: 100%;
+.multiselectionFilter {
+	margin-bottom: 20px;
+	:global {
+		.ant-select-multiple {
+			width: 100%;
+		}
+		.country-filter-tab {
+			width: 100%;
+		}
+		.ant-select-multiple {
+			width: 100%;
+		}
+
+		.ant-select-multiple {
+			width: 100%;
+		}
 	}
 
 	.ant-select-dropdown.ant-select-dropdown-placement-bottomLeft {
@@ -26,8 +38,8 @@
 		padding-left: 30px;
 	}
 
-	.ant-select-selector {
-		background: $grey05 !important;
+	:global(.ant-select-selector) {
+		background: rgba(71, 86, 87, 0.1) !important;
 		border: 0 !important;
 		border-radius: 5px !important;
 		background-image: url('../../images/search-icon.svg'),
@@ -44,7 +56,7 @@
 		display: none;
 	}
 
-	.ant-select-selection-overflow {
+	:global(.ant-select-selection-overflow) {
 		padding-left: 35px;
 		padding-top: 4px;
 		padding-bottom: 4px;

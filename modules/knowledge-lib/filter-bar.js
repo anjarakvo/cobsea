@@ -7,6 +7,7 @@ import styles from './style.module.scss';
 import { Icon } from 'components/svg-icon/svg-icon';
 import LocationDropdown from 'components/location-dropdown/location-dropdown';
 import CountryTransnationalFilter from 'components/select/country-transnational-filter';
+import FilterIcon from 'images/filter-icon.svg';
 
 export const resourceTypes = [
 	{
@@ -61,6 +62,10 @@ const FilterBar = ({
 		multiCountry: false,
 	});
 	const { slug: prevSlug, ...rest } = history.query;
+
+	const isEmpty = Object.values(rest).every(
+		(x) => x === null || x === undefined || x?.length === 0,
+	);
 
 	const handleClickOverview = () => {
 		history.push({
@@ -136,7 +141,23 @@ const FilterBar = ({
 						</div>
 					</li>
 				))}
-			</ul>{' '}
+			</ul>
+			<Button className='adv-src' onClick={() => setShowFilterModal(true)}>
+				{!isEmpty &&
+					Object.keys(rest).filter((item) => !hideFilterList.includes(item))
+						.length > 0 && (
+						<div className='filter-status'>
+							{Object.keys(rest).filter(
+								(item) => !hideFilterList.includes(item),
+							).length > 0 &&
+								Object.keys(rest).filter(
+									(item) => !hideFilterList.includes(item),
+								).length}
+						</div>
+					)}
+				<FilterIcon />
+				<span>Advanced Search</span>
+			</Button>
 			<LocationDropdown
 				{...{
 					country,

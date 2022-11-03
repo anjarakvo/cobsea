@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState, useMemo } from 'react';
 import { Button } from 'antd';
 import FilterBar from 'modules/knowledge-lib/filter-bar';
+import FilterModal from 'modules/knowledge-lib/filter-modal';
 import Head from 'next/head';
 import { TopBar } from 'pages';
 import { LoadingOutlined, DownOutlined } from '@ant-design/icons';
@@ -256,7 +257,12 @@ const ResourceView = () => {
 			</Head>
 			<div id='knowledge-library'>
 				<div>
-					<FilterBar history={router} type={slug[1]} view={slug[0]} />
+					<FilterBar
+						history={router}
+						type={slug[1]}
+						view={slug[0]}
+						setShowFilterModal={setShowFilterModal}
+					/>
 				</div>
 				<div className={styles.listContent}>
 					<div className={`list-toolbar ${styles.listToolbar}`}>
@@ -410,6 +416,22 @@ const ResourceView = () => {
 					)}
 				</div>
 			</div>
+			<FilterModal
+				{...{
+					query: rest,
+					setShowFilterModal,
+					showFilterModal,
+					updateQuery,
+					fetchData,
+					filterCountries,
+					pathname: router.pathname,
+					history: router,
+					setGridItems,
+					loadAllCat,
+					view: slug?.[0],
+					type: slug?.[1],
+				}}
+			/>
 		</div>
 	);
 };
