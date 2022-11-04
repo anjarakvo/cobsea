@@ -277,9 +277,9 @@ const ResourceView = () => {
 					<div className={`list-toolbar ${styles.listToolbar}`}>
 						<div className={styles.quickSearch}>
 							<div className='count'>
-								{slug.toString() === 'grid'
+								{slug[0].toString() === 'grid'
 									? `Showing ${gridItems?.length} of ${totalItems}`
-									: slug.toString() === 'category'
+									: slug[0].toString() === 'category'
 									? `${catData?.reduce(
 											(count, current) => count + current?.count,
 											0,
