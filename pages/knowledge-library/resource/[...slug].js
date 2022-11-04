@@ -19,6 +19,8 @@ import api from 'utils/api';
 import { PullstateCore } from '../../../stores';
 import uniqBy from 'lodash/uniqBy';
 import TopicView from '../topic-view';
+import bodyScrollLock from 'utils/scroll-lock';
+import DetailModal from 'modules/detail/modal';
 
 const resourceTopic = [
 	'action_plan',
@@ -39,7 +41,7 @@ const popularTags = [
 	'source to sea',
 ];
 
-const ResourceView = () => {
+const ResourceView = ({ setLoginVisible, isAuthenticated }) => {
 	const router = useRouter();
 	const slug = router.query.slug || [];
 	const query = useQuery();
@@ -53,6 +55,8 @@ const ResourceView = () => {
 	const [gridItems, setGridItems] = useState([]);
 	const [pageNumber, setPageNumber] = useState(false);
 	const [showFilterModal, setShowFilterModal] = useState(false);
+	const [modalVisible, setModalVisible] = useState(false);
+	const [params, setParams] = useState(null);
 	const { slug: prevSlug, ...rest } = router.query;
 	const { UIStore } = PullstateCore.useStores();
 
@@ -145,7 +149,6 @@ const ResourceView = () => {
 		}
 		const newQuery = { ...router.query };
 		newQuery[param] = value;
-		console.log(router);
 
 		if (param === 'descending' || query.hasOwnProperty('descending')) {
 			newQuery['orderBy'] = 'title';
@@ -204,10 +207,7 @@ const ResourceView = () => {
 
 	useEffect(() => {
 		if (router.isReady) {
-			if (data.length === 0) {
-				console.log('SAd');
-				updateQuery();
-			}
+			if (data.length === 0) updateQuery();
 		}
 	}, [router]);
 
@@ -245,6 +245,33 @@ const ResourceView = () => {
 		setIsAscending(ascending);
 	};
 
+	// useEffect(() => {
+	// 	if (!modalVisible) {
+	// 		const previousHref = `${history?.location?.pathname}${history?.location?.search}`;
+	// 		window.history.pushState(
+	// 		  { urlPath: `/${previousHref}` },
+	// 		  "",
+	// 		  `${previousHref}`
+	// 		);
+	// 	}
+	// }, [modalVisible]);
+
+	const showModal = ({ e, type, id }) => {
+		e.preventDefault();
+		if (type && id) {
+			const detailUrl = `/detail/${type}/${id}`;
+			setParams({ type, id });
+			e.preventDefault();
+			window.history.pushState(
+				{ urlPath: `/${detailUrl}` },
+				'',
+				`${detailUrl}`,
+			);
+			setModalVisible(true);
+			bodyScrollLock.enable();
+		}
+	};
+
 	return (
 		<div>
 			<Head>
@@ -263,9 +290,9 @@ const ResourceView = () => {
 					<div className={`list-toolbar ${styles.listToolbar}`}>
 						<div className={styles.quickSearch}>
 							<div className='count'>
-								{slug[0].toString() === 'grid'
+								{slug?.[0]?.toString() === 'grid'
 									? `Showing ${gridItems?.length} of ${totalItems}`
-									: slug[0].toString() === 'category'
+									: slug?.[0]?.toString() === 'category'
 									? `${catData?.reduce(
 											(count, current) => count + current?.count,
 											0,
@@ -425,6 +452,15 @@ const ResourceView = () => {
 					loadAllCat,
 					view: slug?.[0],
 					type: slug?.[1],
+				}}
+			/>
+			<DetailModal
+				match={{ params }}
+				visible={modalVisible}
+				setVisible={setModalVisible}
+				{...{
+					setLoginVisible,
+					isAuthenticated,
 				}}
 			/>
 		</div>

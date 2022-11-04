@@ -30,7 +30,7 @@
 				font-size: 16px;
 				line-height: 23px;
 				text-transform: uppercase;
-				color: rgba(0, 0, 0, 0.4);
+				color: #475657;
 				margin-bottom: 16px;
 			}
 			.content-paragraph,
@@ -221,7 +221,7 @@
 					font-size: 16px;
 					line-height: 23px;
 					text-transform: uppercase;
-					color: rgba(0, 0, 0, 0.4);
+					color: #475657;
 					margin-bottom: 0;
 				}
 				.detail-resource-title {
@@ -328,13 +328,16 @@
 			.location-icon,
 			.city-icon {
 				display: flex;
-				min-width: 28.25px;
-				max-width: 28.25px;
+				min-width: 30px;
+				max-width: 30px;
 				margin-right: 16px;
 			}
 
 			.location-icon svg {
-				height: 30px;
+				// height: 30px;
+				path {
+					stroke: #475657;
+				}
 			}
 
 			.section-document {
@@ -505,7 +508,7 @@
 						font-size: 16px;
 						color: #475657;
 						min-height: 35px;
-						line-height: 24px;
+						line-height: 35px;
 						background-color: unset;
 						border: 2px solid #475657;
 						border-top-left-radius: 30px;

@@ -82,13 +82,19 @@ const renderCountries = (data, countries) => {
 	return dataCountries;
 };
 
-const DetailsView = ({ setLoginVisible, setFilterMenu, isAuthenticated }) => {
+const DetailsView = ({
+	match,
+	setLoginVisible,
+	setFilterMenu,
+	isAuthenticated,
+}) => {
 	const [showLess, setShowLess] = useState(true);
 	const router = useRouter();
 	let params = { type: '', id: '' };
 	if (router.isReady)
-		params = { type: router?.query?.resource, id: router?.query?.id };
-	console.log(params);
+		params = match?.params
+			? match.params
+			: { type: router?.query?.resource, id: router?.query?.id };
 	const { UIStore } = PullstateCore.useStores();
 
 	const { profile, countries, languages, transnationalOptions, placeholder } =
@@ -259,7 +265,7 @@ const DetailsView = ({ setLoginVisible, setFilterMenu, isAuthenticated }) => {
 		});
 
 	return (
-		<div className={styles.detailViewWrapper}>
+		<div className={`detail-view-wrapper ${styles.detailViewWrapper}`}>
 			<div
 				id='detail-view'
 				style={!isAuthenticated ? { paddingBottom: '1px' } : { padding: 0 }}
