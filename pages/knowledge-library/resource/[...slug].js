@@ -165,20 +165,6 @@ const ResourceView = () => {
 
 		newParams.delete('offset');
 
-		// if (router.isReady)
-		// 	if (param === 'replace')
-		// 		router.replace({
-		// 			pathname: router.pathname,
-		// 			query: newParams.toString(),
-		// 			state: { type: slug?.[1] },
-		// 		});
-		// 	else
-		// 		router.push({
-		// 			pathname: router.pathname,
-		// 			query: newParams.toString(),
-		// 			state: { type: slug?.[1] },
-		// 		});
-
 		if (fetch && slug?.[0] !== 'category') fetchData(pureQuery);
 
 		if (slug?.[0] === 'category') loadAllCat(pureQuery);
@@ -325,13 +311,13 @@ const ResourceView = () => {
 										query: history.location.search,
 									});
 								}}
-								// showModal={(e) =>
-								// 	showModal({
-								// 		e,
-								// 		type: e.currentTarget.type,
-								// 		id: e.currentTarget.id,
-								// 	})
-								// }
+								showModal={(e) =>
+									showModal({
+										e,
+										type: e.currentTarget.type,
+										id: e.currentTarget.id,
+									})
+								}
 							/>
 							{loading && (
 								<div className={styles.loading}>
@@ -419,7 +405,7 @@ const ResourceView = () => {
 								setPageNumber,
 								pageNumber,
 								updateQuery,
-								// showModal,
+								showModal,
 							}}
 						/>
 					)}

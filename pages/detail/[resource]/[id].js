@@ -218,11 +218,9 @@ const DetailsView = ({ setLoginVisible, setFilterMenu, isAuthenticated }) => {
 
 	if (!data) {
 		return (
-			<div className='details-view'>
-				<div className='loading'>
-					<LoadingOutlined spin />
-					<i>Loading...</i>
-				</div>
+			<div className={styles.loading}>
+				<LoadingOutlined spin />
+				<i>Loading...</i>
 			</div>
 		);
 	}
