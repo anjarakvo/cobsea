@@ -24,7 +24,7 @@ const StakeholderCarousel = ({ stakeholders }) => {
 	}));
 
 	return (
-		<div className='connection-wrapper'>
+		<div className={styles.connectionWrapper}>
 			<Swiper
 				spaceBetween={0}
 				slidesPerGroup={window.innerWidth > 1024 ? 5 : 1}
