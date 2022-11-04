@@ -162,9 +162,11 @@ const getThumbnail = (item) => {
 export const ResourceCard = ({ item, index, showModal }) => {
 	return (
 		<div className='resource-card' key={index}>
-			<Link href={`/${getType(item?.type)?.replace('_', '-')}/${item.id}`}>
+			<Link
+				href={`/detail/${getType(item?.type)?.replace('_', '-')}/${item.id}`}
+			>
 				<a
-					onClick={showModal}
+					// onClick={showModal}
 					id={item.id}
 					type={getType(item?.type)?.replace('_', '-')}
 					className='description-holder'

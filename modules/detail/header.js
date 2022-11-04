@@ -13,10 +13,6 @@ import classNames from 'classnames';
 export const HeaderButtons = ({
 	data,
 	topic,
-	handleEditBtn,
-	handleDeleteBtn,
-	canEdit,
-	canDelete,
 	relation,
 	handleRelationChange,
 	visible,
@@ -187,30 +183,6 @@ export const HeaderButtons = ({
 			>
 				{bookmarked ? 'Bookmarked' : 'Bookmark'}
 			</Button>
-			{canEdit() && (
-				<Button
-					className='edit-button two-tone-button'
-					type='primary'
-					shape='round'
-					size='middle'
-					ghost
-					onClick={handleEditBtn}
-				>
-					Edit
-				</Button>
-			)}
-			{canDelete() && (
-				<Button
-					className='delete-button two-tone-button'
-					type='primary'
-					shape='round'
-					size='middle'
-					ghost
-					onClick={handleDeleteBtn}
-				>
-					Delete
-				</Button>
-			)}
 			{translations && translations.hasOwnProperty('title') && (
 				<div className='language-select'>
 					<Select
@@ -248,8 +220,6 @@ const Header = ({
 	profile,
 	isAuthenticated,
 	params,
-	handleEditBtn,
-	handleDeleteBtn,
 	allowBookmark,
 	visible,
 	handleVisible,
@@ -268,8 +238,6 @@ const Header = ({
 		profile,
 		isAuthenticated,
 		params,
-		handleEditBtn,
-		handleDeleteBtn,
 		allowBookmark,
 		visible,
 		handleVisible,
@@ -279,37 +247,14 @@ const Header = ({
 		relation,
 		handleRelationChange,
 	) => {
-		const noEditTopics = new Set(['stakeholder']);
-
 		const resourceOwners = data?.stakeholderConnections
 			?.filter((stakeholder) => stakeholder?.role?.toLowerCase() === 'owner')
 			.map((stakeholder) => stakeholder?.stakeholderId);
 
-		const find = resourceOwners.includes(profile?.id);
-
-		const canEdit = () =>
-			isAuthenticated &&
-			profile.reviewStatus === 'APPROVED' &&
-			(profile.role === 'ADMIN' ||
-				profile.id === params.createdBy ||
-				data.owners.includes(profile.id) ||
-				find) &&
-			((params.type !== 'initiative' && !noEditTopics.has(params.type)) ||
-				(params.type === 'initiative' && params.id > 10000));
-
-		const canDelete = () =>
-			isAuthenticated &&
-			((profile.reviewStatus === 'APPROVED' && profile.role === 'ADMIN') ||
-				find);
-
 		return (
 			<HeaderButtons
 				data={data}
-				handleDeleteBtn={handleDeleteBtn}
-				canDelete={canDelete}
 				topic={{ ...data, ...params }}
-				handleEditBtn={handleEditBtn}
-				canEdit={canEdit}
 				relation={relation.relation}
 				handleRelationChange={relation.handleRelationChange}
 				allowBookmark={allowBookmark}
@@ -336,8 +281,6 @@ const Header = ({
 				profile,
 				isAuthenticated,
 				params,
-				handleEditBtn,
-				handleDeleteBtn,
 				allowBookmark,
 				visible,
 				handleVisible,

@@ -1,22 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, {
-	Fragment,
-	useState,
-	useEffect,
-	useCallback,
-	useRef,
-} from 'react';
-import './styles.scss';
-import {
-	Row,
-	Col,
-	List,
-	Avatar,
-	Popover,
-	Tag,
-	Modal,
-	notification,
-} from 'antd';
+import React, { Fragment, useState, useEffect } from 'react';
+import styles from './style.module.scss';
+import { Row, Col, List, Popover, Tag } from 'antd';
 
 import {
 	InfoCircleOutlined,
@@ -39,8 +23,10 @@ import Header from 'modules/detail/header';
 import StakeholderCarousel from 'modules/detail/stakeholder-carousel';
 import LocationImage from 'images/location.svg';
 import TransnationalImage from 'images/transnational.svg';
+import LeftImage from 'images/sea-dark.jpg';
 import CityImage from 'images/city-icn.svg';
 import { getTypeByResource, languageOptions } from 'utils';
+import { useRouter } from 'next/router';
 
 const currencyFormat = (curr) => Intl.NumberFormat().format(curr);
 
@@ -96,14 +82,13 @@ const renderCountries = (data, countries) => {
 	return dataCountries;
 };
 
-const DetailsView = ({
-	match: { params },
-	setLoginVisible,
-	setFilterMenu,
-	isAuthenticated,
-}) => {
+const DetailsView = ({ setLoginVisible, setFilterMenu, isAuthenticated }) => {
 	const [showLess, setShowLess] = useState(true);
-
+	const router = useRouter();
+	let params = { type: '', id: '' };
+	if (router.isReady)
+		params = { type: router?.query?.resource, id: router?.query?.id };
+	console.log(params);
 	const { UIStore } = PullstateCore.useStores();
 
 	const { profile, countries, languages, transnationalOptions, placeholder } =
@@ -166,37 +151,38 @@ const DetailsView = ({
 	};
 
 	useEffect(() => {
-		params?.type &&
-			params?.id &&
-			api
-				.get(`/detail/${params?.type.replace('-', '_')}/${params?.id}`)
-				.then((d) => {
-					api
-						.get(
-							`/translations/${
-								getTypeByResource(params?.type.replace('-', '_')).translations
-							}/${params?.id}`,
-						)
-						.then((resp) => {
-							setTranslations({
-								...resp.data,
-								summary: resp.data.abstract
-									? resp.data.abstract
-									: resp.data.remarks
-									? resp.data.remarks
-									: resp.data.description
-									? resp.data.description
-									: resp.data.summary,
-							});
-						})
-						.catch((e) => console.log(e));
-					setData(d.data);
-					getComment(params?.id, params?.type.replace('-', '_'));
-				})
-				.catch((err) => {
-					console.error(err);
-					// redirectError(err, history);
-				});
+		if (router.isReady)
+			params?.type &&
+				params?.id &&
+				api
+					.get(`/detail/${params?.type.replace('-', '_')}/${params?.id}`)
+					.then((d) => {
+						api
+							.get(
+								`/translations/${
+									getTypeByResource(params?.type.replace('-', '_')).translations
+								}/${params?.id}`,
+							)
+							.then((resp) => {
+								setTranslations({
+									...resp.data,
+									summary: resp.data.abstract
+										? resp.data.abstract
+										: resp.data.remarks
+										? resp.data.remarks
+										: resp.data.description
+										? resp.data.description
+										: resp.data.summary,
+								});
+							})
+							.catch((e) => console.log(e));
+						setData(d.data);
+						getComment(params?.id, params?.type.replace('-', '_'));
+					})
+					.catch((err) => {
+						console.error(err);
+						// redirectError(err, history);
+					});
 		if (profile.reviewStatus === 'APPROVED') {
 			setTimeout(() => {
 				api
@@ -210,7 +196,7 @@ const DetailsView = ({
 			e.disclaimer = null;
 		});
 		window.scrollTo({ top: 0 });
-	}, [profile, location]);
+	}, [router]);
 
 	const getComment = async (id, type) => {
 		let res = await api.get(
@@ -221,100 +207,6 @@ const DetailsView = ({
 		if (res && res?.data) {
 			setComments(res.data?.comments);
 		}
-	};
-
-	const handleEditBtn = () => {
-		let form = null;
-		let type = null;
-		let link = null;
-		switch (params.type) {
-			case 'initiative':
-				form = 'initiative';
-				link = 'edit-initiative';
-				type = 'initiative';
-				break;
-			case 'action-plan':
-				form = 'actionPlan';
-				link = 'edit-action-plan';
-				type = 'action_plan';
-				break;
-			case 'policy':
-				form = 'policy';
-				link = 'edit-policy';
-				type = 'policy';
-				break;
-			case 'technical-resource':
-				form = 'technicalResource';
-				link = 'edit-technical-resource';
-				type = 'technical_resource';
-				break;
-			case 'financing-resource':
-				form = 'financingResource';
-				link = 'edit-financing-resource';
-				type = 'financing_resource';
-				break;
-			case 'technology':
-				form = 'technology';
-				link = 'edit-technology';
-				type = 'technology';
-				break;
-			case 'event':
-				form = 'event';
-				link = 'edit-event';
-				type = 'event';
-				break;
-			default:
-				form = 'entity';
-				link = 'edit-entity';
-				type = 'initiative';
-				break;
-		}
-		UIStore.update((e) => {
-			e.formEdit = {
-				...e.formEdit,
-				flexible: {
-					status: 'edit',
-					id: params.id,
-				},
-			};
-			e.formStep = {
-				...e.formStep,
-				flexible: 1,
-			};
-		});
-
-		history.push({
-			pathname: `/${link}/${params.id}`,
-			state: { type: type },
-		});
-	};
-
-	const handleDeleteBtn = () => {
-		Modal.error({
-			className: 'popup-delete',
-			centered: true,
-			closable: true,
-			icon: <DeleteOutlined />,
-			title: 'Are you sure you want to delete this resource?',
-			content: 'Please be aware this action cannot be undone.',
-			okText: 'Delete',
-			okType: 'danger',
-			onOk() {
-				return api
-					.delete(`/detail/${params?.type.replace('-', '_')}/${params?.id}`)
-					.then((res) => {
-						notification.success({
-							message: 'Resource deleted successfully',
-						});
-					})
-					.catch((err) => {
-						console.error(err);
-						notification.error({
-							message: 'Oops, something went wrong',
-						});
-					});
-			},
-		});
 	};
 
 	const handleVisible = () => {
@@ -381,8 +273,6 @@ const DetailsView = ({
 						profile,
 						isAuthenticated,
 						params,
-						handleEditBtn,
-						handleDeleteBtn,
 						allowBookmark,
 						visible,
 						handleVisible,
@@ -420,8 +310,10 @@ const DetailsView = ({
 							<Image
 								className='resource-image'
 								id='detail-resource-image'
+								loader={() => data?.image}
 								src={data?.image}
 								alt={data?.title}
+								layout='fill'
 							/>
 						</a>
 					)}

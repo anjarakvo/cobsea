@@ -1,11 +1,11 @@
 import React from 'react';
-import './stakeholder-carousel.scss';
+import styles from './carousel.module.scss';
 import { Card, Avatar } from 'antd';
 import Link from 'next/link';
 import { PullstateCore } from 'stores';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination as SwiperPagination, Navigation } from 'swiper';
+import { Pagination, Navigation } from 'swiper';
 import 'swiper/css';
 
 import { randomColor } from 'utils';
