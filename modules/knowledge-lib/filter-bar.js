@@ -74,6 +74,15 @@ const FilterBar = ({
 		});
 	};
 
+	const resetFilter = () => {
+		history.push({
+			pathname: `/knowledge-library/resource/${view ? view : ''}/${
+				type ? type : ''
+			}`,
+			query: {},
+		});
+	};
+
 	const countryList = (
 		<CountryTransnationalFilter
 			{...{
@@ -158,6 +167,17 @@ const FilterBar = ({
 				<FilterIcon />
 				<span>Advanced Search</span>
 			</Button>
+			{!isEmpty &&
+				Object.keys(rest).filter((item) => !hideFilterList.includes(item))
+					.length > 0 && (
+					<Button
+						icon={<CloseOutlined />}
+						className='reset-button'
+						onClick={() => resetFilter()}
+					>
+						Reset filters
+					</Button>
+				)}
 			<LocationDropdown
 				{...{
 					country,
