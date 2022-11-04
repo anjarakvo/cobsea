@@ -18,6 +18,11 @@ const nextConfig = {
 			},
 		];
 	},
+	experimental: {
+		images: {
+			layoutRaw: true,
+		},
+	},
 };
 
 module.exports = nextConfig;

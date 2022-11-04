@@ -7,7 +7,7 @@ import {
 	LoadingOutlined,
 	DeleteOutlined,
 } from '@ant-design/icons';
-import Image from 'next/image';
+import Image from 'next/future/image';
 import api from 'utils/api';
 import { PullstateCore } from 'stores';
 import { titleCase } from 'utils';
@@ -261,7 +261,7 @@ const DetailsView = ({ setLoginVisible, setFilterMenu, isAuthenticated }) => {
 		});
 
 	return (
-		<div className='detail-view-wrapper'>
+		<div className={styles.detailViewWrapper}>
 			<div
 				id='detail-view'
 				style={!isAuthenticated ? { paddingBottom: '1px' } : { padding: 0 }}
@@ -308,12 +308,13 @@ const DetailsView = ({ setLoginVisible, setFilterMenu, isAuthenticated }) => {
 							rel='noreferrer'
 						>
 							<Image
+								fill
 								className='resource-image'
 								id='detail-resource-image'
 								loader={() => data?.image}
 								src={data?.image}
 								alt={data?.title}
-								layout='fill'
+								layout='raw'
 							/>
 						</a>
 					)}
