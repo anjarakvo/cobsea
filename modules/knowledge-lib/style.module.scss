@@ -240,7 +240,7 @@
 		.ant-modal-body {
 			padding: 17px 80px 50px 80px;
 			.filter-title {
-				color: #000;
+				color: rgba(24, 22, 47, 0.37);
 				font-size: 18px;
 				font-weight: 500;
 				margin-bottom: 5px;
@@ -305,7 +305,15 @@
 				border: 1px solid rgba(71, 86, 87, 0.1);
 				border-radius: 10px;
 				width: 100%;
-				padding: 20px;
+				padding: 40px;
+				h4 {
+					font-weight: 400;
+					font-size: 14px;
+					line-height: 20px;
+					text-transform: uppercase;
+					color: #000000;
+					margin-bottom: 30px;
+				}
 			}
 		}
 

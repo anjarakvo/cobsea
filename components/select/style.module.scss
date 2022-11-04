@@ -57,13 +57,15 @@
 	}
 
 	:global(.ant-select-selection-overflow) {
-		padding-left: 35px;
+		// padding-left: 35px;
 		padding-top: 4px;
 		padding-bottom: 4px;
 
-		.ant-select-selection-item {
-			background-color: #c3dbe7;
+		:global(.ant-select-selection-item) {
+			background-color: #475657;
 			border-radius: 4px;
+			color: #fff;
+			font-weight: 500;
 		}
 	}
 

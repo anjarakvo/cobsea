@@ -29,6 +29,7 @@ const FilterModal = ({
 			representativeGroup: s.representativeGroup,
 			organisations: s.organisations,
 		}));
+
 	const [tagsExcludingCapacityBuilding, setTagsExcludingCapacityBuilding] =
 		useState([]);
 
@@ -115,8 +116,6 @@ const FilterModal = ({
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [tagsExcludingCapacityBuilding]);
 
-	console.log(filter);
-
 	const handleApplyFilter = () => {
 		setGridItems([]);
 		setShowFilterModal(false);
@@ -126,16 +125,31 @@ const FilterModal = ({
 			...filter,
 		};
 
-		console.log(newQuery);
-		// console.log(type, view);
-		// const newParams = new URLSearchParams(newQuery);
-		history.replace({
-			pathname: `/knowledge-library/resource/${view ? view : ''}/${
-				type ? type : ''
-			}`,
-			query: { ...newQuery },
-			state: { type: type },
-		});
+		delete newQuery.slug;
+
+		history.push(
+			{
+				pathname: `/knowledge-library/resource/${view ? view : ''}/${
+					type ? type : ''
+				}`,
+				query: {
+					...newQuery,
+					...(newQuery?.tag && { tag: newQuery?.tag.join(',') }),
+					...(newQuery?.representativeGroup && {
+						representativeGroup: newQuery?.representativeGroup.join(','),
+					}),
+					...(newQuery?.entity && { entity: newQuery?.entity.join(',') }),
+					...(newQuery?.subContentType && {
+						subContentType: newQuery?.subContentType.join(','),
+					}),
+				},
+				state: { type: type },
+			},
+			undefined,
+			{
+				shallow: true,
+			},
+		);
 	};
 
 	return (
@@ -184,6 +198,7 @@ const FilterModal = ({
 				<KnowledgeLibrarySearch {...{ updateQuery, filter }} />
 
 				<div className='select-filter'>
+					<h4>Refine the results</h4>
 					{/* Sub-content type */}
 					<MultipleSelectFilter
 						title='Sub-content type'

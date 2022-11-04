@@ -3,7 +3,7 @@ import { Button } from 'antd';
 import FilterBar from 'modules/knowledge-lib/filter-bar';
 import FilterModal from 'modules/knowledge-lib/filter-modal';
 import Head from 'next/head';
-import { TopBar } from 'pages';
+import sortBy from 'lodash/sortBy';
 import { LoadingOutlined, DownOutlined } from '@ant-design/icons';
 import SortIcon from 'images/sort-icon.svg';
 import SearchIcon from 'images/search-icon.svg';
@@ -74,8 +74,11 @@ const ResourceView = () => {
 			api.get('/tag'),
 			api.get('/country'),
 			api.get('/country-group'),
+			api.get('/organisation'),
+			api.get('/non-member-organisation'),
 		]).then((res) => {
-			const [tag, country, countryGroup] = res;
+			const [tag, country, countryGroup, organisation, nonMemberOrganisations] =
+				res;
 			UIStore.update((e) => {
 				e.tags = tag.data;
 				e.countries = uniqBy(country.data).sort((a, b) =>
@@ -86,6 +89,12 @@ const ResourceView = () => {
 				e.transnationalOptions = countryGroup.data.filter(
 					(x) => x.type === 'transnational',
 				);
+				e.organisations = uniqBy(sortBy(organisation.data, ['name'])).sort(
+					(a, b) => a.name.localeCompare(b.name),
+				);
+				e.nonMemberOrganisations = uniqBy(
+					sortBy(nonMemberOrganisations.data, ['name']),
+				).sort((a, b) => a.name.localeCompare(b.name));
 			});
 		});
 	}, []);
@@ -418,7 +427,7 @@ const ResourceView = () => {
 			</div>
 			<FilterModal
 				{...{
-					query: rest,
+					query,
 					setShowFilterModal,
 					showFilterModal,
 					updateQuery,
