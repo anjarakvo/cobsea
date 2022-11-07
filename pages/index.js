@@ -8,7 +8,10 @@ export const TopBar = () => {
       <div className="container">
         <Link href="/">
           <a>
-          <Image src="/cobsea.svg" alt="COBSEA" width={162} height={42} />
+            <span className="unep">
+              <Image src="/unep.svg" alt="UNEP" width={62} height={46} />
+            </span>
+            <Image src="/cobsea.svg" alt="COBSEA" width={162} height={42} />
           </a>
         </Link>
         <nav>
