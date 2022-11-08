@@ -71,14 +71,14 @@
 					}
 				}
 				&.selected {
-					background-color: #91c9c1;
-					border: 3px solid #91c9c1;
-					color: #fff;
+					background-color: #fff;
+					border: 3px solid #fff;
+					color: $secondary;
 					transform: scale(1.1);
 					.img-container {
 						svg {
 							path {
-								fill: #ffffff;
+								fill: $secondary;
 							}
 						}
 					}
@@ -511,7 +511,7 @@
 				font-size: 15px;
 				letter-spacing: -0.5px;
 				color: #fff;
-				border: 1px solid white;
+				border: 1.5px solid white;
 				& > div {
 					display: flex;
 					justify-content: center;
