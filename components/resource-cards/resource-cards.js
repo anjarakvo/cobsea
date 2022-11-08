@@ -35,7 +35,7 @@ const Card = ({ showMoreCardClick, showMoreCardHref, children }) => {
 };
 
 const ResourceCards = ({
-	items,
+	items = [],
 	showMoreCard,
 	showMoreCardAfter = 0,
 	showMoreCardClick,
@@ -61,7 +61,7 @@ const ResourceCards = ({
 			);
 		}
 	}
-
+  console.log(showMoreCardAfter, items)
 	return (
 		<Swiper
 			spaceBetween={0}

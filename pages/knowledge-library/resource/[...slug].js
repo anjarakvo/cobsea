@@ -458,10 +458,6 @@ const ResourceView = ({ setLoginVisible, isAuthenticated }) => {
 				match={{ params }}
 				visible={modalVisible}
 				setVisible={setModalVisible}
-				{...{
-					setLoginVisible,
-					isAuthenticated,
-				}}
 			/>
 		</div>
 	);
