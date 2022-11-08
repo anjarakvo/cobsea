@@ -5,6 +5,7 @@ const nextConfig = {
 	webpack(config) {
 		config.module.rules.push({
 			test: /\.svg$/,
+      exclude: /public/,
 			use: ['@svgr/webpack'],
 		});
 
