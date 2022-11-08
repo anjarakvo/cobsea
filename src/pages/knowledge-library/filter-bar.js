@@ -68,7 +68,7 @@ const FilterBar = ({
 
 	const handleClickOverview = () => {
 		history.push({
-			pathname: '/knowledge/library/overview',
+			pathname: '/knowledge-library/overview',
 			search: '',
 		});
 	};
@@ -128,14 +128,14 @@ const FilterBar = ({
 						onClick={() => {
 							if (type === it.key)
 								history.push({
-									pathname: `/knowledge/library/resource/${
+									pathname: `/knowledge-library/resource/${
 										view ? view : 'map'
 									}`,
 									search: search,
 								});
 							else
 								history.push({
-									pathname: `/knowledge/library/resource/${
+									pathname: `/knowledge-library/resource/${
 										view ? (view === 'category' ? 'grid' : view) : 'map'
 									}/${it.key}/`,
 									search: search,

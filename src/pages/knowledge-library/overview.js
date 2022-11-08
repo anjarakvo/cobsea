@@ -92,7 +92,7 @@ const Overview = ({
 							className='overlay-btn'
 							onClick={() => {
 								history.push({
-									pathname: `/knowledge/library/resource/map`,
+									pathname: `/knowledge-library/resource/map`,
 								});
 							}}
 						>
@@ -113,7 +113,7 @@ const Overview = ({
 							className='overlay-btn'
 							onClick={() => {
 								history.push({
-									pathname: `/knowledge/library/resource/topic`,
+									pathname: `/knowledge-library/resource/topic`,
 								});
 							}}
 						>
