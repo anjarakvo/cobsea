@@ -84,7 +84,7 @@ function Library({ setLoginVisible, isAuthenticated }) {
 	};
 
 	useEffect(() => {
-		if (pathname === '/knowledge-library') fetchData();
+		if (pathname === '/knowledge-library/overview') fetchData();
 	}, [pathname]);
 
 	useEffect(() => {
@@ -97,37 +97,6 @@ function Library({ setLoginVisible, isAuthenticated }) {
 
 	return (
 		<div id='knowledge-lib'>
-			{/* <Switch>
-				<Route
-					path='/knowledge-library'
-					render={(props) => (
-						<Overview
-							{...props}
-							summaryData={landing?.summary}
-							{...{
-								box,
-								query,
-								countData,
-								landing,
-								data,
-								loading,
-								history,
-								showModal,
-								isAuthenticated,
-								setLoginVisible,
-							}}
-						/>
-					)}
-				/>
-				<Route
-					path='/knowledge-library/resource/:view?/:type?'
-					render={(props) => (
-						<ResourceView
-							{...{ box, history, popularTags, landing, showModal }}
-						/>
-					)}
-				/>
-			</Switch> */}
 			<Switch>
 				<Route exact path='/knowledge-library'>
 					<Redirect to='/knowledge-library/overview' exact={true} />

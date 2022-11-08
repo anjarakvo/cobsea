@@ -7,8 +7,17 @@ import { multicountryGroups } from './multicountry';
 import './style.scss';
 import api from 'utils/api';
 
-const { TabPane } = Tabs;
-const { Option, OptGroup } = Select;
+const cobseaContries = [
+	'Cambodia',
+	'China',
+	'Indonesia',
+	'Republic of Korea',
+	'Philippines',
+	'Thailand',
+	'Singapore',
+	'Viet Nam',
+	'Malaysia',
+];
 
 const CountryTransnationalFilter = ({
 	query,
@@ -37,9 +46,7 @@ const CountryTransnationalFilter = ({
 
 	const countryOpts = isLoaded()
 		? countries
-				.filter(
-					(country) => country.description.toLowerCase() === 'member state',
-				)
+				.filter((country) => cobseaContries.includes(country.name))
 				.map((it) => ({ value: it.id, label: it.name }))
 				.sort((a, b) => a.label.localeCompare(b.label))
 		: [];
@@ -95,110 +102,24 @@ const CountryTransnationalFilter = ({
 		.flat();
 
 	return (
-		<Tabs
-			type='card'
-			className='country-filter-tab'
-			onChange={handleChangeLocationTab}
-		>
-			<TabPane
-				tab='Countries'
-				key='country'
-				className='country-filter-tab-pane country'
-				disabled={disable?.country}
-			>
-				<Select
-					showSearch
-					allowClear
-					dropdownClassName='multiselection-dropdown'
-					mode={countrySelectMode || ''}
-					placeholder='Countries'
-					options={countryOpts}
-					optionFilterProp='children'
-					filterOption={(input, option) =>
-						option?.label?.toLowerCase().indexOf(input.toLowerCase()) >= 0
-					}
-					value={country}
-					onChange={handleChangeCountry}
-					// onDeselect={handleDeselectCountry}
-					virtual={false}
-				/>
-			</TabPane>
-			<TabPane
-				tab='Multi-Country'
-				key='multi-country'
-				className={`country-filter-tab-pane ${
-					multiCountry ? 'multi-country-info' : 'multi-country'
-				}`}
-				disabled={disable?.multiCountry}
-			>
-				<Select
-					dropdownClassName='multiselection-dropdown multiselection-filter'
-					showSearch
-					allowClear
-					virtual={false}
-					mode={multiCountrySelectMode || ''}
-					placeholder='Multi-Country'
-					optionFilterProp='children'
-					filterOption={(input, option) => {
-						return (
-							option?.label?.toLowerCase().indexOf(input.toLowerCase()) >= 0
-						);
-					}}
-					value={multiCountry}
-					onChange={handleChangeMultiCountry}
-					dropdownMatchSelectWidth={325}
-					suffixIcon={
-						!multiCountryLabelCustomIcon && multiCountry ? (
-							<MultiCountryInfo
-								multiCountryCountries={
-									multiCountryCountries.find((x) => x.id === multiCountry)
-										?.countries
-								}
-							/>
-						) : (
-							<DownOutlined />
-						)
-					}
-				>
-					{multicountryGroups
-						.sort((a, b) => a.label.localeCompare(b.label))
-						.map((transnationalGroup) => (
-							<OptGroup
-								key={transnationalGroup.label}
-								label={transnationalGroup.label}
-								isSelectOptGroup={true}
-								filterLabel={transnationalGroup.item
-									.sort((a, b) => a.name.localeCompare(b.name))
-									.map((transnational) => transnational.name)}
-							>
-								{transnationalGroup.item
-									.sort((a, b) => a.name.localeCompare(b.name))
-									.map((transnational) => {
-										return (
-											<Option
-												key={transnational.id}
-												value={transnational.id}
-												label={transnational.name}
-											>
-												<div className='dropdown-content'>
-													{transnational.name}
-													<MultiCountryInfo
-														data={landing}
-														multiCountryCountries={
-															countryInfoData.find(
-																(x) => x.id === transnational.id,
-															)?.countries
-														}
-													/>
-												</div>
-											</Option>
-										);
-									})}
-							</OptGroup>
-						))}
-				</Select>
-			</TabPane>
-		</Tabs>
+		<div className='country-filter-tab'>
+			<Select
+				showSearch
+				allowClear
+				dropdownClassName='multiselection-dropdown'
+				mode={countrySelectMode || ''}
+				placeholder='Countries'
+				options={countryOpts}
+				optionFilterProp='children'
+				filterOption={(input, option) =>
+					option?.label?.toLowerCase().indexOf(input.toLowerCase()) >= 0
+				}
+				value={country}
+				onChange={handleChangeCountry}
+				// onDeselect={handleDeselectCountry}
+				virtual={false}
+			/>
+		</div>
 	);
 };
 
