@@ -1,0 +1,23 @@
+.nav-header-container {
+	background: url(../../../public/waves.svg) repeat center #357079;
+	height: 110px;
+	display: flex;
+	align-items: center;
+	.container {
+		display: flex;
+		.unep {
+			transform: translateY(3px);
+			margin-right: 10px;
+			display: inline-block;
+		}
+		nav {
+			display: flex;
+			color: white;
+			margin-left: 40px;
+			margin-top: 10px;
+			a {
+				text-decoration: underline;
+			}
+		}
+	}
+}
