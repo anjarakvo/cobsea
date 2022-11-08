@@ -145,7 +145,7 @@ const FilterBar = ({
 						className={type === it.key ? 'selected' : ''}
 					>
 						<div className='img-container'>
-							<Icon name={`resource-types/${it.key}`} fill='#FFF' />
+							{/* <Icon name={`resource-types/${it.key}`} fill='#FFF' /> */}
 						</div>
 						<div className='label-container'>
 							<span>{it.label}</span>

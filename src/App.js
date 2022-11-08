@@ -12,7 +12,6 @@ function App() {
 				<Route path='/' exact render={(props) => <Landing />} />
 				<Route
 					path='/knowledge-library'
-					exact
 					render={(props) => <KnowledgeLibrary />}
 				/>
 			</Switch>

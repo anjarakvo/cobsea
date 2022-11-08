@@ -5,7 +5,13 @@ import Overview from './overview';
 import ResourceView from './resource-view';
 import { useQuery } from 'utils/misc';
 import { UIStore } from '../../store';
-import { useHistory, useLocation, Switch, Route } from 'react-router-dom';
+import {
+	useHistory,
+	useLocation,
+	Switch,
+	Route,
+	Redirect,
+} from 'react-router-dom';
 import bodyScrollLock from 'utils/scroll-utils';
 import DetailModal from 'pages/detail/modal';
 
@@ -32,17 +38,6 @@ function Library({ setLoginVisible, isAuthenticated }) {
 	const { landing } = UIStore.useState((s) => ({
 		landing: s.landing,
 	}));
-
-	// useEffect(() => {
-	// 	if (!modalVisible) {
-	// 		const previousHref = `${history?.location?.pathname}${history?.location?.search}`;
-	// 		window.history.pushState(
-	// 			{ urlPath: `/${previousHref}` },
-	// 			'',
-	// 			`${previousHref}`,
-	// 		);
-	// 	}
-	// }, [modalVisible]);
 
 	const hideModal = () => {
 		console.log(history);
@@ -102,9 +97,43 @@ function Library({ setLoginVisible, isAuthenticated }) {
 
 	return (
 		<div id='knowledge-lib'>
-			<Switch>
+			{/* <Switch>
 				<Route
-					path='/'
+					path='/knowledge-library'
+					render={(props) => (
+						<Overview
+							{...props}
+							summaryData={landing?.summary}
+							{...{
+								box,
+								query,
+								countData,
+								landing,
+								data,
+								loading,
+								history,
+								showModal,
+								isAuthenticated,
+								setLoginVisible,
+							}}
+						/>
+					)}
+				/>
+				<Route
+					path='/knowledge-library/resource/:view?/:type?'
+					render={(props) => (
+						<ResourceView
+							{...{ box, history, popularTags, landing, showModal }}
+						/>
+					)}
+				/>
+			</Switch> */}
+			<Switch>
+				<Route exact path='/knowledge-library'>
+					<Redirect to='/knowledge-library/overview' exact={true} />
+				</Route>
+				<Route
+					path='/knowledge-library/overview'
 					render={(props) => (
 						<Overview
 							{...props}
