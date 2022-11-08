@@ -147,12 +147,6 @@ const Featured = ({ showModal, isAuthenticated, setLoginVisible, history }) => {
 			<h3>Featured resources</h3>
 			<ResourceCards
 				items={results}
-				showMoreCardAfter={20}
-				showMoreCardClick={() => {
-					history.push({
-						pathname: `/flexible-forms`,
-					});
-				}}
 				showModal={(e) =>
 					showModal({
 						e,
@@ -164,11 +158,7 @@ const Featured = ({ showModal, isAuthenticated, setLoginVisible, history }) => {
 					<Link
 						onClick={(e) => {
 							e.preventDefault();
-							if (isAuthenticated)
-								history.push({
-									pathname: `/flexible-forms`,
-								});
-							else setLoginVisible(true);
+							window.open('https://digital.gpmarinelitter.org/flexible-forms')
 						}}
 					>
 						<div className='add-resource-card'>
