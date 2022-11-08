@@ -3,7 +3,7 @@
 	width: 100% !important;
 
 	@media screen and (min-width: 840px) {
-		max-width: 823px;
+		max-width: 815px;
 	}
 
 	.ant-modal-header {
@@ -11,16 +11,17 @@
 			font-weight: 600;
 			font-size: 18px;
 			line-height: 26px;
-			color: #a5b0c9;
+			color: rgba(24, 22, 47, 0.37);
 			text-transform: uppercase;
 		}
 	}
 	.ant-modal-body {
-		padding: 17px 40px 50px 40px;
+		padding: 17px 140px 50px 140px;
 		.filter-title {
-			color: #000;
-			font-size: 18px;
-			font-weight: 500;
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 20px;
+			color: rgba(24, 22, 47, 0.37);
 			margin-bottom: 5px;
 
 			@media (max-width: 540px) {
@@ -33,29 +34,52 @@
 		.search-input {
 			width: 100%;
 			.input-search {
-				background-color: #edf2f6;
+				background-color: rgba(71, 86, 87, 0.1);
+				border-radius: 5px;
 				border: none !important;
 				height: 34px;
 				input {
 					font-weight: 500;
-					color: #a5b0c9;
+					color: rgba(24, 22, 47, 0.37);
 					font-size: 16px;
+					background: transparent;
 					&::placeholder {
 						font-weight: 500;
-						color: #a5b0c9;
+						color: rgba(24, 22, 47, 0.37);
 					}
 				}
 				.anticon-search {
-					color: #a5b0c9;
+					color: rgba(24, 22, 47, 0.37);
+				}
+			}
+		}
+		.multi-select-search {
+			width: 100%;
+			background: rgba(71, 86, 87, 0.03);
+			border: 1px solid rgba(71, 86, 87, 0.1);
+			border-radius: 10px;
+			padding: 40px 60px;
+			h3 {
+				font-weight: 400;
+				font-size: 14px;
+				line-height: 20px;
+				text-transform: uppercase;
+				color: #000000;
+				margin-bottom: 25px;
+			}
+			.ant-col {
+				margin-bottom: 25px;
+				&:last-child {
+					margin-bottom: 0px;
 				}
 			}
 		}
 		input {
 			font-weight: 500;
-			color: #a5b0c9;
+			color: rgba(24, 22, 47, 0.37);
 			&::placeholder {
 				font-weight: 500;
-				color: #a5b0c9;
+				color: rgba(24, 22, 47, 0.37);
 			}
 		}
 		.date-picker-container {
@@ -65,12 +89,14 @@
 			.ant-picker {
 				width: 100%;
 				border: none;
+				background-color: rgba(71, 86, 87, 0.1);
+				border-radius: 5px;
 				input {
 					font-size: 16px;
-					color: #a5b0c9;
+					color: rgba(24, 22, 47, 0.37);
 					&::placeholder {
 						font-size: 16px;
-						color: #a5b0c9;
+						color: rgba(24, 22, 47, 0.37);
 					}
 				}
 			}
@@ -90,10 +116,10 @@
 			text-align: center;
 			text-transform: uppercase;
 			background-color: transparent;
-			color: #265d89;
+			color: #475657;
 		}
 		.apply-button {
-			border: 1px solid #265d89;
+			border: 1px solid #475657;
 			border-radius: 30px;
 			background-color: transparent;
 			padding: 5px 30px;

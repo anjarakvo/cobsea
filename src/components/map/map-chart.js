@@ -24,7 +24,7 @@ import { UIStore } from '../../store';
 import VerticalLegend from './vertical-legend';
 
 const geoUrl = '/unep-gpml.topo.json';
-const colorRange = ['#00539E', '#257CAD', '#83D0E2', '#5DA8C9', '#67bea1'];
+const colorRange = ['#00539E', '#257CAD', '#83D0E2', '#5DA8C9', '#257CAD'];
 const { innerWidth, innerHeight } = window;
 const unsettledTerritoryIsoCode = [
 	'xJL',

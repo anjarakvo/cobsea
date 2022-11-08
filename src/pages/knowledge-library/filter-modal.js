@@ -163,120 +163,122 @@ const FilterModal = ({
 		>
 			<Row type='flex' gutter={[0, 24]}>
 				<KnowledgeLibrarySearch {...{ updateQuery, filter }} />
+				<div className='multi-select-search'>
+					<h3>Refine the results</h3>
+					{/* Sub-content type */}
+					<MultipleSelectFilter
+						title='Sub-content type'
+						options={
+							!isEmpty(mainContentType)
+								? mainContentOption().map((content) => {
+										const label =
+											content?.name?.toLowerCase() === 'capacity building'
+												? 'Capacity Development'
+												: content?.name;
+										return {
+											label: label,
+											options: content?.childs
+												.map((child, i) => ({
+													label: child?.title,
+													value: child?.title,
+													key: `${i}-${content?.name}`,
+												}))
+												.sort((a, b) =>
+													a?.label?.trim().localeCompare(b?.label?.trim()),
+												),
+										};
+								  })
+								: []
+						}
+						value={filter?.subContentType || []}
+						flag='subContentType'
+						query={query}
+						updateQuery={updateQuery}
+					/>
 
-				{/* Sub-content type */}
-				<MultipleSelectFilter
-					title='Sub-content type'
-					options={
-						!isEmpty(mainContentType)
-							? mainContentOption().map((content) => {
-									const label =
-										content?.name?.toLowerCase() === 'capacity building'
-											? 'Capacity Development'
-											: content?.name;
-									return {
-										label: label,
-										options: content?.childs
-											.map((child, i) => ({
-												label: child?.title,
-												value: child?.title,
-												key: `${i}-${content?.name}`,
-											}))
-											.sort((a, b) =>
-												a?.label?.trim().localeCompare(b?.label?.trim()),
-											),
-									};
-							  })
-							: []
-					}
-					value={filter?.subContentType || []}
-					flag='subContentType'
-					query={query}
-					updateQuery={updateQuery}
-				/>
+					{/* Tags */}
+					<MultipleSelectFilter
+						title='Tags'
+						options={tagOpts || []}
+						value={filter?.tag?.map((x) => x) || []}
+						flag='tag'
+						query={query}
+						updateQuery={updateQuery}
+					/>
 
-				{/* Tags */}
-				<MultipleSelectFilter
-					title='Tags'
-					options={tagOpts || []}
-					value={filter?.tag?.map((x) => x) || []}
-					flag='tag'
-					query={query}
-					updateQuery={updateQuery}
-				/>
+					<MultipleSelectFilter
+						title='Entities'
+						options={
+							!isEmpty(organisations)
+								? organisations
+										?.map((x) => ({ value: x.id, label: x.name }))
+										.filter(
+											(organisation) =>
+												organisation?.value > -1 ||
+												organisation?.label?.length === 0,
+										)
+								: []
+						}
+						value={filter?.entity?.map((x) => parseInt(x)) || []}
+						flag='entity'
+						query={query}
+						updateQuery={updateQuery}
+						clear={false}
+					/>
 
-				<MultipleSelectFilter
-					title='Entities'
-					options={
-						!isEmpty(organisations)
-							? organisations
-									?.map((x) => ({ value: x.id, label: x.name }))
-									.filter(
-										(organisation) =>
-											organisation?.value > -1 ||
-											organisation?.label?.length === 0,
-									)
-							: []
-					}
-					value={filter?.entity?.map((x) => parseInt(x)) || []}
-					flag='entity'
-					query={query}
-					updateQuery={updateQuery}
-					clear={false}
-				/>
+					<MultipleSelectFilter
+						title='Representative group'
+						options={
+							!isEmpty(representativeGroup)
+								? representativeOpts.map((x) => ({
+										value: x?.value,
+										label: x.label,
+								  }))
+								: []
+						}
+						value={filter?.representativeGroup || []}
+						flag='representativeGroup'
+						query={query}
+						updateQuery={updateQuery}
+						clear={false}
+					/>
 
-				<MultipleSelectFilter
-					title='Representative group'
-					options={
-						!isEmpty(representativeGroup)
-							? representativeOpts.map((x) => ({
-									value: x?.value,
-									label: x.label,
-							  }))
-							: []
-					}
-					value={filter?.representativeGroup || []}
-					flag='representativeGroup'
-					query={query}
-					updateQuery={updateQuery}
-					clear={false}
-				/>
-
-				{/* Date Filter */}
-				<Col
-					span={24}
-					className='date-picker-container'
-					style={{ paddingTop: 5, paddingBottom: 5 }}
-				>
-					<Row type='flex' style={{ width: '100%' }} gutter={[10, 10]}>
-						{/* Start date */}
-						<DatePickerFilter
-							title='Start Date'
-							value={filter?.startDate}
-							flag='startDate'
-							query={query}
-							updateQuery={updateQuery}
-							span={12}
-							startDate={
-								!isEmpty(filter?.startDate)
-									? moment(filter?.startDate[0])
-									: null
-							}
-						/>
-						{/* End date */}
-						<DatePickerFilter
-							title='End Date'
-							value={filter?.endDate}
-							flag='endDate'
-							query={query}
-							updateQuery={updateQuery}
-							span={12}
-							endDate={
-								!isEmpty(filter?.endDate) ? moment(filter?.endDate[0]) : null
-							}
-						/>
-					</Row>
-				</Col>
+					{/* Date Filter */}
+					<Col
+						span={24}
+						className='date-picker-container'
+						style={{ paddingTop: 5, paddingBottom: 5 }}
+					>
+						<Row type='flex' style={{ width: '100%' }} gutter={[10, 10]}>
+							{/* Start date */}
+							<DatePickerFilter
+								title='Start Date'
+								value={filter?.startDate}
+								flag='startDate'
+								query={query}
+								updateQuery={updateQuery}
+								span={12}
+								startDate={
+									!isEmpty(filter?.startDate)
+										? moment(filter?.startDate[0])
+										: null
+								}
+							/>
+							{/* End date */}
+							<DatePickerFilter
+								title='End Date'
+								value={filter?.endDate}
+								flag='endDate'
+								query={query}
+								updateQuery={updateQuery}
+								span={12}
+								endDate={
+									!isEmpty(filter?.endDate) ? moment(filter?.endDate[0]) : null
+								}
+							/>
+						</Row>
+					</Col>
+				</div>
 			</Row>
 		</Modal>
 	);
