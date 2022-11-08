@@ -4,9 +4,9 @@ import { useQuery } from 'utils/misc';
 import { Icon } from 'components/svg-icon';
 import { ReactComponent as FilterIcon } from 'images/knowledge-library/filter-icon.svg';
 import CountryTransnationalFilter from 'components/select/country-transnational-filter';
-import LocationDropdown from 'components/location-dropdown/location-dropdown';
+import LocationDropdown from 'components/location-dropdown';
 import { LeftOutlined, CloseOutlined } from '@ant-design/icons';
-import { withRouter } from 'react-router-dom';
+import withRouter from 'utils/withRouter';
 
 export const resourceTypes = [
 	{

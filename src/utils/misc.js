@@ -1,6 +1,4 @@
 import humps from 'humps';
-import auth0 from 'auth0-js';
-import ReactGA from 'react-ga';
 import { useLocation } from 'react-router-dom';
 
 export const tTypes = [
@@ -175,26 +173,6 @@ export const toTitleCase = (phrase) => {
 		.split(' ')
 		.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
 		.join(' ');
-};
-
-const domain = window.__ENV__.auth0.domain.replace(/(https:\/\/|\/)/gi, '');
-
-export const auth0Client = new auth0.WebAuth({
-	domain: domain,
-	clientID: window.__ENV__.auth0.clientId,
-	audience: `${window.__ENV__.auth0.audience}`,
-	redirectUri: window.location.origin,
-	scope: 'openid profile email',
-	responseType: 'token id_token',
-});
-
-export const eventTrack = (category, action, label) => {
-	console.log('GA event:', category, ':', action, ':', label);
-	ReactGA.event({
-		category: category,
-		action: action,
-		label: label,
-	});
 };
 
 export const useQuery = () => {

@@ -4,24 +4,19 @@ import { CSSTransition } from 'react-transition-group';
 import api from '../../utils/api';
 import FilterBar from './filter-bar';
 import FilterModal from './filter-modal';
-import ResourceCards, {
-	ResourceCard,
-} from '../../components/resource-cards/resource-cards';
+import ResourceCards, { ResourceCard } from 'components/resource-cards';
 import { LoadingOutlined, DownOutlined } from '@ant-design/icons';
 import { ReactComponent as SortIcon } from '../../images/knowledge-library/sort-icon.svg';
-import { ReactComponent as GlobeIcon } from '../../images/transnational.svg';
-import { ReactComponent as TopicIcon } from '../../images/topic-view.svg';
-import { ReactComponent as GridIcon } from '../../images/grid-view.svg';
-import { ReactComponent as GraphIcon } from '../../images/graph-view.svg';
 import { ReactComponent as SearchIcon } from '../../images/search-icon.svg';
 import { Button } from 'antd';
-import Maps from '../map/map';
+import Maps from 'components/map';
 import { UIStore } from '../../store';
 import { isEmpty } from 'lodash';
 import { Link, useHistory } from 'react-router-dom';
 import { useQuery, topicNames } from '../../utils/misc';
 import TopicView from './topic-view';
 import { useParams, useLocation } from 'react-router-dom';
+import withRouter from 'utils/withRouter';
 
 const resourceTopic = [
 	'action_plan',
@@ -504,4 +499,4 @@ const ViewSwitch = ({ type, view, history }) => {
 	);
 };
 
-export default ResourceView;
+export default withRouter(ResourceView);

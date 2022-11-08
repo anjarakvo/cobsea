@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import TopicChart from '../chart/topic-chart';
-import TopicBar from '../chart/topic-bar';
+import TopicChart from 'components/chart/topic-chart';
 
 const TopicView = ({ updateQuery, query, results, countData, loading }) => {
 	const [sortedPopularTopics, setSortedPopularTopics] = useState([]);

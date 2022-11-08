@@ -11,12 +11,9 @@ import {
 	Modal,
 } from 'antd';
 import moment from 'moment';
-import { useAuth0 } from '@auth0/auth0-react';
 import isEmpty from 'lodash/isEmpty';
 import values from 'lodash/values';
 import flatten from 'lodash/flatten';
-import { withRouter } from 'react-router-dom';
-import { eventTrack } from '../../utils/misc';
 import { UIStore } from '../../store';
 import { SearchOutlined } from '@ant-design/icons';
 import MultipleSelectFilter from '../../components/select/multiple-select-filter';
@@ -38,7 +35,6 @@ const FilterModal = ({
 			representativeGroup: s.representativeGroup,
 			organisations: s.organisations,
 		}));
-	const { isAuthenticated } = useAuth0();
 	const [tagsExcludingCapacityBuilding, setTagsExcludingCapacityBuilding] =
 		useState([]);
 
@@ -166,23 +162,6 @@ const FilterModal = ({
 			]}
 		>
 			<Row type='flex' gutter={[0, 24]}>
-				{/* My Bookmarks */}
-				{isAuthenticated && (
-					<Col span={24} style={{ paddingTop: 5, paddingBottom: 5 }}>
-						<Space align='middle'>
-							<Checkbox
-								className='favorites-checkbox'
-								checked={query?.favorites?.indexOf('true') > -1}
-								onChange={({ target: { checked } }) =>
-									updateQuery('favorites', checked)
-								}
-							>
-								My Bookmarks
-							</Checkbox>
-						</Space>
-					</Col>
-				)}
-
 				<KnowledgeLibrarySearch {...{ updateQuery, filter }} />
 
 				{/* Sub-content type */}
@@ -347,7 +326,6 @@ const DatePickerFilter = ({
 const KnowledgeLibrarySearch = ({ updateQuery, filter }) => {
 	const [search, setSearch] = useState('');
 	const handleSearch = (src) => {
-		eventTrack('Communities', 'Search', 'Button');
 		if (src) {
 			updateQuery('q', src);
 		} else {

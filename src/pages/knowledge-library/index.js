@@ -7,8 +7,8 @@ import ResourceView from './resource-view';
 import { useQuery } from 'utils/misc';
 import { UIStore } from '../../store';
 import { useNavigate, useLocation } from 'react-router-dom';
-import bodyScrollLock from '../details-page/scroll-utils';
-import DetailModal from '../details-page/modal';
+import bodyScrollLock from 'utils/scroll-utils';
+import DetailModal from 'pages/detail/modal';
 
 const popularTags = [
 	'plastics',
@@ -34,16 +34,16 @@ function Library({ setLoginVisible, isAuthenticated }) {
 		landing: s.landing,
 	}));
 
-	useEffect(() => {
-		if (!modalVisible) {
-			const previousHref = `${history?.location?.pathname}${history?.location?.search}`;
-			window.history.pushState(
-				{ urlPath: `/${previousHref}` },
-				'',
-				`${previousHref}`,
-			);
-		}
-	}, [modalVisible]);
+	// useEffect(() => {
+	// 	if (!modalVisible) {
+	// 		const previousHref = `${history?.location?.pathname}${history?.location?.search}`;
+	// 		window.history.pushState(
+	// 			{ urlPath: `/${previousHref}` },
+	// 			'',
+	// 			`${previousHref}`,
+	// 		);
+	// 	}
+	// }, [modalVisible]);
 
 	const showModal = ({ e, type, id }) => {
 		e.preventDefault();
@@ -79,7 +79,7 @@ function Library({ setLoginVisible, isAuthenticated }) {
 	};
 
 	useEffect(() => {
-		if (pathname === '/knowledge/library/overview') fetchData();
+		if (pathname === '/knowledge-library') fetchData();
 	}, [pathname]);
 
 	useEffect(() => {
@@ -93,14 +93,10 @@ function Library({ setLoginVisible, isAuthenticated }) {
 	return (
 		<div id='knowledge-lib'>
 			<Routes>
-				<Route exact path='/knowledge/library'>
-					<Navigate to='/knowledge/library/overview' exact={true} />
-				</Route>
 				<Route
-					path='/knowledge/library/overview'
-					render={(props) => (
+					path='/'
+					element={
 						<Overview
-							{...props}
 							summaryData={landing?.summary}
 							{...{
 								box,
@@ -115,10 +111,10 @@ function Library({ setLoginVisible, isAuthenticated }) {
 								setLoginVisible,
 							}}
 						/>
-					)}
+					}
 				/>
 				<Route
-					path='/knowledge/library/resource/:view?/:type?'
+					path='/knowledge-library/resource/:view?/:type?'
 					render={(props) => (
 						<ResourceView
 							{...{ box, history, popularTags, landing, showModal }}

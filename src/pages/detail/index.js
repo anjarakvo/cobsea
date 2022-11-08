@@ -28,10 +28,9 @@ import api from 'utils/api';
 import { UIStore } from '../../store';
 import { titleCase } from 'utils/string';
 import LeftImage from '../../images/sea-dark.jpg';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import uniqBy from 'lodash/uniqBy';
 import isEmpty from 'lodash/isEmpty';
-import { redirectError } from '../error/error-util';
 import { detailMaps } from './mapping';
 import moment from 'moment';
 import { resourceTypeToTopicType } from 'utils/misc';
@@ -114,7 +113,7 @@ const DetailsView = ({
 			icons: s.icons,
 			placeholder: s.placeholder,
 		}));
-	const history = useHistory();
+	const history = useNavigate();
 	const location = useLocation();
 	const [data, setData] = useState(null);
 	const [relations, setRelations] = useState([]);
@@ -196,7 +195,6 @@ const DetailsView = ({
 				})
 				.catch((err) => {
 					console.error(err);
-					redirectError(err, history);
 				});
 		if (profile.reviewStatus === 'APPROVED') {
 			setTimeout(() => {

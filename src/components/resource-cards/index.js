@@ -13,10 +13,11 @@ import { topicNames } from '../../utils/misc';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination as SwiperPagination, Navigation } from 'swiper';
-import 'swiper/swiper.min.css';
-import 'swiper/modules/free-mode/free-mode.min.css';
-import 'swiper/modules/navigation/navigation.scss';
-import 'swiper/modules/pagination/pagination.min.css';
+import 'swiper/scss';
+import 'swiper/scss/navigation';
+import 'swiper/scss/pagination';
+import 'swiper/scss/thumbs';
+
 import { Link } from 'react-router-dom';
 
 const Card = ({ showMoreCardClick, showMoreCardHref, children }) => {

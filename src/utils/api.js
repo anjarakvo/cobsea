@@ -1,6 +1,5 @@
 import axios from 'axios';
 import humps from 'humps';
-import * as Sentry from '@sentry/react';
 
 export const config = {
 	baseURL: '/api',
@@ -24,7 +23,6 @@ axios.interceptors.response.use(
 		// Any status codes that falls outside the range of 2xx cause this
 		// function to trigger. We capture the exception to Sentry.
 		// NOTE: The request data is visible in Sentry as `config`.
-		Sentry.captureException(new Error(error.message), { extra: error });
 
 		// Do something with response error
 		return Promise.reject(error);
