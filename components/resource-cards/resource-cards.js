@@ -75,7 +75,7 @@ const ResourceCards = ({
 			className={`resource-cards ${styles.resourceCards}`}
 		>
 			{firstCard && <SwiperSlide>{firstCard}</SwiperSlide>}
-			{items?.slice(0, showMoreCardAfter).map((item) => {
+			{(showMoreCardAfter > 0 ? items?.slice(0, showMoreCardAfter) : items).map((item) => {
 				return (
 					<SwiperSlide key={item?.id}>
 						<ResourceCard item={item} showModal={showModal} />
