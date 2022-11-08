@@ -102,7 +102,7 @@ const Overview = ({
 								isLoaded={() => true}
 								useTooltips={false}
 								showLegend={false}
-								zoom={0.9}
+								zoom={3}
 								path='knowledge'
 							/>
 						</div>

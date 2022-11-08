@@ -37,6 +37,8 @@ const unsettledTerritoryIsoCode = [
 	'xxx',
 ];
 
+const cobseaISO = ['KHM', 'CHN', 'IDN', 'KOR', 'PHL', 'THA', 'SGP', 'VNM', 'MYS']
+
 const higlightColor = '#255B87';
 
 const KNOWLEDGE_LIBRARY = 'knowledge';
@@ -60,7 +62,7 @@ const MapChart = ({
 	isDisplayedList,
 	countryGroupCounts,
 	showLegend,
-	zoom,
+	zoom = 3,
 	path,
 }) => {
 	const { countries } = UIStore.useState((s) => ({
@@ -115,7 +117,7 @@ const MapChart = ({
 		});
 
 	const [position, setPosition] = useState({
-		coordinates: [18.297325014768123, 2.4067378816508587],
+		coordinates: [105.297325014768123, 11.4067378816508587],
 		zoom: mapMinZoom,
 	});
 
@@ -131,7 +133,7 @@ const MapChart = ({
 	useEffect(() => {
 		viewport <= 511 &&
 			setPosition({
-				coordinates: [19.59386998380555, 14.140313719606274],
+				coordinates: [25.59386998380555, 14.140313719606274],
 				zoom: 4.010087901870494,
 			});
 	}, [viewport]);
@@ -343,7 +345,7 @@ const MapChart = ({
 					<Geographies key='map-geo' geography={geoUrl}>
 						{({ geographies }) => (
 							<>
-								{geographies.map((geo) => {
+								{geographies.filter(geo => cobseaISO.indexOf(geo.properties.ISO3CD) !== -1).map((geo) => {
 									const findData = data?.find(
 										(i) => i?.countryId === Number(geo.properties.M49Code),
 									);
