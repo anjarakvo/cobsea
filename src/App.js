@@ -7,6 +7,7 @@ import api from 'utils/api';
 import { UIStore } from './store.js';
 import uniqBy from 'lodash/uniqBy';
 import sortBy from 'lodash/sortBy';
+import Database from './pages/research/database'
 
 Promise.all([
 	api.get('/tag'),
@@ -46,6 +47,7 @@ function App() {
 					path='/knowledge-library'
 					render={(props) => <KnowledgeLibrary />}
 				/>
+        <Route path="/research/database" render={() => <Database />} />
 			</Switch>
 		</div>
 	);

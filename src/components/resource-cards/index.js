@@ -39,7 +39,7 @@ const Card = ({ showMoreCardClick, showMoreCardHref, children }) => {
 };
 
 const ResourceCards = ({
-	items,
+	items = [],
 	showMoreCard,
 	showMoreCardAfter = 0,
 	showMoreCardClick,
@@ -77,7 +77,7 @@ const ResourceCards = ({
 			className='resource-cards'
 		>
 			{firstCard && <SwiperSlide>{firstCard}</SwiperSlide>}
-			{items?.slice(0, showMoreCardAfter).map((item) => {
+			{(showMoreCardAfter > 0 ? items?.slice(0, showMoreCardAfter) : items).map((item) => {
 				return (
 					<SwiperSlide key={item?.id}>
 						<ResourceCard item={item} showModal={showModal} />
