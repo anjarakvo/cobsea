@@ -260,11 +260,22 @@ a {
 			padding-bottom: 10px;
 			margin-bottom: 0px;
 		}
-		.ant-select {
-			width: 100%;
-		}
 		.ant-tabs-content-holder {
 			padding: 10px;
+		}
+	}
+	.ant-space {
+		display: block;
+		.filter-title {
+			color: #a5b0c9;
+			margin-bottom: 10px;
+		}
+	}
+	.ant-select {
+		width: 100%;
+		.ant-select-selector {
+			background: rgba(211, 222, 231, 0.26) !important;
+			border: none !important;
 		}
 	}
 }
