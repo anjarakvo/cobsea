@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './style.scss';
-import { Navigate, Routes, Route } from 'react-router-dom';
 import api from 'utils/api';
 import Overview from './overview';
 import ResourceView from './resource-view';
 import { useQuery } from 'utils/misc';
 import { UIStore } from '../../store';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useHistory, useLocation, Switch, Route } from 'react-router-dom';
 import bodyScrollLock from 'utils/scroll-utils';
 import DetailModal from 'pages/detail/modal';
 
@@ -20,7 +19,7 @@ const popularTags = [
 ];
 
 function Library({ setLoginVisible, isAuthenticated }) {
-	const history = useNavigate();
+	const history = useHistory();
 	const { pathname, search } = useLocation();
 	const query = useQuery();
 	const box = document.getElementsByClassName('knowledge-lib');
@@ -44,6 +43,17 @@ function Library({ setLoginVisible, isAuthenticated }) {
 	// 		);
 	// 	}
 	// }, [modalVisible]);
+
+	const hideModal = () => {
+		console.log(history);
+		setModalVisible(false);
+		const previousHref = `${history?.location?.pathname}${history?.location?.search}`;
+		window.history.pushState(
+			{ urlPath: `/${previousHref}` },
+			'',
+			`${previousHref}`,
+		);
+	};
 
 	const showModal = ({ e, type, id }) => {
 		e.preventDefault();
@@ -92,11 +102,12 @@ function Library({ setLoginVisible, isAuthenticated }) {
 
 	return (
 		<div id='knowledge-lib'>
-			<Routes>
+			<Switch>
 				<Route
 					path='/'
-					element={
+					render={(props) => (
 						<Overview
+							{...props}
 							summaryData={landing?.summary}
 							{...{
 								box,
@@ -111,7 +122,7 @@ function Library({ setLoginVisible, isAuthenticated }) {
 								setLoginVisible,
 							}}
 						/>
-					}
+					)}
 				/>
 				<Route
 					path='/knowledge-library/resource/:view?/:type?'
@@ -121,11 +132,11 @@ function Library({ setLoginVisible, isAuthenticated }) {
 						/>
 					)}
 				/>
-			</Routes>
+			</Switch>
 			<DetailModal
 				match={{ params }}
 				visible={modalVisible}
-				setVisible={setModalVisible}
+				setVisible={() => hideModal()}
 				{...{
 					setLoginVisible,
 					isAuthenticated,

@@ -45,7 +45,7 @@ const Overview = ({
 
 	const handleClickCategory = (key) => () => {
 		history.push({
-			pathname: `/knowledge/library/resource/map/${key}`,
+			pathname: `/knowledge-library/resource/map/${key}`,
 		});
 	};
 
@@ -55,7 +55,7 @@ const Overview = ({
 				<li
 					onClick={() => {
 						history.push({
-							pathname: `/knowledge/library/resource/category`,
+							pathname: `/knowledge-library/resource/category`,
 						});
 					}}
 				>

@@ -6,7 +6,7 @@ import { ReactComponent as FilterIcon } from 'images/knowledge-library/filter-ic
 import CountryTransnationalFilter from 'components/select/country-transnational-filter';
 import LocationDropdown from 'components/location-dropdown';
 import { LeftOutlined, CloseOutlined } from '@ant-design/icons';
-import withRouter from 'utils/withRouter';
+import { withRouter } from 'react-router-dom';
 
 export const resourceTypes = [
 	{

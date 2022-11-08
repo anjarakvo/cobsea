@@ -10,13 +10,10 @@ import { ReactComponent as SortIcon } from '../../images/knowledge-library/sort-
 import { ReactComponent as SearchIcon } from '../../images/search-icon.svg';
 import { Button } from 'antd';
 import Maps from 'components/map';
-import { UIStore } from '../../store';
 import { isEmpty } from 'lodash';
-import { Link, useHistory } from 'react-router-dom';
 import { useQuery, topicNames } from '../../utils/misc';
 import TopicView from './topic-view';
-import { useParams, useLocation } from 'react-router-dom';
-import withRouter from 'utils/withRouter';
+import { useParams, useLocation, withRouter } from 'react-router-dom';
 
 const resourceTopic = [
 	'action_plan',

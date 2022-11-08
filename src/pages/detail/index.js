@@ -28,7 +28,7 @@ import api from 'utils/api';
 import { UIStore } from '../../store';
 import { titleCase } from 'utils/string';
 import LeftImage from '../../images/sea-dark.jpg';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import uniqBy from 'lodash/uniqBy';
 import isEmpty from 'lodash/isEmpty';
 import { detailMaps } from './mapping';
@@ -113,7 +113,7 @@ const DetailsView = ({
 			icons: s.icons,
 			placeholder: s.placeholder,
 		}));
-	const history = useNavigate();
+	const history = useHistory();
 	const location = useLocation();
 	const [data, setData] = useState(null);
 	const [relations, setRelations] = useState([]);

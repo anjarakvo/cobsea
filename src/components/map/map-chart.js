@@ -15,7 +15,7 @@ import {
 	UnorderedListOutlined,
 } from '@ant-design/icons';
 import classNames from 'classnames';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { isEmpty } from 'lodash';
 
 import { topicNames, tTypes } from '../../utils/misc';
@@ -67,7 +67,7 @@ const MapChart = ({
 		countries: s.countries,
 	}));
 
-	const history = useNavigate();
+	const history = useHistory();
 	const mapMaxZoom = 9.2;
 	const mapMinZoom = 1.1500000000000024;
 	const [selected, setSelected] = useState(null);
