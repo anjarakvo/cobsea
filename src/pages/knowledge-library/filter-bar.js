@@ -29,11 +29,6 @@ export const resourceTypes = [
 		label: 'Financing Resources',
 		title: 'financing_resource',
 	},
-	{
-		key: 'case-study',
-		label: 'Case Studies',
-		title: 'case_study',
-	},
 ];
 
 const hideFilterList = [
