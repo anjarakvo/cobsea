@@ -6,6 +6,7 @@ import { useQuery } from 'utils';
 import api from 'utils/api';
 import { useRouter } from 'next/router';
 import bodyScrollLock from 'utils/scroll-lock';
+import DetailModal from 'modules/detail/modal';
 
 const popularTags = [
 	'plastics',
@@ -40,7 +41,7 @@ export default function KnowledgeLibrary() {
 	const showModal = ({ e, type, id }) => {
 		e.preventDefault();
 		if (type && id) {
-			const detailUrl = `/${type}/${id}`;
+			const detailUrl = `/detail/${type}/${id}`;
 			e.preventDefault();
 			setParams({ type, id });
 			window.history.pushState(
@@ -98,6 +99,11 @@ export default function KnowledgeLibrary() {
 						showModal,
 					}}
 				/>
+        <DetailModal
+          match={{ params }}
+          visible={modalVisible}
+          setVisible={setModalVisible}
+        />
 			</div>
 		</div>
 	);
