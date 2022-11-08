@@ -1,0 +1,16 @@
+@import "antd/dist/antd.css";
+
+body,
+button,
+a,
+i,
+input,
+::placeholder,
+.ant-input::-webkit-input-placeholder {
+	font-family: "Jost", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+		"Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+.ui.container {
+	margin: 0 50px;
+}

@@ -6,7 +6,7 @@ import './style.scss'
 const MenuBar = () => {
 	return (
 		<>
-			<Layout.Header className='nav-header-container'>
+			<header className='nav-header'>
 				<div className='ui container'>
 					<Link to='/' className='logo-a'>
 						<img src="/unep.svg" className="unep" alt="UNEP" />
@@ -18,7 +18,7 @@ const MenuBar = () => {
             <Link to="/research/database">Research database</Link>
           </nav>
 				</div>
-			</Layout.Header>
+			</header>
 		</>
 	);
 };
