@@ -626,7 +626,7 @@ const DetailsView = ({
 									<ResourceCards
 										items={data?.relatedContent}
 										showMoreCardAfter={20}
-										showMoreCardHref={'/knowledge/library'}
+										showMoreCardHref={'/knowledge-library'}
 									/>
 								</div>
 							</div>

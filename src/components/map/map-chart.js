@@ -178,7 +178,7 @@ const MapChart = ({
 				if (properties.length > 0) {
 					return sumValues(propsToSum);
 				} else {
-					if (path === '/knowledge/library') {
+					if (path === '/knowledge-library') {
 						return sumValues({
 							actionPlan: curr?.counts?.actionPlan,
 							event: curr?.counts?.event,

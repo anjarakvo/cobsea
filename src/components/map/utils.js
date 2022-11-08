@@ -24,7 +24,7 @@ export const curr = (findData, path, existingData) => {
     if (properties.length) {
       return sumValues(propsToSum);
     } else {
-      if (path === "/knowledge/library") {
+      if (path === "/knowledge-library") {
         return sumValues({
           actionPlan: findData?.actionPlan || 0,
           event: findData?.event || 0,
