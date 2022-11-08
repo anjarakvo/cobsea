@@ -57,7 +57,6 @@ const Maps = ({
               multiCountries,
               multiCountryCountries,
               clickEvents,
-              setTooltipContent,
               listVisible,
               useVerticalLegend,
               isDisplayedList,

@@ -24,7 +24,7 @@ import { UIStore } from '../../store';
 import VerticalLegend from './vertical-legend';
 
 const geoUrl = '/unep-gpml.topo.json';
-const colorRange = ['#bbedda', '#a7e1cb', '#92d5bd', '#7dcaaf', '#67bea1'];
+const colorRange = ['#00539E', '#257CAD', '#83D0E2', '#5DA8C9', '#67bea1'];
 const { innerWidth, innerHeight } = window;
 const unsettledTerritoryIsoCode = [
 	'xJL',
@@ -69,7 +69,6 @@ const MapChart = ({
 		countries: s.countries,
 	}));
 
-	const history = useHistory();
 	const mapMaxZoom = 9.2;
 	const mapMinZoom = 1.1500000000000024;
 	const [selected, setSelected] = useState(null);
@@ -279,7 +278,7 @@ const MapChart = ({
 							/>
 						</Tooltip>
 					</div>
-					<div
+					{/* <div
 						className={classNames('legend-wrapper', {
 							vertical: useVerticalLegend,
 						})}
@@ -326,7 +325,7 @@ const MapChart = ({
 								)}
 							</Button>
 						</Tooltip>
-					</div>
+					</div> */}
 				</div>
 			)}
 			<ComposableMap data-tip=''>
@@ -408,6 +407,17 @@ const MapChart = ({
 											strokeWidth='0.2'
 											strokeOpacity='0.8'
 											cursor={!isLake ? 'pointer' : ''}
+											style={{
+													default: {
+															outline: 'none'
+													},
+													hover: {
+															outline: 'none'
+													},
+													pressed: {
+															outline: 'none'
+													}
+											}}
 											fill={
 												isLake
 													? '#eaf6fd'
@@ -428,33 +438,12 @@ const MapChart = ({
 											onMouseEnter={() => {
 												const { MAP_LABEL, M49Code } = geo.properties;
 												if (useTooltips && !isLake && MAP_LABEL !== null) {
-													if (path === STAKEHOLDER_OVERVIEW) {
-														setTooltipContent(
-															<StakeholderTooltipContent
-																data={findData}
-																geo={geo.properties}
-																existingStakeholders={existingStakeholders}
-																query={query}
-															/>,
-														);
-													}
 													if (path === KNOWLEDGE_LIBRARY) {
 														setTooltipContent(
 															<KnowledgeLibraryToolTipContent
 																data={findData}
 																geo={geo.properties}
 																existingResources={existingResources}
-																query={query}
-															/>,
-														);
-													}
-
-													if (path === EXPERTS) {
-														setTooltipContent(
-															<ExpertsTooltipContent
-																data={findData}
-																geo={geo.properties}
-																existingStakeholders={existingStakeholders}
 																query={query}
 															/>,
 														);
@@ -490,138 +479,6 @@ const MapChart = ({
 				</ZoomableGroup>
 			</ComposableMap>
 		</>
-	);
-};
-
-const StakeholderTooltipContent = ({
-	data,
-	geo,
-	existingStakeholders,
-	query,
-}) => {
-	const dataToDisplay = () => {
-		return {
-			organisation: data?.counts?.organisation,
-			stakeholder: data?.counts?.stakeholder,
-			nonMemberOrganisation: data?.counts?.nonMemberOrganisation,
-		};
-	};
-
-	const transnationalData = () => {
-		return {
-			organisation: data?.transnationalCounts?.organisation,
-			stakeholder: data?.transnationalCounts?.stakeholder,
-			nonMemberOrganisation: data?.transnationalCounts?.nonMemberOrganisation,
-		};
-	};
-
-	const transnationalMaxValue = Math.max
-		.apply(null, Object.values(transnationalData()))
-		.toString();
-
-	const characterLength = transnationalMaxValue?.length;
-
-	const stakeholderToDisplay =
-		existingStakeholders?.length > 0
-			? existingStakeholders
-			: query?.networkType;
-
-	return (
-		<div
-			key={`${geo.ISO3CD}-tooltip`}
-			style={{ paddingRight: `${(characterLength || 1) * 9}px` }}
-			className='map-tooltip'
-		>
-			<h3>{geo.MAP_LABEL}</h3>
-			<div className='tooltip-table'>
-				<div className='table-head'>
-					<div>
-						<b className='stakeholder-type'>Type</b>
-					</div>
-				</div>
-				<div>
-					{stakeholderToDisplay?.length === 0 ? (
-						<>
-							<div className='table-row'>
-								<div className='tooltip-topic'>Entity</div>
-								<div>
-									<div className='entity-row'>
-										<b className='entity-type'>GPML Members</b>
-										<div className='tooltip-count-wrapper'>
-											<b className='tooltip-counts'>
-												{dataToDisplay()?.['organisation']
-													? dataToDisplay()?.['organisation']
-													: 0}
-											</b>
-										</div>
-									</div>
-									<div className='entity-row'>
-										<b className='entity-type'>GPML Non-Members</b>
-										<div className='tooltip-count-wrapper'>
-											<b className='tooltip-counts'>
-												{transnationalData()?.['nonMemberOrganisation']
-													? transnationalData()?.['nonMemberOrganisation']
-													: 0}
-											</b>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div className='table-row'>
-								<div className='tooltip-topic'>Individuals</div>
-
-								<div className='tooltip-count-wrapper'>
-									<b className='tooltip-counts'>
-										{dataToDisplay()?.['stakeholder']}
-									</b>
-								</div>
-							</div>
-						</>
-					) : (
-						<>
-							{stakeholderToDisplay?.includes('organisation') && (
-								<div className='table-row'>
-									<div className='tooltip-topic'>Entity</div>
-									<div>
-										<div className='entity-row'>
-											<b className='entity-type'>GPML Members</b>
-											<div className='tooltip-count-wrapper'>
-												<b className='tooltip-counts'>
-													{dataToDisplay()?.['organisation']
-														? dataToDisplay()?.['organisation']
-														: 0}
-												</b>
-											</div>
-										</div>
-										<div className='entity-row'>
-											<b className='entity-type'>GPML Non-Members</b>
-											<div className='tooltip-count-wrapper'>
-												<b className='tooltip-counts'>
-													{transnationalData()?.['nonMemberOrganisation']
-														? transnationalData()?.['nonMemberOrganisation']
-														: 0}
-												</b>
-											</div>
-										</div>
-									</div>
-								</div>
-							)}
-							{stakeholderToDisplay?.includes('stakeholder') && (
-								<div className='table-row'>
-									<div className='tooltip-topic'>Individuals</div>
-
-									<div className='tooltip-count-wrapper'>
-										<b className='tooltip-counts'>
-											{dataToDisplay()?.['stakeholder']}
-										</b>
-									</div>
-								</div>
-							)}
-						</>
-					)}
-				</div>
-			</div>
-		</div>
 	);
 };
 
@@ -750,26 +607,6 @@ const KnowledgeLibraryToolTipContent = ({
 					})}
 				</tbody>
 			</table>
-		</div>
-	);
-};
-
-const ExpertsTooltipContent = ({ data, geo }) => {
-	return (
-		<div
-			key={`${geo.ISO3CD}-tooltip`}
-			style={{ paddingRight: '16px' }}
-			className='map-tooltip'
-		>
-			<h3>{geo.MAP_LABEL}</h3>
-			<div className='entity-row'>
-				<b className='entity-type'>Experts</b>
-				<div className='tooltip-count-wrapper'>
-					<b className='tooltip-counts'>
-						{data?.counts?.experts ? data?.counts?.experts : 0}
-					</b>
-				</div>
-			</div>
 		</div>
 	);
 };
