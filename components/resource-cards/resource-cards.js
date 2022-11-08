@@ -43,6 +43,7 @@ const ResourceCards = ({
 	firstCard,
 	showModal = () => null,
 }) => {
+  
 	if (showMoreCardAfter > 0) {
 		if (showMoreCardAfter < items?.length) {
 			showMoreCard = (
@@ -60,8 +61,8 @@ const ResourceCards = ({
 				</Card>
 			);
 		}
-	}
-  console.log(showMoreCardAfter, items)
+  }
+  
 	return (
 		<Swiper
 			spaceBetween={0}

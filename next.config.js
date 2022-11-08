@@ -16,6 +16,10 @@ const nextConfig = {
 				source: '/api/:path*',
 				destination: 'https://digital.gpmarinelitter.org/api/:path*',
 			},
+			{
+				source: '/image/:path*',
+				destination: 'https://digital.gpmarinelitter.org/image/:path*',
+			},
 		];
 	},
 	experimental: {
