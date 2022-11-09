@@ -214,7 +214,7 @@ export default function Policy() {
       <SubNav />
       <SideDrawer lists={sections} />
       <Container>
-        <Body sx={{ backgroundColor: theme => theme.palette.primary.main }}>
+        <Body>
           Explore charts and graphs on insight that may be gained from the data captured in RRI 2.0 for policy-making purposes. This section brings together findings from publications in science and humanities, including from the graphs above. Refer to the&nbsp;
           <StyledLink to="/factsheets">
             Factsheet

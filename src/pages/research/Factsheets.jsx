@@ -143,7 +143,7 @@ export default function Factsheets() {
   return (
     <div>
       <Container maxWidth='md'>
-        <Body align="justify" sx={{ backgroundColor: theme => theme.palette.primary.main, }}>
+        <Body align="justify">
           The fact sheets below have been developed to provide a summary of the data captured in the RRI 2.0 and derive knowledge that can inform policy-making as well as new research. They are designed to be updated as new data become available. New topics are to be included in the future as possible and useful.
         </Body>
         <Masonry

@@ -89,20 +89,20 @@ const Tile = ({ title, description, LinkComponent, to, link, idx }) => {
               width="100%"
             />
         }
+        <Title
+          variant="h6"
+          align="center"
+          style={{ fontWeight: 'bold' }}
+        >
+          {title}
+        </Title>
+        <Description
+          variant="body2"
+          align="center"
+        >
+          {description}
+        </Description>
       </ButtonBase>
-      <Title
-        variant="h6"
-        align="center"
-        style={{ fontWeight: 'bold' }}
-      >
-        {title}
-      </Title>
-      <Description
-        variant="body2"
-        align="center"
-      >
-        {description}
-      </Description>
     </div>
   )
 }
@@ -114,6 +114,7 @@ const Navigation = () => {
       container
       justifyContent="center"
       spacing={2}
+      className="data-root-nav"
       // alignItems="center"
       style={{ marginBottom: 60 }}
     >
@@ -139,7 +140,7 @@ export default function Data() {
   return (
     <div>
       <Container maxWidth='md'>
-        <Body variant='body1' align="justify" sx={{ backgroundColor: theme => theme.palette.primary.main }}>
+        <Body variant='body1' align="justify">
           Click on the tiles below to explore the RRI 2.0, featuring charts and graphs that were generated to visualise the data.
           <br /><br />
           The data included in RRI 2.0 are constantly evolving. Your participation is essential to making this resource more accurate, comprehensive and useful. You can do that by providing
