@@ -7,7 +7,7 @@ import api from 'utils/api';
 import { UIStore } from './store.js';
 import uniqBy from 'lodash/uniqBy';
 import sortBy from 'lodash/sortBy';
-import Database from './pages/research/database'
+import Research from './pages/research'
 
 Promise.all([
 	api.get('/tag'),
@@ -47,7 +47,16 @@ function App() {
 					path='/knowledge-library'
 					render={(props) => <KnowledgeLibrary />}
 				/>
-        <Route path="/research/database" render={() => <Database />} />
+        <Route path="/research" component={Research} />
+        {/* <Route exact path="/research/data" component={Data} />
+        <Route exact path="/research/data/custom-data-subset" component={DataExtraction} />
+        <Route exact path="/research/data/research-landscape" component={ResearchLandscape} />
+        <Route exact path="/research/data/methodology-and-ontology" component={Methodology} />
+        <Route exact path="/research/data/scientific-research" component={ScientificResearch} />
+        <Route exact path="/research/data/research-in-humanities" component={Humanities} />
+        <Route exact path="/research/data/information-for-policy-making" component={Policy} />
+
+        <Route exact path="/research/factsheets" component={Factsheets} /> */}
 			</Switch>
 		</div>
 	);

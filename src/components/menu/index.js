@@ -15,7 +15,7 @@ const MenuBar = () => {
           <nav>
             <Link to='/knowledge-library'>Knowledge library</Link>
             &nbsp;|&nbsp;
-            <Link to="/research/database">Research database</Link>
+            <Link to="/research">Research database</Link>
           </nav>
 				</div>
 			</header>
