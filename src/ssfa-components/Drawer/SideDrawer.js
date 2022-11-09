@@ -34,7 +34,7 @@ export default function SideDrawer({ lists }) {
         onClose={() => setOpen(false)}
         sx={{
           "& .MuiPaper-root": {
-            backgroundColor: theme => theme.palette.secondary.main,
+            backgroundColor: theme => theme.palette.primary.main,
             color: theme => theme.palette.secondary.contrastText,
             width: dimensions[0] * 0.4,
           }

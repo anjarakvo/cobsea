@@ -229,7 +229,7 @@ export default function MapGenerator() {
         id="MapContainer"
         ref={containerRef}
         style={{
-          border: '1px solid #4f563f',
+          border: '1px solid #475657',
           overflow: 'auto',
           boxSizing: 'border-box',
         }}

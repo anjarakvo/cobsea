@@ -252,7 +252,7 @@ const Charts = (props) => {
             seamless
             scrolling="no"
             style={{
-              border: '2px solid #9c4a55',
+              border: '2px solid #f0c8b6',
             }}
           />
         </div>
@@ -278,7 +278,7 @@ export default function ResearchLandscape() {
       />
       <SubNav />
       <Container>
-        <Body sx={{ backgroundColor: theme => theme.palette.primary.main }}>
+        <Body>
           Explore charts and graphs on the profile of research conducted on marine plastics in the seas of Southeast and East Asia, including research institutions, researchers and their respective areas of research.
         </Body>
 

@@ -88,3 +88,52 @@
 		width: auto;
 	}
 }
+
+.grid-search-input {
+	background-color: #fff;
+	border-radius: 5px;
+	padding-left: 15px;
+	overflow: hidden;
+	svg {
+		color: rgba(0, 0, 0, 0.5);
+		margin-left: 5px;
+	}
+	input {
+		outline: 0 !important;
+		color: #000;
+	}
+}
+.MuiDataGrid-row {
+	& > * {
+		border-bottom: none !important;
+	}
+	&:hover {
+		background-color: #fff !important;
+	}
+	&:nth-child(2n) {
+		background-color: #e8f6fc;
+		&:hover {
+			background-color: #e8f6fc !important;
+		}
+	}
+}
+
+.MuiGrid-root {
+	.MuiPaper-root {
+		.item {
+			background-color: $primary !important;
+			border-radius: 3px !important;
+			color: #fff;
+			justify-content: flex-start !important;
+			padding-left: 10px;
+			font-weight: 500;
+		}
+	}
+}
+.MuiDataGrid-root {
+	.MuiBox-root {
+		.MuiButton-root {
+			color: #fff !important;
+		}
+	}
+}

@@ -125,7 +125,7 @@ const Charts = (props) => {
             seamless
             scrolling="no"
             style={{
-              border: '2px solid #9c4a55',
+              border: '2px solid #f0c8b6',
             }}
           />
         </div>
@@ -147,7 +147,7 @@ export default function ScientificResearch() {
       <SubNav />
       <SideDrawer lists={sections} />
       <Container>
-        <Body sx={{ backgroundColor: theme => theme.palette.primary.main }}>
+        <Body>
           Explore charts and graphs developed to display the characteristics of scientific research publications included in RRI 2.0.
         </Body>
 

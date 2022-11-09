@@ -61,7 +61,7 @@ const Tile = ({ title, description, LinkComponent, to, link, idx }) => {
   }))
 
   const Description = styled(Typography)(({ theme }) => ({
-    color: theme.palette.tertiary.main,
+    color: '#00405F',
     margin: "1rem 0",
   }))
 

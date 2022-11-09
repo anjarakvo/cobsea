@@ -210,7 +210,6 @@ export default function Methodology() {
         <Body
           variant='body1'
           align="justify"
-          sx={{ backgroundColor: theme => theme.palette.primary.main }}
         >
           This section provides information on the development of RRI 2.0 and this website. The inventory and metadata can be found&nbsp;
           <Link

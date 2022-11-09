@@ -61,20 +61,21 @@ const QuickSearchToolbar = (props) => {
         display: 'flex',
         alignItems: 'flex-start',
         flexWrap: 'wrap',
-        backgroundColor: theme => theme.palette.tertiary.main,
+        backgroundColor: '#436F79',
       }}
     >
       <div>
-        <GridToolbarColumnsButton color="quaternary" />
-        <GridToolbarFilterButton sx={{ color: theme => theme.palette.quaternary.main }} />
-        <GridToolbarExport color="quaternary" />
+        <GridToolbarColumnsButton sx={{ color: '#fff' }} />
+        <GridToolbarFilterButton sx={{ color: '#fff' }} />
+        <GridToolbarExport sx={{ color: '#fff' }} />
       </div>
       <TextField
         variant="standard"
         value={props.value}
         onChange={props.onChange}
         placeholder="Search…"
-        color="quaternary"
+        // color="quaternary"
+        className="grid-search-input"
         InputProps={{
           startAdornment: <SearchIcon fontSize="small" color="quaternary" onClick={props.onClick} />,
           endAdornment: (
@@ -204,13 +205,13 @@ const ColumnOrganizer = (props) => {
         height: 1000,
         display: 'flex',
         flexDirection: 'column',
-        backgroundColor: theme => theme.palette.secondary.main,
+        backgroundColor: '#ECF2F8',
       }}
     >
       <Box
         sx={{
-          backgroundColor: theme => theme.palette.tertiary.main,
-          color: theme => theme.palette.quaternary.main,
+          backgroundColor: '#EBF2F8',
+          color: '#00405F',
           textAlign: 'center',
           padding: 2,
           marginBottom: 1,
@@ -224,7 +225,6 @@ const ColumnOrganizer = (props) => {
         <Button
           variant="contained"
           size="small"
-          color="secondary"
           onClick={handleReset}
         >
           Reset order
@@ -276,7 +276,6 @@ export default function DataExtraction() {
       <SubNav />
       <Container>
         <Body variant='body1'
-          sx={{ backgroundColor: theme => theme.palette.primary.main, }}
         >
           <CustomDataInstruction />
         </Body>

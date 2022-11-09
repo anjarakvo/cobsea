@@ -55,7 +55,7 @@ const Collapsible = ({ title, dataOptions }) => {
         <List
           sx={{
             color: theme => theme.palette.secondary.contrastText,
-            backgroundColor: theme => theme.palette.secondary.main
+            backgroundColor: theme => theme.palette.primary.main
           }}
         >
           {dataOptions.map((option, idx) => (

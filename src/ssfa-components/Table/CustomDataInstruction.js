@@ -62,7 +62,7 @@ export default function CustomDataInstruction() {
         target="_blank"
         style={{
           fontWeight: 'bold',
-          color: "#9c4a55",
+          color: "#f0c8b6",
         }}
       >
         here

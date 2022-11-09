@@ -18,7 +18,7 @@ const DataExtends = ({ anchorEl, open, setOpen, dataOptions }) => {
       >
         <Box
           sx={{
-            backgroundColor: theme => theme.palette.secondary.main,
+            backgroundColor: theme => theme.palette.primary.main,
             marginTop: "1rem"
           }}
         >

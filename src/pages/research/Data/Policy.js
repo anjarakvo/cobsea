@@ -189,7 +189,7 @@ const Charts = (props) => {
             seamless
             scrolling="no"
             style={{
-              border: '2px solid #9c4a55',
+              border: '2px solid #f0c8b6',
             }}
           />
         </div>

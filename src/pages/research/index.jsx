@@ -28,13 +28,13 @@ import Factsheets from './Factsheets';
 let theme = createTheme({
   palette: {
     primary: {
-      main: "#f8e6dc",
+      main: "#EDEEEE",
     },
     secondary: {
-      main: "#9c4a55"
+      main: "#f0c8b6"
     },
     tertiary: {
-      main: "#4f563f"
+      main: "#475657"
     },
     quaternary: {
       main: "#c8a464"
@@ -54,7 +54,7 @@ let theme = createTheme({
     divider: 'rgba(0, 0, 0, 0.3)',
   },
   typography: {
-    fontFamily: "Lato",
+    fontFamily: 'Jost',
   }
 })
 
