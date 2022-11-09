@@ -63,9 +63,7 @@
 					margin-bottom: 3px;
 				}
 				&:hover {
-					// color: #ffb800;
-					border-color: $accent;
-					background-color: $accent;
+					background-color: rgba(255, 255, 255, 0.2);
 					.img-container svg path {
 						// fill: #ffb800;
 					}
@@ -540,8 +538,7 @@
 					}
 				}
 				&:hover {
-					border-color: $accent;
-					background-color: $accent;
+					background-color: rgba(255, 255, 255, 0.2);
 					color: white;
 					& > div svg path {
 						fill: $accent;
