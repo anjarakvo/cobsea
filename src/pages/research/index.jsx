@@ -23,6 +23,7 @@ import Methodology from './Data/Methodology';
 import ScientificResearch from './Data/ScientificResearch';
 import Humanities from './Data/Humanities';
 import Policy from './Data/Policy';
+import Factsheets from './Factsheets';
 
 let theme = createTheme({
   palette: {
@@ -86,7 +87,7 @@ const View = () => {
               <Link to="/research/data">
                 <DataIcn /> Data & analytics
               </Link>
-              <Link to="/research/fact-sheet">
+              <Link to="/research/factsheets">
                 <FactIcn /> Fact sheet
               </Link>
             </div>
@@ -102,7 +103,7 @@ const View = () => {
             <Route exact path="/research/data/research-in-humanities" component={Humanities} />
             <Route exact path="/research/data/information-for-policy-making" component={Policy} />
 
-            {/* <Route exact path="/research/factsheets" component={Factsheets} /> */}
+            <Route exact path="/research/factsheets" component={Factsheets} />
           </Switch>
         </div>
       </div>
