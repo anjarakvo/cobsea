@@ -71,6 +71,7 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
 		}
 		queryParams.set('incCountsForTags', popularTags);
 		queryParams.set('limit', limit);
+		queryParams.set('transnational', 132);
 
 		const url = `/browse?${String(queryParams)}`;
 		api
@@ -140,6 +141,7 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
 		setLoading(true);
 
 		const queryParams = new URLSearchParams(filter);
+		queryParams.set('transnational', 132);
 		const promiseArray = resourceTopic.map((url) =>
 			api.get(`/browse?topic=${url}&${String(queryParams)}`),
 		);

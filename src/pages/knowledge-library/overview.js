@@ -137,7 +137,7 @@ const Featured = ({ showModal, isAuthenticated, setLoginVisible, history }) => {
 	const [results, setResults] = useState([]);
 	const [loading, setLoading] = useState(true);
 	useEffect(() => {
-		api.get('/browse?featured=true').then(({ data }) => {
+		api.get('/browse?featured=true&transnational=132').then(({ data }) => {
 			setResults(data.results);
 			setLoading(false);
 		});
@@ -158,7 +158,7 @@ const Featured = ({ showModal, isAuthenticated, setLoginVisible, history }) => {
 					<Link
 						onClick={(e) => {
 							e.preventDefault();
-							window.open('https://digital.gpmarinelitter.org/flexible-forms')
+							window.open('https://digital.gpmarinelitter.org/flexible-forms');
 						}}
 					>
 						<div className='add-resource-card'>
