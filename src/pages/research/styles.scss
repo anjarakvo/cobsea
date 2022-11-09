@@ -38,11 +38,20 @@
 				background-color: rgba(255, 255, 255, 0.2);
 				transition: background 0.2s ease-out;
 			}
+			&.active {
+				background-color: #fff;
+				color: $secondary;
+				svg {
+					path {
+						fill: $secondary;
+					}
+				}
+			}
 		}
 	}
 	nav.subnav {
 		background-color: #fff;
-		height: 88px;
+		height: 82px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -63,6 +72,14 @@
 				margin: 0 3px;
 				font-size: 11px;
 				font-weight: 550;
+				transition: all 0.2s ease-out;
+				&:hover {
+					background-color: lighten($secondary, 28);
+				}
+				&.active {
+					background-color: $secondary;
+					color: #fff;
+				}
 			}
 		}
 	}
