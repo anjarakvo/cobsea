@@ -48,7 +48,6 @@ const Overview = ({
 			pathname: `/knowledge-library/resource/map/${key}`,
 		});
 	};
-
 	return (
 		<div className='overview'>
 			<ul className='categories'>
@@ -65,18 +64,20 @@ const Overview = ({
 					</div>
 					<span>All Resources</span>
 				</li>
-				{resourceTypes.map((type) => (
-					<li onClick={handleClickCategory(type.key)} key={type.key}>
-						<div>
-							<Icon name={`resource-types/${type.key}`} fill='#000' />
-							<b>
-								{countData.find((item) => type.title === item.topic)?.count ||
-									'XX'}
-							</b>
-						</div>
-						<span>{type.label}</span>
-					</li>
-				))}
+				{resourceTypes.map((type) => {
+          const itm = countData.find((item) => type.title === item.topic)
+          return (
+            <li onClick={handleClickCategory(type.key)} key={type.key}>
+              <div>
+                <Icon name={`resource-types/${type.key}`} fill='#000' />
+                <b>
+                  {itm != null ? itm?.count : '0'}
+                </b>
+              </div>
+              <span>{type.label}</span>
+            </li>
+          )
+        })}
 			</ul>
 			<section className='grey'>
 				{/* <h3>Categories</h3> */}
