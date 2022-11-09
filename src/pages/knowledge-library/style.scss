@@ -1,4 +1,4 @@
-@import "../../vars.scss";
+@import '../../vars.scss';
 
 #knowledge-lib {
 	#map-landing {
@@ -129,7 +129,15 @@
 				}
 			}
 			&.ant-dropdown-open {
-				background: rgba(24, 22, 47, 0.65);
+				background-color: #fff !important;
+				span {
+					color: #91c9c1 !important;
+				}
+				svg {
+					path {
+						stroke: #91c9c1;
+					}
+				}
 			}
 			&.location-filter {
 				&.selected {
@@ -568,7 +576,7 @@
 			position: relative;
 			cursor: pointer;
 			&:before {
-				content: "CLICK TO EXPAND";
+				content: 'CLICK TO EXPAND';
 				position: absolute;
 				width: 100%;
 				height: 100%;
