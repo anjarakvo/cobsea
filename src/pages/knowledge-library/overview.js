@@ -60,7 +60,7 @@ const Overview = ({
 					}}
 				>
 					<div>
-						{/* <Icon name={`all`} fill='#000' /> */}
+						<Icon name={`all`} fill='#000' />
 						<b>{allResources}</b>
 					</div>
 					<span>All Resources</span>
@@ -68,7 +68,7 @@ const Overview = ({
 				{resourceTypes.map((type) => (
 					<li onClick={handleClickCategory(type.key)} key={type.key}>
 						<div>
-							{/* <Icon name={`resource-types/${type.key}`} fill='#000' /> */}
+							<Icon name={`resource-types/${type.key}`} fill='#000' />
 							<b>
 								{countData.find((item) => type.title === item.topic)?.count ||
 									'XX'}
@@ -137,7 +137,7 @@ const Featured = ({ showModal, isAuthenticated, setLoginVisible, history }) => {
 	const [results, setResults] = useState([]);
 	const [loading, setLoading] = useState(true);
 	useEffect(() => {
-		api.get('/browse?featured=true').then(({ data }) => {
+		api.get('/browse?featured=true&transnational=132').then(({ data }) => {
 			setResults(data.results);
 			setLoading(false);
 		});
@@ -158,7 +158,7 @@ const Featured = ({ showModal, isAuthenticated, setLoginVisible, history }) => {
 					<Link
 						onClick={(e) => {
 							e.preventDefault();
-							window.open('https://digital.gpmarinelitter.org/flexible-forms')
+							window.open('https://digital.gpmarinelitter.org/flexible-forms');
 						}}
 					>
 						<div className='add-resource-card'>

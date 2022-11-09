@@ -10,7 +10,11 @@ const useDynamicSVGImport = (name, options = {}) => {
 		setLoading(true);
 		const importIcon = async () => {
 			try {
-				ImportedIconRef.current = (await import(`images/${name}.svg`)).default;
+				ImportedIconRef.current = (
+					await import(
+						`!!@svgr/webpack?-svgo,+titleProp,+ref!../../images/${name}.svg`
+					)
+				).default;
 				if (onCompleted) {
 					onCompleted(name, ImportedIconRef.current);
 				}

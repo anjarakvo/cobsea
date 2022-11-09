@@ -68,7 +68,7 @@ function Library({ setLoginVisible, isAuthenticated }) {
 
 	const fetchData = () => {
 		setLoading(true);
-		const url = `/browse?incCountsForTags=${popularTags}`;
+		const url = `/browse?incCountsForTags=${popularTags}&transnational=132`;
 
 		api
 			.get(url)
