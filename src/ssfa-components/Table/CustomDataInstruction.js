@@ -1,8 +1,8 @@
 import { Link } from '@mui/material';
-import StyledLink from 'components/StyledComponents/StyledLink';
+import StyledLink from 'ssfa-components/StyledComponents/StyledLink';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { getFromStorage } from 'components/utils/utils';
+import { getFromStorage } from 'ssfa-components/utils/utils';
 import { CSVLink } from "react-csv";
 
 function dataFormatting() {

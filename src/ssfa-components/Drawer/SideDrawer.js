@@ -3,8 +3,8 @@ import { List, Drawer, IconButton } from '@mui/material';
 
 import SubdirectoryArrowRightIcon from '@mui/icons-material/SubdirectoryArrowRight';
 
-import DrawerList from "components/Drawer/DrawerList";
-import useWindowDimensions from 'components/utils/useWindowDimensions';
+import DrawerList from "ssfa-components/Drawer/DrawerList";
+import useWindowDimensions from 'ssfa-components/utils/useWindowDimensions';
 
 
 export default function SideDrawer({ lists }) {

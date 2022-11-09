@@ -1,4 +1,4 @@
-import StyledLink from 'components/StyledComponents/StyledLink';
+import StyledLink from 'ssfa-components/StyledComponents/StyledLink';
 import React from 'react';
 
 const lists = [
