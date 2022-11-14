@@ -5,7 +5,6 @@ on:
   push:
     pullrequest:
 
-
 jobs:
   # Single deploy job since we're just deploying
   pullrequest:
@@ -16,12 +15,9 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v3.5.1
         with:
-          cache: 'yarn'
+          cache: "yarn"
           node-version: 16
       - run: yarn install
-
-      # Testing is faster than linting for now, so we run the tests first
-      - run: yarn test
 
       # The linter is run here. Maybe there's a faster way to lint a react project
       - run: yarn build
