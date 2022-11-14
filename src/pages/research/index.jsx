@@ -24,6 +24,7 @@ import ScientificResearch from './Data/ScientificResearch';
 import Humanities from './Data/Humanities';
 import Policy from './Data/Policy';
 import Factsheets from './Factsheets';
+import MenuBar from 'components/menu';
 
 let theme = createTheme({
   palette: {
@@ -76,38 +77,41 @@ const View = () => {
       setPositionValue()
   }, [isDataChanged, isPending])
   return (
-    <ThemeProvider theme={theme}>
-      <div>
-        <div id="research-db">
-          <nav>
-            <div className="cnt">
-              <NavLink to="/research/map">
-                <MapIcn /> Map
-              </NavLink>
-              <NavLink to="/research/data">
-                <DataIcn /> Data & analytics
-              </NavLink>
-              <NavLink to="/research/factsheets">
-                <FactIcn /> Fact sheet
-              </NavLink>
-            </div>
-          </nav>
-          <Switch>
-            <Route exact path="/research/map" component={() => <Map isDataChanged={isDataChanged} />} />
+    <>
+			<MenuBar />
+      <ThemeProvider theme={theme}>
+        <div>
+          <div id="research-db">
+            <nav>
+              <div className="cnt">
+                <NavLink to="/research/map">
+                  <MapIcn /> Map
+                </NavLink>
+                <NavLink to="/research/data">
+                  <DataIcn /> Data & analytics
+                </NavLink>
+                <NavLink to="/research/factsheets">
+                  <FactIcn /> Fact sheet
+                </NavLink>
+              </div>
+            </nav>
+            <Switch>
+              <Route exact path="/research/map" component={() => <Map isDataChanged={isDataChanged} />} />
 
-            <Route exact path="/research/data" component={Data} />
-            <Route exact path="/research/data/custom-data-subset" component={DataExtraction} />
-            <Route exact path="/research/data/research-landscape" component={ResearchLandscape} />
-            <Route exact path="/research/data/methodology-and-ontology" component={Methodology} />
-            <Route exact path="/research/data/scientific-research" component={ScientificResearch} />
-            <Route exact path="/research/data/research-in-humanities" component={Humanities} />
-            <Route exact path="/research/data/information-for-policy-making" component={Policy} />
+              <Route exact path="/research/data" component={Data} />
+              <Route exact path="/research/data/custom-data-subset" component={DataExtraction} />
+              <Route exact path="/research/data/research-landscape" component={ResearchLandscape} />
+              <Route exact path="/research/data/methodology-and-ontology" component={Methodology} />
+              <Route exact path="/research/data/scientific-research" component={ScientificResearch} />
+              <Route exact path="/research/data/research-in-humanities" component={Humanities} />
+              <Route exact path="/research/data/information-for-policy-making" component={Policy} />
 
-            <Route exact path="/research/factsheets" component={Factsheets} />
-          </Switch>
+              <Route exact path="/research/factsheets" component={Factsheets} />
+            </Switch>
+          </div>
         </div>
-      </div>
-    </ThemeProvider>
+      </ThemeProvider>
+    </>
   )
 }
 

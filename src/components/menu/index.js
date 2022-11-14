@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import { Layout } from 'antd';
-import logo from 'images/gpml.svg';
+import classNames from 'classnames'
 import './style.scss'
 
-const MenuBar = () => {
+const MenuBar = ({ landing }) => {
 	return (
 		<>
-			<header className='nav-header'>
+			<header className={classNames('nav-header', { 'at-landing': landing })}>
 				<div className='ui container'>
 					<Link to='/' className='logo-a'>
 						<img src="/unep.svg" className="unep" alt="UNEP" />

@@ -1,6 +1,5 @@
 import './App.scss';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import MenuBar from 'components/menu';
 import Landing from 'pages/landing';
 import KnowledgeLibrary from 'pages/knowledge-library';
 import api from 'utils/api';
@@ -40,7 +39,6 @@ Promise.all([
 function App() {
 	return (
 		<div className='App'>
-			<MenuBar />
 			<Switch>
 				<Route path='/' exact render={(props) => <Landing />} />
 				<Route

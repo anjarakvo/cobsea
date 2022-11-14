@@ -1,0 +1,33 @@
+@import "../../vars.scss";
+
+.hero {
+	background: url(../../../public/waves.svg) repeat center #357079;
+	color: #fff;
+	h1 {
+		color: $secondary;
+		font-size: 64px;
+		font-weight: bold;
+		text-shadow: 2px 2px 0px rgba(240, 200, 182, 0.5);
+		line-height: 40px;
+		padding-top: 20px;
+	}
+	.gpml {
+		span {
+			font-size: 30px;
+			text-shadow: 2px 2px 0px rgba(240, 200, 182, 0.5);
+		}
+		img {
+			margin-left: 10px;
+			margin-top: -6px;
+		}
+	}
+	h4 {
+		margin-top: 20px;
+		padding-bottom: 50px;
+		color: $accent;
+		font-size: 22px;
+		line-height: 28px;
+		font-weight: 470;
+		max-width: 820px;
+	}
+}
