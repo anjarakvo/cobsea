@@ -15,6 +15,11 @@ const Home = () => {
           <h4>The web platform of the Regional Node provides stakeholders in the East Asian Seas region with access to knowledge, resources and networking services on marine litter and plastic pollution for informed action.</h4>
         </div>
       </div>
+      <div className="menu-section">
+        <div className="ui container">
+          menu goes here..
+        </div>
+      </div>
     </div>
   );
 };
