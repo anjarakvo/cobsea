@@ -1,3 +1,4 @@
+import FullMenu from 'components/full-menu/full-menu';
 import MenuBar from 'components/menu';
 import React from 'react';
 import './style.scss'
@@ -17,11 +18,12 @@ const Home = () => {
       </div>
       <div className="menu-section">
         <div className="ui container">
-          menu goes here..
+          <FullMenu />
         </div>
       </div>
     </div>
   );
 };
+
 
 export default Home;

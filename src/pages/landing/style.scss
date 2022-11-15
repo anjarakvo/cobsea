@@ -10,7 +10,7 @@
 		font-weight: bold;
 		text-shadow: 2px 2px 0px rgba(240, 200, 182, 0.5);
 		line-height: 40px;
-		padding-top: 20px;
+		padding-top: 50px;
 	}
 	.gpml {
 		span {
@@ -46,8 +46,29 @@
 		z-index: 2;
 	}
 	background-color: #daf9f4;
-	padding: 20px 0 50px;
+	padding: 100px 0 120px;
 	margin-top: 27px;
 	position: relative;
 	z-index: 2;
+	.full-menu {
+		h3 {
+			color: #446f78;
+			text-shadow: 2px 2px 0px rgba(240, 200, 182, 0.5);
+		}
+		h4,
+		h5 {
+			color: #446f78;
+		}
+		.item {
+			.icon {
+				background-color: #52898f;
+				transition: background 0.2s ease-out;
+			}
+			&:hover {
+				.icon {
+					background-color: $primary;
+				}
+			}
+		}
+	}
 }
