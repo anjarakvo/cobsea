@@ -1,6 +1,6 @@
 import { Button, Divider, Modal } from 'antd';
-import FullMenu from 'components/full-menu/full-menu';
-import MenuBar from 'components/menu';
+import FullMenu from '../../components/full-menu/full-menu';
+import MenuBar from '../../components/menu';
 import React, { useState } from 'react';
 import './style.scss'
 

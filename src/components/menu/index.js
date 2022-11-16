@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { Layout } from 'antd';
 import classNames from 'classnames'
 import { Fade as Hamburger } from 'hamburger-react'
 import './style.scss'
@@ -21,7 +20,7 @@ const MenuBar = ({ landing }) => {
             &nbsp;|&nbsp;
             <Link to="/research">Research database</Link>
           </nav> */}
-          <Hamburger size={40} toggled={isOpen} toggle={setOpen} />
+          {!landing && <Hamburger size={40} toggled={isOpen} toggle={setOpen} />}
 				</div>
 			</header>
       {!landing && <div className="spacer" />}

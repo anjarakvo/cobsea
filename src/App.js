@@ -40,11 +40,8 @@ function App() {
 	return (
 		<div className='App'>
 			<Switch>
-				<Route path='/' exact render={(props) => <Landing />} />
-				<Route
-					path='/knowledge-library'
-					render={(props) => <KnowledgeLibrary />}
-				/>
+				<Route path='/' exact component={Landing} />
+				<Route path='/knowledge-library' component={KnowledgeLibrary} />
         <Route path="/research" component={Research} />
 			</Switch>
 		</div>
