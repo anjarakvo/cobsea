@@ -48,6 +48,11 @@
 			color: $primary;
 		}
 	}
+	@media screen and (max-width: 1024px) {
+		h1 {
+			line-height: 60px;
+		}
+	}
 }
 .menu-section {
 	&:before {
@@ -131,6 +136,17 @@
 			flex: 1;
 			display: flex;
 			justify-content: center;
+		}
+	}
+	@media screen and (max-width: 1024px) {
+		.ui.container {
+			flex-direction: column;
+		}
+		.col {
+			margin-bottom: 50px;
+			img {
+				max-width: 90% !important;
+			}
 		}
 	}
 }

@@ -48,6 +48,14 @@
 				}
 			}
 		}
+		@media screen and (max-width: 1024px) {
+			a {
+				flex-direction: column;
+				min-width: 70px;
+				height: 70px;
+			}
+			height: 100px;
+		}
 	}
 	nav.subnav {
 		background-color: #fff;
