@@ -3,11 +3,12 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import MenuBar from 'components/menu';
 import Landing from 'pages/landing';
 import KnowledgeLibrary from 'pages/knowledge-library';
+import CapacityBuilding from 'pages/capacity-building';
 import api from 'utils/api';
 import { UIStore } from './store.js';
 import uniqBy from 'lodash/uniqBy';
 import sortBy from 'lodash/sortBy';
-import Research from './pages/research'
+import Research from './pages/research';
 
 Promise.all([
 	api.get('/tag'),
@@ -47,7 +48,11 @@ function App() {
 					path='/knowledge-library'
 					render={(props) => <KnowledgeLibrary />}
 				/>
-        <Route path="/research" component={Research} />
+				<Route
+					path='/capacity-building/:view?/:type?'
+					render={(props) => <CapacityBuilding />}
+				/>
+				<Route path='/research' component={Research} />
 			</Switch>
 		</div>
 	);
