@@ -62,7 +62,7 @@
 		z-index: 2;
 	}
 	background-color: #daf9f4;
-	padding: 100px 0 120px;
+	padding: 100px 0 150px;
 	margin-top: 27px;
 	position: relative;
 	z-index: 2;
@@ -86,5 +86,38 @@
 				}
 			}
 		}
+	}
+}
+.contact-section {
+	position: relative;
+	&:before {
+		background: url(../../images/wave-bg.svg) repeat-x top left;
+		background-position-x: 50px;
+		position: absolute;
+		top: -50px;
+		left: 0;
+		width: 100%;
+		height: 50px;
+		content: " ";
+		z-index: 2;
+	}
+	background-color: $secondary;
+	padding: 50px 0 90px;
+	color: white;
+	h5 {
+		color: white;
+		font-size: 22px;
+	}
+	text-align: center;
+	.ant-btn {
+		text-transform: uppercase;
+		font-size: 18px;
+		border-radius: 25px;
+		height: 50px;
+		font-weight: 500;
+		padding: 0 40px;
+		border: none;
+		box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+		margin-top: 10px;
 	}
 }
