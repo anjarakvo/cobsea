@@ -7,10 +7,10 @@ import { UIStore } from '../../store';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper';
 // swiper bundle styles
-import 'swiper/scss';
-import 'swiper/scss/navigation';
-import 'swiper/scss/pagination';
-import 'swiper/scss/thumbs';
+import 'swiper/swiper.min.css';
+import 'swiper/modules/free-mode/free-mode.min.css';
+import 'swiper/modules/navigation/navigation.scss';
+import 'swiper/modules/pagination/pagination.min.css';
 
 import { randomColor } from 'utils/misc';
 import { ReactComponent as LocationIcon } from '../../images/location.svg';

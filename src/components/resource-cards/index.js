@@ -13,10 +13,11 @@ import { topicNames } from '../../utils/misc';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination as SwiperPagination, Navigation } from 'swiper';
-import 'swiper/scss';
-import 'swiper/scss/navigation';
-import 'swiper/scss/pagination';
-import 'swiper/scss/thumbs';
+// swiper bundle styles
+import 'swiper/swiper.min.css';
+import 'swiper/modules/free-mode/free-mode.min.css';
+import 'swiper/modules/navigation/navigation.scss';
+import 'swiper/modules/pagination/pagination.min.css';
 
 import { Link } from 'react-router-dom';
 
@@ -77,13 +78,15 @@ const ResourceCards = ({
 			className='resource-cards'
 		>
 			{firstCard && <SwiperSlide>{firstCard}</SwiperSlide>}
-			{(showMoreCardAfter > 0 ? items?.slice(0, showMoreCardAfter) : items).map((item) => {
-				return (
-					<SwiperSlide key={item?.id}>
-						<ResourceCard item={item} showModal={showModal} />
-					</SwiperSlide>
-				);
-			})}
+			{(showMoreCardAfter > 0 ? items?.slice(0, showMoreCardAfter) : items).map(
+				(item) => {
+					return (
+						<SwiperSlide key={item?.id}>
+							<ResourceCard item={item} showModal={showModal} />
+						</SwiperSlide>
+					);
+				},
+			)}
 			{showMoreCard && (
 				<SwiperSlide className='show-more-card'>{showMoreCard}</SwiperSlide>
 			)}
