@@ -121,3 +121,16 @@
 		margin-top: 10px;
 	}
 }
+
+.supporters-section {
+	padding: 50px 0;
+	.ui.container {
+		display: flex;
+		align-items: center;
+		.col {
+			flex: 1;
+			display: flex;
+			justify-content: center;
+		}
+	}
+}
