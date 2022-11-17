@@ -2,6 +2,7 @@ import './App.scss';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Landing from 'pages/landing';
 import KnowledgeLibrary from 'pages/knowledge-library';
+import CapacityBuilding from 'pages/capacity-building';
 import api from 'utils/api';
 import { UIStore } from './store.js';
 import uniqBy from 'lodash/uniqBy';
@@ -43,6 +44,7 @@ function App() {
 			<Switch>
 				<Route path='/' exact component={Landing} />
 				<Route path='/knowledge-library' component={KnowledgeLibrary} />
+				<Route path='/capacity-building/:view?/:type?' component={CapacityBuilding} />
 				<Route path='/research' component={Research} />
 				<Route path='/research-network' component={ResearchNetwork} />
 			</Switch>
