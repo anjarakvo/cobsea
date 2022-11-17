@@ -65,3 +65,9 @@
 		}
 	}
 }
+@media screen and (max-width: 1024px) {
+	.full-menu-overlay {
+		overflow-y: scroll;
+		padding-bottom: 150px;
+	}
+}

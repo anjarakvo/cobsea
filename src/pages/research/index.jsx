@@ -85,13 +85,13 @@ const View = () => {
             <nav>
               <div className="cnt">
                 <NavLink to="/research/map">
-                  <MapIcn /> Map
+                  <MapIcn /> <span>Map</span>
                 </NavLink>
                 <NavLink to="/research/data">
-                  <DataIcn /> Data & analytics
+                  <DataIcn /> <span>Data & analytics</span>
                 </NavLink>
                 <NavLink to="/research/factsheets">
-                  <FactIcn /> Fact sheet
+                  <FactIcn /> <span>Fact sheet</span>
                 </NavLink>
               </div>
             </nav>

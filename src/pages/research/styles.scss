@@ -49,10 +49,29 @@
 			}
 		}
 		@media screen and (max-width: 1024px) {
+			justify-content: start;
+			padding-left: 20px;
+			padding-top: 2px;
 			a {
 				flex-direction: column;
 				min-width: 70px;
-				height: 70px;
+				width: 100px;
+				height: 80px;
+				font-size: 12px;
+				text-align: center;
+				line-height: 14px;
+				padding: 0;
+				span {
+					height: 28px;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+				}
+				svg {
+					margin-right: 0;
+					margin-top: 5px;
+					margin-bottom: 5px;
+				}
 			}
 			height: 100px;
 		}
@@ -90,6 +109,15 @@
 					color: #fff;
 				}
 			}
+		}
+		@media screen and (max-width: 1024px) {
+			overflow-x: scroll;
+			// align-items: flex-start;
+			justify-content: start;
+			padding-left: 20px;
+			padding-right: 10px;
+			padding-bottom: 10px;
+			padding-top: 10px;
 		}
 	}
 	.my-masonry-grid {
