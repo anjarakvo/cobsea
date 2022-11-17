@@ -1,11 +1,13 @@
 import { Button, Divider, Modal } from 'antd';
 import FullMenu from '../../components/full-menu/full-menu';
 import MenuBar from '../../components/menu';
+import ContactModal from 'components/contact-modal';
 import React, { useState } from 'react';
 import './style.scss'
 
 const Home = () => {
   const [modalOpen, setModalOpen] = useState(false)
+	const [showContactModal, setShowContactModal] = useState(false);
 	return (
     <div id="landing">
       <div className="hero">
@@ -27,7 +29,7 @@ const Home = () => {
       <div className="contact-section">
         <div className="ui container">
           <h5>Don’t hesitate to give us feedback or get involved</h5>
-          <Button size="large">Contact us</Button>
+          <Button size="large" onClick={() => { setShowContactModal(true) }}>Contact us</Button>
         </div>
       </div>
       <div className="supporters-section">
@@ -55,6 +57,14 @@ const Home = () => {
 <br /><br />
  <a href="www.cobsea.org" target="_blank">www.cobsea.org</a>
       </Modal>
+
+
+			<ContactModal
+				{...{
+					showContactModal,
+					setShowContactModal,
+				}}
+			/>
     </div>
   );
 };
