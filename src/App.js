@@ -6,8 +6,8 @@ import api from 'utils/api';
 import { UIStore } from './store.js';
 import uniqBy from 'lodash/uniqBy';
 import sortBy from 'lodash/sortBy';
-import Research from './pages/research'
-import Footer from './footer'
+import Research from './pages/research';
+import ResearchNetwork from './pages/research-network';
 
 Promise.all([
 	api.get('/tag'),
@@ -40,12 +40,12 @@ Promise.all([
 function App() {
 	return (
 		<div className='App'>
-      <Switch>
-        <Route path='/' exact component={Landing} />
-        <Route path='/knowledge-library' component={KnowledgeLibrary} />
-        <Route path="/research" component={Research} />
-      </Switch>
-      <Footer />
+			<Switch>
+				<Route path='/' exact component={Landing} />
+				<Route path='/knowledge-library' component={KnowledgeLibrary} />
+				<Route path='/research' component={Research} />
+				<Route path='/research-network' component={ResearchNetwork} />
+			</Switch>
 		</div>
 	);
 }

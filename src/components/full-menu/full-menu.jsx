@@ -33,7 +33,7 @@ const FullMenu = () => (
         icon={<ChartSvg />}
       />
       <Item
-        to="/"
+        to="/research-network"
         title="RESEARCH NETWORK"
         subtitle="Directory of organisations"
         icon={<NetworkSvg />}
