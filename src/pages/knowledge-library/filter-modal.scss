@@ -1,0 +1,145 @@
+@import '../../vars.scss';
+.filter-modal {
+	width: 100% !important;
+
+	@media screen and (min-width: 840px) {
+		max-width: 815px;
+	}
+
+	.ant-modal-header {
+		.ant-modal-title {
+			font-weight: 600;
+			font-size: 18px;
+			line-height: 26px;
+			color: rgba(24, 22, 47, 0.37);
+			text-transform: uppercase;
+		}
+	}
+	.ant-modal-body {
+		padding: 17px 140px 50px 140px;
+		.filter-title {
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 20px;
+			color: rgba(24, 22, 47, 0.37);
+			margin-bottom: 5px;
+
+			@media (max-width: 540px) {
+				font-size: 16px;
+			}
+		}
+		.ant-select-selection-placeholder {
+			font-weight: 500;
+		}
+		.search-input {
+			width: 100%;
+			.input-search {
+				background-color: rgba(71, 86, 87, 0.1);
+				border-radius: 5px;
+				border: none !important;
+				height: 34px;
+				input {
+					font-weight: 500;
+					color: rgba(24, 22, 47, 0.37);
+					font-size: 16px;
+					background: transparent;
+					&::placeholder {
+						font-weight: 500;
+						color: rgba(24, 22, 47, 0.37);
+					}
+				}
+				.anticon-search {
+					color: rgba(24, 22, 47, 0.37);
+				}
+			}
+		}
+		.multi-select-search {
+			width: 100%;
+			background: rgba(71, 86, 87, 0.03);
+			border: 1px solid rgba(71, 86, 87, 0.1);
+			border-radius: 10px;
+			padding: 40px 60px;
+			h3 {
+				font-weight: 400;
+				font-size: 14px;
+				line-height: 20px;
+				text-transform: uppercase;
+				color: #000000;
+				margin-bottom: 25px;
+			}
+			.ant-col {
+				margin-bottom: 25px;
+				&:last-child {
+					margin-bottom: 0px;
+				}
+			}
+		}
+		input {
+			font-weight: 500;
+			color: rgba(24, 22, 47, 0.37);
+			&::placeholder {
+				font-weight: 500;
+				color: rgba(24, 22, 47, 0.37);
+			}
+		}
+		.date-picker-container {
+			.ant-row {
+				width: auto !important;
+			}
+			.ant-picker {
+				width: 100%;
+				border: none;
+				background-color: rgba(71, 86, 87, 0.1);
+				border-radius: 5px;
+				input {
+					font-size: 16px;
+					color: rgba(24, 22, 47, 0.37);
+					&::placeholder {
+						font-size: 16px;
+						color: rgba(24, 22, 47, 0.37);
+					}
+				}
+			}
+		}
+	}
+
+	.ant-modal-footer {
+		background: #ffffff;
+		box-shadow: 0px -2px 2px rgba(24, 22, 47, 0.3);
+		border-radius: 0px 0px 10px 10px;
+		padding: 20px;
+		text-align: center;
+		button {
+			font-weight: 400;
+			font-size: 12px;
+			line-height: 17px;
+			text-align: center;
+			text-transform: uppercase;
+			background-color: transparent;
+			color: #475657;
+		}
+		.apply-button {
+			border: 1px solid #475657;
+			border-radius: 30px;
+			background-color: transparent;
+			padding: 5px 30px;
+		}
+		.clear-button {
+			background-color: transparent;
+			border: none;
+		}
+	}
+
+	@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+		.ant-modal-body {
+			padding: 17px 20px 30px 20px;
+		}
+
+		.invite-expert-buttons {
+			margin-top: 30px;
+		}
+		.ant-modal-header {
+			padding: 10px 20px;
+		}
+	}
+}
