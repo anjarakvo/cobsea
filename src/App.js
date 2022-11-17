@@ -7,6 +7,7 @@ import { UIStore } from './store.js';
 import uniqBy from 'lodash/uniqBy';
 import sortBy from 'lodash/sortBy';
 import Research from './pages/research'
+import Footer from './footer'
 
 Promise.all([
 	api.get('/tag'),
@@ -39,13 +40,15 @@ Promise.all([
 function App() {
 	return (
 		<div className='App'>
-			<Switch>
-				<Route path='/' exact component={Landing} />
-				<Route path='/knowledge-library' component={KnowledgeLibrary} />
+      <Switch>
+        <Route path='/' exact component={Landing} />
+        <Route path='/knowledge-library' component={KnowledgeLibrary} />
         <Route path="/research" component={Research} />
-			</Switch>
+      </Switch>
+      <Footer />
 		</div>
 	);
 }
+
 
 export default App;

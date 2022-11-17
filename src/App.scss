@@ -1,4 +1,5 @@
 @import "antd/dist/antd.css";
+@import "./vars.scss";
 
 body,
 button,
@@ -140,4 +141,43 @@ ul {
 .swiper-button-prev,
 .swiper-button-next {
 	color: #ffb800 !important;
+}
+
+.footer {
+	background-color: $tertiary;
+	color: #fff;
+	padding: 40px 0;
+	.logo-a {
+		.unep {
+			margin-right: 10px;
+		}
+	}
+	nav {
+		font-size: 18px;
+		font-weight: 600;
+		.item {
+			cursor: pointer;
+		}
+	}
+	@media screen and (min-width: 1024px) {
+		.ui.container {
+			display: flex;
+		}
+		nav {
+			margin-left: auto;
+			display: flex;
+			margin-top: 8px;
+			.item {
+				margin-left: 50px;
+			}
+		}
+	}
+	@media screen and (max-width: 1024px) {
+		nav {
+			margin-top: 15px;
+			.item {
+				line-height: 40px;
+			}
+		}
+	}
 }
