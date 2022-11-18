@@ -4,11 +4,8 @@ module.exports = function (app) {
 	app.use(
 		['/api', '/image', '/env.js', '/cv'],
 		createProxyMiddleware({
-			target: 'https://unep-gpml.akvotest.org/',
+			target: 'https://digital.gpmarinelitter.org/',
 			changeOrigin: true,
-			secure: false,
-			changeOrigin: true,
-			cookieDomainRewrite: '',
 		}),
 	);
 };
