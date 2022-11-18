@@ -1,14 +1,13 @@
-import React from 'react';
-import { List, Drawer, IconButton } from '@mui/material';
+import React from "react";
+import { List, Drawer, IconButton } from "@mui/material";
 
-import SubdirectoryArrowRightIcon from '@mui/icons-material/SubdirectoryArrowRight';
+import SubdirectoryArrowRightIcon from "@mui/icons-material/SubdirectoryArrowRight";
 
 import DrawerList from "ssfa-components/Drawer/DrawerList";
-import useWindowDimensions from 'ssfa-components/utils/useWindowDimensions';
-
+import useWindowDimensions from "ssfa-components/utils/useWindowDimensions";
 
 export default function SideDrawer({ lists }) {
-  const dimensions = useWindowDimensions()
+  const dimensions = useWindowDimensions();
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -19,11 +18,11 @@ export default function SideDrawer({ lists }) {
         size="large"
         onClick={() => setOpen(!open)}
         sx={{
-          position: 'fixed',
+          position: "fixed",
           bottom: "1rem",
           left: "1rem",
           zIndex: 1,
-          backgroundColor: theme => theme.palette.secondary.main,
+          backgroundColor: (theme) => theme.palette.secondary.main,
         }}
       >
         <SubdirectoryArrowRightIcon />
@@ -34,10 +33,10 @@ export default function SideDrawer({ lists }) {
         onClose={() => setOpen(false)}
         sx={{
           "& .MuiPaper-root": {
-            backgroundColor: theme => theme.palette.primary.main,
-            color: theme => theme.palette.secondary.contrastText,
+            backgroundColor: (theme) => theme.palette.primary.main,
+            color: (theme) => theme.palette.secondary.contrastText,
             width: dimensions[0] * 0.4,
-          }
+          },
         }}
       >
         <List>
@@ -45,7 +44,7 @@ export default function SideDrawer({ lists }) {
             <DrawerList key={idx} content={content} />
           ))}
         </List>
-      </Drawer >
+      </Drawer>
     </>
-  )
+  );
 }

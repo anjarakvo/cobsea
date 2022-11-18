@@ -1,73 +1,73 @@
 .nav-header {
-	&:not(.at-landing) {
-		background: url(../../images/waves.svg) repeat center #357079;
-		position: fixed;
-		z-index: 3;
-		width: 100%;
-	}
-	height: 110px;
-	display: flex;
-	align-items: center;
-	.container {
-		display: flex;
-		position: relative;
-		width: 100%;
-		.unep {
-			transform: translateY(3px);
-			margin-right: 10px;
-			display: inline-block;
-		}
-		nav {
-			display: flex;
-			color: white;
-			margin-left: 40px;
-			margin-top: 10px;
-			a {
-				text-decoration: underline;
-			}
-		}
-	}
-	.hamburger-react {
-		// position: absolute!impor;
-		// right: 0;
-		margin-left: auto;
-		color: white;
-	}
+  &:not(.at-landing) {
+    background: url(../../images/waves.svg) repeat center #357079;
+    position: fixed;
+    z-index: 3;
+    width: 100%;
+  }
+  height: 110px;
+  display: flex;
+  align-items: center;
+  .container {
+    display: flex;
+    position: relative;
+    width: 100%;
+    .unep {
+      transform: translateY(3px);
+      margin-right: 10px;
+      display: inline-block;
+    }
+    nav {
+      display: flex;
+      color: white;
+      margin-left: 40px;
+      margin-top: 10px;
+      a {
+        text-decoration: underline;
+      }
+    }
+  }
+  .hamburger-react {
+    // position: absolute!impor;
+    // right: 0;
+    margin-left: auto;
+    color: white;
+  }
 }
 .spacer {
-	width: 100%;
-	height: 110px;
+  width: 100%;
+  height: 110px;
 }
 .full-menu-overlay {
-	position: fixed;
-	z-index: 200;
-	background: url(../../images/waves.svg) repeat center #33707b;
-	width: 100%;
-	height: 100%;
-	color: white;
-	.full-menu {
-		margin-top: 50px;
-		color: #fff;
-		h3,
-		h4,
-		h5 {
-			color: #fff;
-		}
-		.col {
-			&:before {
-				background-color: rgba(255, 255, 255, 0.2);
-			}
-			.item {
-				.icon {
-					border: 2px solid rgba(255, 255, 255, 0.5);
-				}
-			}
-		}
-	}
+  position: fixed;
+  z-index: 200;
+  background: url(../../images/waves.svg) repeat center #33707b;
+  width: 100%;
+  height: 100%;
+  color: white;
+  .full-menu {
+    margin-top: 50px;
+    color: #fff;
+    h3,
+    h4,
+    h5 {
+      color: #fff;
+    }
+    .col {
+      &:before {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+      .item {
+        .icon {
+          border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+      }
+    }
+  }
 }
 @media screen and (max-width: 1024px) {
-	.full-menu-overlay {
-		overflow-y: scroll;
-		padding-bottom: 150px;
-	}
+  .full-menu-overlay {
+    overflow-y: scroll;
+    padding-bottom: 150px;
+  }
 }

@@ -1,16 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
-import initData from "data/initData.json"
+import initData from "data/initData.json";
 import { getFromStorage } from "ssfa-components/utils/utils";
 
 const rootData = createSlice({
   name: "rootData",
   initialState: {
-    databaseLink: 'https://docs.google.com/spreadsheets/d/1yRLGaQk3-9UlopftPr5e8F-X3pKkjwLlZWcTwai6_Ds/gviz/tq?tqx=out:json',
+    databaseLink:
+      "https://docs.google.com/spreadsheets/d/1yRLGaQk3-9UlopftPr5e8F-X3pKkjwLlZWcTwai6_Ds/gviz/tq?tqx=out:json",
     errorInfo: null,
     isDataChanged: false,
     isError: false,
     isPending: true,
-    lastUpdated: getFromStorage("data")?.time.toString() ?? initData.lastUpdated,
+    lastUpdated:
+      getFromStorage("data")?.time.toString() ?? initData.lastUpdated,
   },
   reducers: {
     setIsPending: (state, action) => {
@@ -27,15 +29,15 @@ const rootData = createSlice({
     },
     setLastUpdated: (state, action) => {
       state.lastUpdated = action.payload;
-    }
-  }
-})
+    },
+  },
+});
 
 export const {
   setIsPending,
   setIsError,
   setIsDataChanged,
   setLastUpdated,
-  setErrorInfo
-} = rootData.actions
-export default rootData.reducer
+  setErrorInfo,
+} = rootData.actions;
+export default rootData.reducer;

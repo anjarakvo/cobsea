@@ -1,25 +1,31 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Highlighter from "react-highlight-words";
 import {
-  Container, Paper, Box,
-  Link, Typography, Button,
-  TextField, IconButton,
-  Grid, Hidden
+  Container,
+  Paper,
+  Box,
+  Link,
+  Typography,
+  Button,
+  TextField,
+  IconButton,
+  Grid,
+  Hidden,
 } from "@mui/material";
 import {
   DataGrid,
   GridToolbarFilterButton,
   GridToolbarExport,
   GridToolbarColumnsButton,
-} from '@mui/x-data-grid';
+} from "@mui/x-data-grid";
 import {
   setDataRows,
   setSearchDisplay,
   setSearchKeywords,
   setColumnOrder,
   setColumnOrderLong,
-} from 'ssfa-store/slice/dataExtraction';
+} from "ssfa-store/slice/dataExtraction";
 import {
   closestCenter,
   DndContext,
@@ -29,26 +35,26 @@ import {
   MouseSensor,
   useSensor,
   useSensors,
-  DragOverlay
+  DragOverlay,
 } from "@dnd-kit/core";
 import {
   arrayMove,
   SortableContext,
-  verticalListSortingStrategy
+  verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { Item, SortableItem } from "ssfa-components/DnD/SortableItem";
 
-import ClearIcon from '@mui/icons-material/Clear';
-import SearchIcon from '@mui/icons-material/Search';
-import LinkIcon from '@mui/icons-material/Link';
+import ClearIcon from "@mui/icons-material/Clear";
+import SearchIcon from "@mui/icons-material/Search";
+import LinkIcon from "@mui/icons-material/Link";
 
-import Header from 'ssfa-components/StyledComponents/Header';
-import Body from 'ssfa-components/StyledComponents/Body';
-import CustomDataInstruction from 'ssfa-components/Table/CustomDataInstruction';
-import SubNav from './subnav';
+import Header from "ssfa-components/StyledComponents/Header";
+import Body from "ssfa-components/StyledComponents/Body";
+import CustomDataInstruction from "ssfa-components/Table/CustomDataInstruction";
+import SubNav from "./subnav";
 
 function escapeRegExp(value) {
-  return value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+  return value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 }
 
 const QuickSearchToolbar = (props) => {
@@ -57,17 +63,17 @@ const QuickSearchToolbar = (props) => {
       sx={{
         p: 0.5,
         pb: 0,
-        justifyContent: 'space-between',
-        display: 'flex',
-        alignItems: 'flex-start',
-        flexWrap: 'wrap',
-        backgroundColor: '#436F79',
+        justifyContent: "space-between",
+        display: "flex",
+        alignItems: "flex-start",
+        flexWrap: "wrap",
+        backgroundColor: "#436F79",
       }}
     >
       <div>
-        <GridToolbarColumnsButton sx={{ color: '#fff' }} />
-        <GridToolbarFilterButton sx={{ color: '#fff' }} />
-        <GridToolbarExport sx={{ color: '#fff' }} />
+        <GridToolbarColumnsButton sx={{ color: "#fff" }} />
+        <GridToolbarFilterButton sx={{ color: "#fff" }} />
+        <GridToolbarExport sx={{ color: "#fff" }} />
       </div>
       <TextField
         variant="standard"
@@ -77,13 +83,19 @@ const QuickSearchToolbar = (props) => {
         // color="quaternary"
         className="grid-search-input"
         InputProps={{
-          startAdornment: <SearchIcon fontSize="small" color="quaternary" onClick={props.onClick} />,
+          startAdornment: (
+            <SearchIcon
+              fontSize="small"
+              color="quaternary"
+              onClick={props.onClick}
+            />
+          ),
           endAdornment: (
             <IconButton
               title="Clear"
               aria-label="Clear"
               size="small"
-              style={{ visibility: props.value ? 'visible' : 'hidden' }}
+              style={{ visibility: props.value ? "visible" : "hidden" }}
               onClick={props.clearSearch}
             >
               <ClearIcon fontSize="small" />
@@ -93,20 +105,20 @@ const QuickSearchToolbar = (props) => {
         sx={{
           width: {
             xs: 1,
-            sm: 'auto',
+            sm: "auto",
           },
           m: (theme) => theme.spacing(1, 0.5, 1.5),
-          '& .MuiSvgIcon-root': {
+          "& .MuiSvgIcon-root": {
             mr: 0.5,
           },
-          '& .MuiInput-underline:hover': {
-            color: theme => theme.palette.quaternary.main,
+          "& .MuiInput-underline:hover": {
+            color: (theme) => theme.palette.quaternary.main,
           },
         }}
       />
     </Box>
   );
-}
+};
 
 const CustomCell = (props) => {
   // console.log(props)
@@ -116,17 +128,17 @@ const CustomCell = (props) => {
         style={{
           width: props.width - 20,
           padding: 10,
-          alignItems: 'center',
+          alignItems: "center",
           // justifyContent: 'center',
-          display: 'flex',
+          display: "flex",
           textAlign: "left",
-          borderBottom: '1px solid',
+          borderBottom: "1px solid",
         }}
       >
         {children}
       </div>
-    )
-  }
+    );
+  };
 
   const CustomLink = ({ href }) => {
     return (
@@ -135,8 +147,8 @@ const CustomCell = (props) => {
           <LinkIcon color="secondary" />
         </Link>
       </Wrapper>
-    )
-  }
+    );
+  };
 
   const Default = ({ searchKeywords, textToHighlight }) => {
     return (
@@ -145,88 +157,77 @@ const CustomCell = (props) => {
           searchWords={searchKeywords}
           autoEscape={true}
           textToHighlight={textToHighlight ?? ""}
-          highlightStyle={{ backgroundColor: '#c8a464' }}
+          highlightStyle={{ backgroundColor: "#c8a464" }}
         />
       </Wrapper>
-    )
-  }
+    );
+  };
 
   switch (props.field) {
-    case 'link':
-      return (
-        <CustomLink href={props.value} />
-      )
+    case "link":
+      return <CustomLink href={props.value} />;
     case "id":
-      return (
-        <Wrapper>{props.value}</Wrapper>
-      )
+      return <Wrapper>{props.value}</Wrapper>;
     default:
       return (
         <Default
           searchKeywords={props.searchKeywords}
           textToHighlight={props.value}
         />
-      )
+      );
   }
-}
+};
 
 const ColumnOrganizer = (props) => {
-  const { columnOrder,
-    columnOrderLong,
-    columnHeaders } = useSelector(state => state.dataExtraction)
-  const dispatch = useDispatch()
+  const { columnOrder, columnOrderLong, columnHeaders } = useSelector(
+    (state) => state.dataExtraction
+  );
+  const dispatch = useDispatch();
 
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(TouchSensor),
     useSensor(MouseSensor, { activationConstraint: { distance: 5 } }),
-    useSensor(KeyboardSensor),
+    useSensor(KeyboardSensor)
   );
 
   function handleDragEnd({ active, over }) {
-
     if (active.id !== over.id) {
-      const oldIndex = columnOrder.indexOf(active.id)
-      const newIndex = columnOrder.indexOf(over.id)
-      dispatch(setColumnOrder(arrayMove(columnOrder, oldIndex, newIndex)))
-      dispatch(setColumnOrderLong(arrayMove(columnOrderLong, oldIndex, newIndex)))
+      const oldIndex = columnOrder.indexOf(active.id);
+      const newIndex = columnOrder.indexOf(over.id);
+      dispatch(setColumnOrder(arrayMove(columnOrder, oldIndex, newIndex)));
+      dispatch(
+        setColumnOrderLong(arrayMove(columnOrderLong, oldIndex, newIndex))
+      );
     }
-
   }
 
   function handleReset() {
-    dispatch(setColumnOrder(columnHeaders.map(col => col.headerName)))
-    dispatch(setColumnOrderLong(columnHeaders))
+    dispatch(setColumnOrder(columnHeaders.map((col) => col.headerName)));
+    dispatch(setColumnOrderLong(columnHeaders));
   }
 
   return (
     <Paper
       sx={{
         height: 1000,
-        display: 'flex',
-        flexDirection: 'column',
-        backgroundColor: '#ECF2F8',
+        display: "flex",
+        flexDirection: "column",
+        backgroundColor: "#ECF2F8",
       }}
     >
       <Box
         sx={{
-          backgroundColor: '#EBF2F8',
-          color: '#00405F',
-          textAlign: 'center',
+          backgroundColor: "#EBF2F8",
+          color: "#00405F",
+          textAlign: "center",
           padding: 2,
           marginBottom: 1,
         }}
       >
-        <Typography
-        >
-          Drag and drop columns to reorder them.
-        </Typography>
+        <Typography>Drag and drop columns to reorder them.</Typography>
         <br />
-        <Button
-          variant="contained"
-          size="small"
-          onClick={handleReset}
-        >
+        <Button variant="contained" size="small" onClick={handleReset}>
           Reset order
         </Button>
       </Box>
@@ -235,9 +236,16 @@ const ColumnOrganizer = (props) => {
         collisionDetection={closestCenter}
         onDragEnd={handleDragEnd}
       >
-        <SortableContext items={columnOrder} strategy={verticalListSortingStrategy}>
+        <SortableContext
+          items={columnOrder}
+          strategy={verticalListSortingStrategy}
+        >
           {columnOrder.map((title, idx) => (
-            <SortableItem key={columnOrder[idx]} index={idx} data={columnOrder} />
+            <SortableItem
+              key={columnOrder[idx]}
+              index={idx}
+              data={columnOrder}
+            />
           ))}
         </SortableContext>
         <DragOverlay>
@@ -245,12 +253,12 @@ const ColumnOrganizer = (props) => {
         </DragOverlay>
       </DndContext>
     </Paper>
-  )
-}
+  );
+};
 
 // Main program start here
 export default function DataExtraction() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const {
     columnOrderLong,
     columnHeaders,
@@ -258,11 +266,11 @@ export default function DataExtraction() {
     dataRows,
     searchKeywords,
     searchDisplay,
-  } = useSelector(state => state.dataExtraction)
+  } = useSelector((state) => state.dataExtraction);
 
   const requestSearch = (searchValue) => {
-    dispatch(setSearchKeywords(searchValue))
-    const searchRegex = new RegExp(escapeRegExp(searchValue), 'i');
+    dispatch(setSearchKeywords(searchValue));
+    const searchRegex = new RegExp(escapeRegExp(searchValue), "i");
     const filteredRows = data.filter((row) => {
       return Object.keys(row).some((field) => {
         return searchRegex.test(row[field]);
@@ -275,22 +283,24 @@ export default function DataExtraction() {
     <div>
       <SubNav />
       <Container>
-        <Body variant='body1'
-        >
+        <Body variant="body1">
           <CustomDataInstruction />
         </Body>
         <Grid container spacing={2}>
           <Hidden smDown>
             <Grid item sm={2}>
-              <ColumnOrganizer>
-              </ColumnOrganizer>
+              <ColumnOrganizer></ColumnOrganizer>
             </Grid>
           </Hidden>
           <Grid item xs={12} sm={10}>
             <Paper elevation={1} style={{ height: 1000, marginBottom: "4rem" }}>
               <DataGrid
                 rows={dataRows}
-                columns={columnOrderLong.map(col => ({ ...col, valueFormatter: ({ value }) => value?.toString().replace(/\n/g, '') }))}
+                columns={columnOrderLong.map((col) => ({
+                  ...col,
+                  valueFormatter: ({ value }) =>
+                    value?.toString().replace(/\n/g, ""),
+                }))}
                 density="comfortable"
                 rowHeight={120}
                 columnBuffer={20}
@@ -302,15 +312,16 @@ export default function DataExtraction() {
                 componentsProps={{
                   cell: {
                     columnHeaders,
-                    searchKeywords
+                    searchKeywords,
                   },
                   toolbar: {
                     value: searchDisplay,
                     onClick: () => requestSearch(searchDisplay),
-                    onChange: (event) => dispatch(setSearchDisplay(event.target.value)),
+                    onChange: (event) =>
+                      dispatch(setSearchDisplay(event.target.value)),
                     clearSearch: () => {
-                      dispatch(setSearchDisplay(''))
-                      requestSearch('')
+                      dispatch(setSearchDisplay(""));
+                      requestSearch("");
                     },
                   },
                 }}
@@ -333,6 +344,6 @@ export default function DataExtraction() {
           </Grid>
         </Grid>
       </Container>
-    </div >
+    </div>
   );
 }

@@ -1,35 +1,35 @@
-import React from 'react';
-import Box from '@mui/material/Box';
-import SpeedDial from '@mui/material/SpeedDial';
-import SpeedDialIcon from '@mui/material/SpeedDialIcon';
-import SpeedDialAction from '@mui/material/SpeedDialAction';
+import React from "react";
+import Box from "@mui/material/Box";
+import SpeedDial from "@mui/material/SpeedDial";
+import SpeedDialIcon from "@mui/material/SpeedDialIcon";
+import SpeedDialAction from "@mui/material/SpeedDialAction";
 
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import ForwardIcon from '@mui/icons-material/Forward';
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import ForwardIcon from "@mui/icons-material/Forward";
 // import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 export default function Dial({ sections }) {
-  const [openDial, setOpenDial] = React.useState(false)
-  const handleOpenDial = () => setOpenDial(true)
-  const handleCloseDial = () => setOpenDial(false)
+  const [openDial, setOpenDial] = React.useState(false);
+  const handleOpenDial = () => setOpenDial(true);
+  const handleCloseDial = () => setOpenDial(false);
 
   const handleActionClick = (action) => {
     switch (action) {
       case "top":
         window.scroll({
           top: 0,
-          behavior: "smooth"
-        })
+          behavior: "smooth",
+        });
         break;
       default:
-        const element = document.getElementById(action)
+        const element = document.getElementById(action);
         window.scroll({
           top: window.pageYOffset + element.getBoundingClientRect().top - 100,
-          behavior: "smooth"
-        })
+          behavior: "smooth",
+        });
         break;
     }
-  }
+  };
 
   return (
     <Box>
@@ -41,13 +41,13 @@ export default function Dial({ sections }) {
         onOpen={handleOpenDial}
         open={openDial}
         sx={{
-          position: 'fixed',
+          position: "fixed",
           bottom: "1rem",
           left: "1rem",
           "& .MuiSpeedDial-fab,.MuiSpeedDial-fab:hover": {
             color: "white",
-            backgroundColor: theme => theme.palette.secondary.main,
-          }
+            backgroundColor: (theme) => theme.palette.secondary.main,
+          },
         }}
       >
         {sections.map((section) => (
@@ -60,11 +60,11 @@ export default function Dial({ sections }) {
             onClick={() => handleActionClick(section)}
             sx={{
               "& .MuiSpeedDialAction-fab": {
-                backgroundColor: theme => theme.palette.quaternary.main,
+                backgroundColor: (theme) => theme.palette.quaternary.main,
               },
               "& .MuiSpeedDialAction-staticTooltipLabel": {
-                backgroundColor: theme => theme.palette.primary.main,
-              }
+                backgroundColor: (theme) => theme.palette.primary.main,
+              },
             }}
           />
         ))}
@@ -77,14 +77,14 @@ export default function Dial({ sections }) {
           onClick={() => handleActionClick("top")}
           sx={{
             "& .MuiSpeedDialAction-fab": {
-              backgroundColor: theme => theme.palette.quaternary.main,
+              backgroundColor: (theme) => theme.palette.quaternary.main,
             },
             "& .MuiSpeedDialAction-staticTooltipLabel": {
-              backgroundColor: theme => theme.palette.primary.main,
-            }
+              backgroundColor: (theme) => theme.palette.primary.main,
+            },
           }}
         />
       </SpeedDial>
     </Box>
-  )
+  );
 }

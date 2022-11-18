@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 import {
-  IconButton, Drawer, Typography,
-  List, ListItemText, ListItem,
-  Collapse
-} from '@mui/material';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
-import { ListItemButton } from '@mui/material';
+  IconButton,
+  Drawer,
+  Typography,
+  List,
+  ListItemText,
+  ListItem,
+  Collapse,
+} from "@mui/material";
+import { Link as RouterLink, useLocation } from "react-router-dom";
+import { ListItemButton } from "@mui/material";
 
 // Icons
-import MenuIcon from '@mui/icons-material/Menu';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import MenuIcon from "@mui/icons-material/Menu";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 
 const Collapsible = ({ title, dataOptions }) => {
-  const location = useLocation()
+  const location = useLocation();
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -21,25 +25,30 @@ const Collapsible = ({ title, dataOptions }) => {
       <ListItem
         disablePadding
         sx={{
-          backgroundColor: theme => (location.pathname === "/data" ? theme.palette.quaternary.main : "inherit"),
+          backgroundColor: (theme) =>
+            location.pathname === "/data"
+              ? theme.palette.quaternary.main
+              : "inherit",
           "&:hover": {
-            backgroundColor: theme => (location.pathname === "/data" ? theme.palette.quaternary.main : "inherit")
-          }
+            backgroundColor: (theme) =>
+              location.pathname === "/data"
+                ? theme.palette.quaternary.main
+                : "inherit",
+          },
         }}
       >
         <IconButton onClick={() => setOpen(!open)}>
-          {
-            open ?
-              <ArrowDropUpIcon
-                fontSize="large"
-                sx={{ color: theme => theme.palette.secondary.main }}
-              />
-              :
-              <ArrowDropDownIcon
-                fontSize="large"
-                sx={{ color: theme => theme.palette.secondary.main }}
-              />
-          }
+          {open ? (
+            <ArrowDropUpIcon
+              fontSize="large"
+              sx={{ color: (theme) => theme.palette.secondary.main }}
+            />
+          ) : (
+            <ArrowDropDownIcon
+              fontSize="large"
+              sx={{ color: (theme) => theme.palette.secondary.main }}
+            />
+          )}
         </IconButton>
         <ListItemButton
           component={RouterLink}
@@ -54,8 +63,8 @@ const Collapsible = ({ title, dataOptions }) => {
       <Collapse in={open}>
         <List
           sx={{
-            color: theme => theme.palette.secondary.contrastText,
-            backgroundColor: theme => theme.palette.primary.main
+            color: (theme) => theme.palette.secondary.contrastText,
+            backgroundColor: (theme) => theme.palette.primary.main,
           }}
         >
           {dataOptions.map((option, idx) => (
@@ -65,11 +74,17 @@ const Collapsible = ({ title, dataOptions }) => {
               component={RouterLink}
               to={option.route}
               sx={{
-                textAlign: 'center',
-                backgroundColor: theme => (location.pathname === option.route ? theme.palette.quaternary.main : "inherit"),
+                textAlign: "center",
+                backgroundColor: (theme) =>
+                  location.pathname === option.route
+                    ? theme.palette.quaternary.main
+                    : "inherit",
                 "&:hover": {
-                  backgroundColor: theme => (location.pathname === option.route ? theme.palette.quaternary.main : "inherit")
-                }
+                  backgroundColor: (theme) =>
+                    location.pathname === option.route
+                      ? theme.palette.quaternary.main
+                      : "inherit",
+                },
               }}
             >
               <ListItemText primary={option.text} />
@@ -78,11 +93,11 @@ const Collapsible = ({ title, dataOptions }) => {
         </List>
       </Collapse>
     </>
-  )
-}
+  );
+};
 
 const CustomizedItem = ({ route, text }) => {
-  const location = useLocation()
+  const location = useLocation();
 
   return (
     <ListItemButton
@@ -90,20 +105,26 @@ const CustomizedItem = ({ route, text }) => {
       alignItems="center"
       to={route}
       sx={{
-        justifyContent: 'center',
-        backgroundColor: theme => (location.pathname === route ? theme.palette.quaternary.main : "inherit"),
+        justifyContent: "center",
+        backgroundColor: (theme) =>
+          location.pathname === route
+            ? theme.palette.quaternary.main
+            : "inherit",
         "&:hover": {
-          backgroundColor: theme => (location.pathname === route ? theme.palette.quaternary.main : "inherit")
-        }
+          backgroundColor: (theme) =>
+            location.pathname === route
+              ? theme.palette.quaternary.main
+              : "inherit",
+        },
       }}
     >
       {text}
     </ListItemButton>
-  )
-}
+  );
+};
 
 export default function NavBarMobile({ lists, dataOptions }) {
-  const [state, setState] = useState(false)
+  const [state, setState] = useState(false);
 
   return (
     <>
@@ -115,8 +136,8 @@ export default function NavBarMobile({ lists, dataOptions }) {
       >
         <MenuIcon />
       </IconButton>
-      <div id='spacer' style={{ width: 10 }} />
-      <Typography align="center" style={{ flexGrow: 1, fontWeight: 'bold' }}>
+      <div id="spacer" style={{ width: 10 }} />
+      <Typography align="center" style={{ flexGrow: 1, fontWeight: "bold" }}>
         Marine Plastic Research Inventory (Beta)
       </Typography>
       <img
@@ -124,35 +145,32 @@ export default function NavBarMobile({ lists, dataOptions }) {
         alt="Site logo"
         width={40}
         style={{
-          borderRadius: '30%',
-          margin: '0 auto',
+          borderRadius: "30%",
+          margin: "0 auto",
         }}
       />
       <Drawer
-        anchor='top'
+        anchor="top"
         open={state}
         onClose={() => setState(false)}
         sx={{
           "& .MuiPaper-root": {
-            backgroundColor: theme => theme.palette.primary.main
-          }
+            backgroundColor: (theme) => theme.palette.primary.main,
+          },
         }}
       >
-        {lists.map((list, index) => (
-          list.route !== "/data" ?
-            <CustomizedItem
-              key={index}
-              text={list.text}
-              route={list.route}
-            />
-            :
+        {lists.map((list, index) =>
+          list.route !== "/data" ? (
+            <CustomizedItem key={index} text={list.text} route={list.route} />
+          ) : (
             <Collapsible
               key={index}
               title={list.text}
               dataOptions={dataOptions}
             />
-        ))}
+          )
+        )}
       </Drawer>
     </>
-  )
+  );
 }

@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 import { Link } from "@mui/material";
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from "react-router-dom";
 
 export default function StyledLink({ children, to }) {
   return (
@@ -10,10 +10,10 @@ export default function StyledLink({ children, to }) {
       color="secondary"
       underline="none"
       sx={{
-        fontWeight: 'bold',
+        fontWeight: "bold",
       }}
     >
       {children}
     </Link>
-  )
+  );
 }

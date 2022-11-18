@@ -16,7 +16,7 @@ function SortableItem({ index, data }) {
     listeners,
     setNodeRef,
     transform,
-    transition
+    transition,
   } = useSortable({ id: data[index] });
 
   const itemStyle = {

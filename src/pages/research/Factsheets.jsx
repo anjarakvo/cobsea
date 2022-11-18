@@ -1,16 +1,16 @@
-import React from 'react';
-import { Typography, Container, Paper, Button } from '@mui/material';
-import { styled } from '@mui/system';
-import Header from 'ssfa-components/StyledComponents/Header';
-import Body from 'ssfa-components/StyledComponents/Body';
-import Masonry from 'react-masonry-css';
+import React from "react";
+import { Typography, Container, Paper, Button } from "@mui/material";
+import { styled } from "@mui/system";
+import Header from "ssfa-components/StyledComponents/Header";
+import Body from "ssfa-components/StyledComponents/Body";
+import Masonry from "react-masonry-css";
 
 function factsheetFormatter(title, description, link) {
   return {
     title,
     description,
     link,
-  }
+  };
 }
 
 // const factsheets = [
@@ -69,39 +69,37 @@ const factsheets = [
     "Marine plastic research 101",
     "Introduction to marine plastic research in the region, plastics sizes used as reference, understanding of sources and pathways, limitations in the knowledge that can be derived from publications and shaping hypotheses.",
     "https://nbviewer.org/github/Marine-Litter-Research-Inventory/pdf/blob/main/Research%20101%20Factsheet.pdf"
-
   ),
   factsheetFormatter(
     "Marine microplastics",
     "Research effort, methodology and findings in the sampling and understanding of abundance and distribution of microplastics in the marine environment. Societal concerns and responses are also included.",
     "https://nbviewer.org/github/Marine-Litter-Research-Inventory/pdf/blob/main/Marine%20microplastics%20Factsheet%20%28NJ%29.pdf"
-  )
-]
+  ),
+];
 
 const CustomizePaper = ({ title, description, link }) => {
-
   const StyledPaper = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.quaternary.main,
     color: "white",
     margin: "0.5rem",
     padding: 20,
     textAlign: "center",
-  }))
+  }));
 
   const PaperTitle = ({ title }) => {
     return (
       <Typography
         variant="body1"
         style={{
-          fontWeight: 'bold',
-          textAlign: 'center',
+          fontWeight: "bold",
+          textAlign: "center",
           marginBottom: "1rem",
         }}
       >
         {title}
       </Typography>
-    )
-  }
+    );
+  };
 
   const PaperDescription = ({ description }) => {
     return (
@@ -109,42 +107,46 @@ const CustomizePaper = ({ title, description, link }) => {
         variant="subtitle2"
         style={{
           marginBottom: "1rem",
-          textAlign: 'center',
+          textAlign: "center",
         }}
       >
         {description}
       </Typography>
-    )
-  }
+    );
+  };
 
   return (
     <StyledPaper>
       <PaperTitle title={title} />
       <PaperDescription description={description} />
       <Button
-        onClick={() => window.open(link, '_blank')}
+        onClick={() => window.open(link, "_blank")}
         variant="contained"
         color="secondary"
       >
         View it here
       </Button>
       {/* <Skeleton variant="rectangular" width="100%" height="300px" /> */}
-    </StyledPaper >
-  )
-}
+    </StyledPaper>
+  );
+};
 
 export default function Factsheets() {
   const breakpointColumnsObj = {
     default: 3,
     800: 2,
-    500: 1
+    500: 1,
   };
 
   return (
     <div>
-      <Container maxWidth='md'>
+      <Container maxWidth="md">
         <Body align="justify">
-          The fact sheets below have been developed to provide a summary of the data captured in the RRI 2.0 and derive knowledge that can inform policy-making as well as new research. They are designed to be updated as new data become available. New topics are to be included in the future as possible and useful.
+          The fact sheets below have been developed to provide a summary of the
+          data captured in the RRI 2.0 and derive knowledge that can inform
+          policy-making as well as new research. They are designed to be updated
+          as new data become available. New topics are to be included in the
+          future as possible and useful.
         </Body>
         <Masonry
           breakpointCols={breakpointColumnsObj}
@@ -163,5 +165,5 @@ export default function Factsheets() {
         </Masonry>
       </Container>
     </div>
-  )
+  );
 }

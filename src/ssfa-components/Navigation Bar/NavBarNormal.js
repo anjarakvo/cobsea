@@ -1,25 +1,23 @@
 import React from "react";
 import {
-  Button, Typography,
+  Button,
+  Typography,
   Popper,
   ClickAwayListener,
   Box,
-} from '@mui/material';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
+} from "@mui/material";
+import { Link as RouterLink, useLocation } from "react-router-dom";
 
 const DataExtends = ({ anchorEl, open, setOpen, dataOptions }) => {
-  const location = useLocation()
+  const location = useLocation();
 
   return (
     <ClickAwayListener onClickAway={() => setOpen(false)}>
-      <Popper
-        anchorEl={anchorEl}
-        open={open}
-      >
+      <Popper anchorEl={anchorEl} open={open}>
         <Box
           sx={{
-            backgroundColor: theme => theme.palette.primary.main,
-            marginTop: "1rem"
+            backgroundColor: (theme) => theme.palette.primary.main,
+            marginTop: "1rem",
           }}
         >
           {dataOptions.map((list, idx) => (
@@ -29,8 +27,8 @@ const DataExtends = ({ anchorEl, open, setOpen, dataOptions }) => {
               component={RouterLink}
               to={list.route}
               sx={{
-                textAlign: 'center',
-                fontWeight: 'bold',
+                textAlign: "center",
+                fontWeight: "bold",
                 display: "block",
                 color: "white",
               }}
@@ -42,13 +40,13 @@ const DataExtends = ({ anchorEl, open, setOpen, dataOptions }) => {
         </Box>
       </Popper>
     </ClickAwayListener>
-  )
-}
+  );
+};
 
 export default function NavBarNormal({ lists, dataOptions }) {
-  const location = useLocation()
-  const dataRef = React.useRef()
-  const [open, setOpen] = React.useState(false)
+  const location = useLocation();
+  const dataRef = React.useRef();
+  const [open, setOpen] = React.useState(false);
 
   return (
     <>
@@ -57,25 +55,25 @@ export default function NavBarNormal({ lists, dataOptions }) {
         alt="Site logo"
         width={50}
         style={{
-          borderRadius: '30%',
-          marginRight: '1rem',
+          borderRadius: "30%",
+          marginRight: "1rem",
         }}
       />
       <Typography
-        variant='body1'
-        component='h1'
-        color='inherit'
+        variant="body1"
+        component="h1"
+        color="inherit"
         style={{
           flexGrow: 1,
-          fontWeight: 'bold',
+          fontWeight: "bold",
         }}
       >
         Marine Plastic
         <br />
         Research Inventory (Beta)
       </Typography>
-      {lists.map((list, idx) => (
-        list.route === "/data" ?
+      {lists.map((list, idx) =>
+        list.route === "/data" ? (
           <React.Fragment key={idx}>
             <Button
               ref={dataRef}
@@ -83,8 +81,8 @@ export default function NavBarNormal({ lists, dataOptions }) {
               component={RouterLink}
               to={list.route}
               sx={{
-                textAlign: 'center',
-                fontWeight: 'bold',
+                textAlign: "center",
+                fontWeight: "bold",
                 color: list.route === location.pathname ? "white" : "black",
               }}
               variant={list.route === location.pathname ? "contained" : "text"}
@@ -99,23 +97,23 @@ export default function NavBarNormal({ lists, dataOptions }) {
               dataOptions={dataOptions}
             />
           </React.Fragment>
-          :
+        ) : (
           <Button
             key={idx}
             color="quaternary"
             component={RouterLink}
             to={list.route}
             sx={{
-              textAlign: 'center',
-              fontWeight: 'bold',
+              textAlign: "center",
+              fontWeight: "bold",
               color: list.route === location.pathname ? "white" : "black",
             }}
             variant={list.route === location.pathname ? "contained" : "text"}
           >
             {list.text}
           </Button>
-      ))
-      }
+        )
+      )}
     </>
-  )
+  );
 }

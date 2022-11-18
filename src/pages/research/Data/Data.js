@@ -1,15 +1,22 @@
-import React from 'react';
-import { Typography, Grid, ButtonBase, Skeleton, Container, Link } from '@mui/material';
-import { styled } from '@mui/system';
+import React from "react";
+import {
+  Typography,
+  Grid,
+  ButtonBase,
+  Skeleton,
+  Container,
+  Link,
+} from "@mui/material";
+import { styled } from "@mui/system";
 import { Link as RouterLink } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
 import Header from "ssfa-components/StyledComponents/Header";
 import Body from "ssfa-components/StyledComponents/Body";
-import StyledLink from 'ssfa-components/StyledComponents/StyledLink';
+import StyledLink from "ssfa-components/StyledComponents/StyledLink";
 
 function formatter(title, route, description, link) {
-  return { title, route, description, link }
+  return { title, route, description, link };
 }
 
 const Tiles = [
@@ -48,22 +55,21 @@ const Tiles = [
     "/research/data/information-for-policy-making",
     "Explore charts and graphs on insight that may be gained from RRI 2.0 for policy- making purposes",
     "https://github.com/Marine-Litter-Research-Inventory/image/blob/main/resources/Slide6.png?raw=true"
-  )
-]
+  ),
+];
 
 const Tile = ({ title, description, LinkComponent, to, link, idx }) => {
-
-  const [isLoading, setIsLoading] = React.useState(true)
+  const [isLoading, setIsLoading] = React.useState(true);
 
   const Title = styled(Typography)(({ theme }) => ({
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: theme.palette.tertiary.main,
-  }))
+  }));
 
   const Description = styled(Typography)(({ theme }) => ({
-    color: '#00405F',
+    color: "#00405F",
     margin: "1rem 0",
-  }))
+  }));
 
   return (
     <div>
@@ -72,43 +78,30 @@ const Tile = ({ title, description, LinkComponent, to, link, idx }) => {
         to={to}
         style={{ margin: "auto", display: "block" }}
       >
-        {
-          isLoading ?
-            <Skeleton variant="rectangular">
-              <img
-                src={link}
-                alt={"Thumbnail" + idx}
-                width="100%"
-                onLoad={() => setIsLoading(false)}
-              />
-            </Skeleton>
-            :
+        {isLoading ? (
+          <Skeleton variant="rectangular">
             <img
               src={link}
               alt={"Thumbnail" + idx}
               width="100%"
+              onLoad={() => setIsLoading(false)}
             />
-        }
-        <Title
-          variant="h6"
-          align="center"
-          style={{ fontWeight: 'bold' }}
-        >
+          </Skeleton>
+        ) : (
+          <img src={link} alt={"Thumbnail" + idx} width="100%" />
+        )}
+        <Title variant="h6" align="center" style={{ fontWeight: "bold" }}>
           {title}
         </Title>
-        <Description
-          variant="body2"
-          align="center"
-        >
+        <Description variant="body2" align="center">
           {description}
         </Description>
       </ButtonBase>
     </div>
-  )
-}
+  );
+};
 
 const Navigation = () => {
-
   return (
     <Grid
       container
@@ -131,33 +124,40 @@ const Navigation = () => {
         </Grid>
       ))}
     </Grid>
-  )
-}
+  );
+};
 
 export default function Data() {
-  const { databaseLink } = useSelector(state => state.dataExtraction)
+  const { databaseLink } = useSelector((state) => state.dataExtraction);
 
   return (
     <div>
-      <Container maxWidth='md'>
-        <Body variant='body1' align="justify">
-          Click on the tiles below to explore the RRI 2.0, featuring charts and graphs that were generated to visualise the data.
-          <br /><br />
-          The data included in RRI 2.0 are constantly evolving. Your participation is essential to making this resource more accurate, comprehensive and useful. You can do that by providing
+      <Container maxWidth="md">
+        <Body variant="body1" align="justify">
+          Click on the tiles below to explore the RRI 2.0, featuring charts and
+          graphs that were generated to visualise the data.
+          <br />
+          <br />
+          The data included in RRI 2.0 are constantly evolving. Your
+          participation is essential to making this resource more accurate,
+          comprehensive and useful. You can do that by providing
           <StyledLink to="/feedback"> feedback </StyledLink>
           on existing data, or sending any other queries or suggestions.
-          <br /><br />
-          The  RRI 2.0 can be accessed&nbsp;
+          <br />
+          <br />
+          The RRI 2.0 can be accessed&nbsp;
           <Link
             color="secondary"
             href={databaseLink}
             target="_blank"
-            rel="noreferrer noopener">
+            rel="noreferrer noopener"
+          >
             here
-          </Link>.
+          </Link>
+          .
         </Body>
         <Navigation />
       </Container>
     </div>
-  )
+  );
 }

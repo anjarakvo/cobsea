@@ -1,9 +1,8 @@
-import React from 'react';
+import React from "react";
 import { Typography } from "@mui/material";
 import { styled } from "@mui/system";
 
 export default function HeaderRibbon({ text, color, ...props }) {
-
   const Ribbon = styled("div")(({ theme }) => ({
     backgroundColor: theme.palette[color].main,
     color: theme.palette[color].contrastText,
@@ -13,7 +12,7 @@ export default function HeaderRibbon({ text, color, ...props }) {
     alignItems: "center",
     display: "flex",
     padding: "0.2rem 1rem",
-  }))
+  }));
 
   return (
     <div>
@@ -21,5 +20,5 @@ export default function HeaderRibbon({ text, color, ...props }) {
         <Typography {...props}>{text}</Typography>
       </Ribbon>
     </div>
-  )
+  );
 }

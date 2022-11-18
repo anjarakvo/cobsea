@@ -1,22 +1,26 @@
-import React from 'react';
-import * as d3 from 'd3';
+import React from "react";
+import * as d3 from "d3";
 import WordCloud from "react-d3-cloud";
 import {
-  Box, InputLabel, MenuItem, FormControl, Select,
-  Container
-} from '@mui/material';
+  Box,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+  Container,
+} from "@mui/material";
 import {
   getAuthorCount,
   textToJson,
   getFromStorage,
-} from 'components/utils/utils';
+} from "components/utils/utils";
 
 const Selection = ({ label, choices, setSelection }) => {
-  const [location, setLocation] = React.useState('')
+  const [location, setLocation] = React.useState("");
   const handleChange = (event) => {
-    setLocation(event.target.value)
-    setSelection(getAuthorCount(event.target.value))
-  }
+    setLocation(event.target.value);
+    setSelection(getAuthorCount(event.target.value));
+  };
 
   return (
     <Box sx={{ minWidth: 120 }}>
@@ -29,19 +33,21 @@ const Selection = ({ label, choices, setSelection }) => {
           onChange={handleChange}
         >
           {choices.map((choice, idx) => (
-            <MenuItem key={idx} value={choice}>{choice}</MenuItem>
+            <MenuItem key={idx} value={choice}>
+              {choice}
+            </MenuItem>
           ))}
         </Select>
       </FormControl>
     </Box>
-  )
-}
+  );
+};
 
 export default function WordCloudChart() {
-  const [dataSet, setDataSet] = React.useState([])
-  const locations = textToJson(getFromStorage('location'))
+  const [dataSet, setDataSet] = React.useState([]);
+  const locations = textToJson(getFromStorage("location"));
 
-  console.log(dataSet)
+  console.log(dataSet);
 
   return (
     <Container maxWidth="md">
@@ -63,7 +69,8 @@ export default function WordCloudChart() {
         choices={locations}
         setSelection={setDataSet}
       />
-      <br /><br />
+      <br />
+      <br />
     </Container>
-  )
+  );
 }
