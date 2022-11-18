@@ -9,6 +9,7 @@ import uniqBy from "lodash/uniqBy";
 import sortBy from "lodash/sortBy";
 import Research from "./pages/research";
 import ResearchNetwork from "./pages/research-network";
+import Footer from "footer";
 
 Promise.all([
   api.get("/tag"),
@@ -56,6 +57,7 @@ function App() {
         <Route path="/research" component={Research} />
         <Route path="/research-network" component={ResearchNetwork} />
       </Switch>
+      <Footer />
     </div>
   );
 }
