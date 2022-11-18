@@ -22,5 +22,6 @@ jobs:
       # The linter is run here. Maybe there's a faster way to lint a react project
       - run: yarn build
         env:
+          GITHUB_PAGES: true
           GENERATE_SOURCEMAP: false
           CI: false
