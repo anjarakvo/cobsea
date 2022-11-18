@@ -20,16 +20,22 @@
 			width: 80%;
 			margin: 0 auto;
 			input {
-				background: rgba(71, 86, 87, 0.1);
+				background: rgba(71, 86, 87, 0.1) !important;
 				border-radius: 5px;
 				border: none;
 				padding: 10px 11px;
 			}
 			textarea {
-				background: rgba(71, 86, 87, 0.1);
+				background: rgba(71, 86, 87, 0.1) !important;
 				border-radius: 5px;
 				border: none;
 				padding: 10px 11px;
+			}
+			.ant-form-item-explain {
+				margin-bottom: 5px;
+			}
+			.ant-form {
+				width: 100%;
 			}
 		}
 
