@@ -4,9 +4,7 @@ module.exports = function (app) {
 	app.use(
 		['/api', '/image', '/env.js', '/cv'],
 		createProxyMiddleware({
-			target: process.env.REACT_APP_FEENV
-				? 'https://unep-gpml.akvotest.org/'
-				: 'http://backend:3000',
+			target: 'https://unep-gpml.akvotest.org/',
 			changeOrigin: true,
 			secure: false,
 			changeOrigin: true,
