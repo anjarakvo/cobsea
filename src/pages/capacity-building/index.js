@@ -2,17 +2,16 @@ import React, { useEffect, useState } from "react";
 import "../knowledge-library/style.scss";
 import api from "utils/api";
 import ResourceView from "./resource-view";
-import { useQuery } from "utils/misc";
 import { UIStore } from "../../store";
 import {
   useHistory,
-  useLocation,
   Switch,
   Route,
   Redirect,
 } from "react-router-dom";
 import bodyScrollLock from "utils/scroll-utils";
 import DetailModal from "pages/detail/modal";
+import MenuBar from "components/menu";
 
 const popularTags = [
   "plastics",
@@ -70,6 +69,7 @@ function Library({ setLoginVisible, isAuthenticated }) {
 
   return (
     <div id="knowledge-lib">
+    <MenuBar />
       <Switch>
         <Route exact path="/capacity-building">
           <Redirect to="/capacity-building/category" exact={true} />

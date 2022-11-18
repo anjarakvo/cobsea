@@ -42,7 +42,7 @@ const FullMenu = () => (
     <div className="col">
       <h3>MARINE LITTER CAPACITY BUILDING</h3>
       <Item
-        to="/"
+        to="/capacity-building"
         title="LEARNING CENTER"
         subtitle="Learning and capacity building resources"
         icon={<LearnSvg />}
