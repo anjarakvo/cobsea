@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState, useMemo } from "react";
+import React, { Fragment, useEffect, useState, useMemo, useRef } from "react";
 import classNames from "classnames";
 import { CSSTransition } from "react-transition-group";
 import api from "../../utils/api";
@@ -39,7 +39,8 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
   const { type, view } = useParams();
   const { pathname, search } = useLocation();
   const [showFilterModal, setShowFilterModal] = useState(false);
-
+  let headerHeight = useRef(0);
+  let footerHeight = useRef(0);
   const limit = 30;
   const totalItems = resourceTopic.reduce(
     (acc, topic) =>
@@ -204,6 +205,11 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
     setIsAscending(ascending);
   };
 
+  useEffect(() => {
+    headerHeight.current = document.getElementById('header')?.clientHeight;
+    footerHeight.current = document.getElementById('footer')?.clientHeight;
+  }, [])
+
   return (
     <Fragment>
       <FilterBar
@@ -261,6 +267,12 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
             </div>
           </button>
         </div>
+        {loading ? (
+          <div className="loading" style={{height:`calc(100vh - ${(headerHeight.current + footerHeight.current)}px)`}}>
+              <LoadingOutlined spin />
+            </div>
+        ) : (
+        <>
         {(view === "map" || view === "topic") && (
           <div style={{ position: "relative" }}>
             <ResourceCards
@@ -282,11 +294,6 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
                 })
               }
             />
-            {loading && (
-              <div className="loading">
-                <LoadingOutlined spin />
-              </div>
-            )}
           </div>
         )}
         {view === "map" && (
@@ -336,11 +343,6 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
 
         {view === "category" && (
           <div className="cat-view">
-            {loading && (
-              <div className="loading">
-                <LoadingOutlined spin />
-              </div>
-            )}
             {catData.map((d) => (
               <Fragment key={d.categories}>
                 {d?.count > 0 && (
@@ -386,6 +388,8 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
               </Fragment>
             ))}
           </div>
+        )}
+        </>
         )}
       </div>
       <FilterModal

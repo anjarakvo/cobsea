@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "../knowledge-library/style.scss";
 import api from "utils/api";
 import ResourceView from "./resource-view";

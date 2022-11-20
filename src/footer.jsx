@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const Footer = () => (
-  <div className="footer">
+  <div className="footer" id="footer">
     <div className="ui container">
       <Link to="/" className="logo-a">
         <img src="/unep.svg" className="unep" alt="UNEP" />

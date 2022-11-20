@@ -9,7 +9,7 @@ const MenuBar = ({ landing }) => {
   const [isOpen, setOpen] = useState(false);
   return (
     <>
-      <header className={classNames("nav-header", { "at-landing": landing })}>
+      <header id="header" className={classNames("nav-header", { "at-landing": landing })}>
         <div className="ui container">
           <Link to="/" className="logo-a">
             <img src="/unep.svg" className="unep" alt="UNEP" />

@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState, useMemo } from "react";
+import React, { Fragment, useEffect, useState, useMemo, useRef } from "react";
 import classNames from "classnames";
 import { CSSTransition } from "react-transition-group";
 import api from "utils/api";
@@ -38,7 +38,9 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
   const [pageNumber, setPageNumber] = useState(false);
   const { type, view } = useParams();
   const { pathname, search } = useLocation();
-  const [showFilterModal, setShowFilterModal] = useState(false);
+
+  let headerHeight = useRef(0);
+  let footerHeight = useRef(0);
 
   const limit = 30;
   const totalItems = resourceTopic.reduce(
@@ -121,6 +123,7 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
         search: newParams.toString(),
         state: { type: type },
       });
+    
     if (fetch && view !== "category") fetchData(pureQuery);
 
     if (view === "category") loadAllCat(pureQuery);
@@ -132,7 +135,6 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
 
   const loadAllCat = async (filter) => {
     setLoading(true);
-
     const queryParams = new URLSearchParams(filter);
     queryParams.set("transnational", 132);
     queryParams.set("capacity_building", ["true"]);
@@ -197,6 +199,20 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
     }
     setIsAscending(ascending);
   };
+
+  useEffect(() => {
+    headerHeight.current = document.getElementById('header')?.clientHeight;
+    footerHeight.current = document.getElementById('footer')?.clientHeight;
+  }, [])
+
+  if (data.length === 0 && catData.length === 0 && !loading) {
+    return (
+      <div className="no-result" style={{height:`calc(100vh - ${(headerHeight.current + footerHeight.current).toString()}px)`}}>
+        <p>No results</p>
+      </div>
+    );
+  }
+
   return (
     <Fragment>
       <div className="list-content">
@@ -238,129 +254,127 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
             </div>
           </button>
         </div>
-        {(view === "map" || view === "topic") && (
-          <div style={{ position: "relative" }}>
-            <ResourceCards
-              items={data?.results}
-              showMoreCardAfter={20}
-              showMoreCardClick={() => {
-                history.push({
-                  pathname: `/capacity-building/grid/${type ? type : ""}`,
-                  search: history.location.search,
-                });
-              }}
-              showModal={(e) =>
-                showModal({
-                  e,
-                  type: e.currentTarget.type,
-                  id: e.currentTarget.id,
-                })
-              }
-            />
-            {loading && (
-              <div className="loading">
-                <LoadingOutlined spin />
+        {loading ? (
+          <div className="loading" style={{ height: `calc(100vh - ${(headerHeight.current + footerHeight.current)}px)` }}>
+            <LoadingOutlined spin />
+          </div>
+        ) : (
+          <>
+            {(view === "map" || view === "topic") && (
+              <div style={{ position: "relative" }}>
+                <ResourceCards
+                  items={data?.results}
+                  showMoreCardAfter={20}
+                  showMoreCardClick={() => {
+                    history.push({
+                      pathname: `/capacity-building/grid/${type ? type : ""}`,
+                      search: history.location.search,
+                    });
+                  }}
+                  showModal={(e) =>
+                    showModal({
+                      e,
+                      type: e.currentTarget.type,
+                      id: e.currentTarget.id,
+                    })
+                  }
+                />
               </div>
             )}
-          </div>
-        )}
-        {view === "map" && (
-          <Maps
-            query={query}
-            box={box}
-            countData={countData || []}
-            clickEvents={clickCountry}
-            isFilteredCountry={filterCountries}
-            data={landing?.map || []}
-            countryGroupCounts={landing?.countryGroupCounts || []}
-            isLoaded={() => true}
-            multiCountryCountries={multiCountryCountries}
-            useVerticalLegend
-            showLegend={true}
-            path="knowledge"
-          />
-        )}
-        {view === "topic" && (
-          <div className="topic-view-container">
-            <TopicView
-              results={data?.results}
-              fetch={true}
-              loading={loading}
-              countData={countData.filter(
-                (count) => count.topic !== "gpml_member_entities"
-              )}
-              updateQuery={updateQuery}
-              query={query}
-            />
-          </div>
-        )}
-        {view === "grid" && (
-          <GridView
-            {...{
-              gridItems,
-              totalItems,
-              limit,
-              loading,
-              setPageNumber,
-              pageNumber,
-              updateQuery,
-              showModal,
-            }}
-          />
-        )}
+            {view === "map" && (
+              <Maps
+                query={query}
+                box={box}
+                countData={countData || []}
+                clickEvents={clickCountry}
+                isFilteredCountry={filterCountries}
+                data={landing?.map || []}
+                countryGroupCounts={landing?.countryGroupCounts || []}
+                isLoaded={() => true}
+                multiCountryCountries={multiCountryCountries}
+                useVerticalLegend
+                showLegend={true}
+                path="knowledge"
+              />
+            )}
+            {view === "topic" && (
+              <div className="topic-view-container">
+                <TopicView
+                  results={data?.results}
+                  fetch={true}
+                  loading={loading}
+                  countData={countData.filter(
+                    (count) => count.topic !== "gpml_member_entities"
+                  )}
+                  updateQuery={updateQuery}
+                  query={query}
+                />
+              </div>
+            )}
+            {view === "grid" && (
+              <GridView
+                {...{
+                  gridItems,
+                  totalItems,
+                  limit,
+                  loading,
+                  setPageNumber,
+                  pageNumber,
+                  updateQuery,
+                  showModal,
+                }}
+              />
+            )}
 
-        {view === "category" && (
-          <div className="cat-view">
-            {loading && (
-              <div className="loading">
-                <LoadingOutlined spin />
+            {view === "category" && (
+              <div className="cat-view">
+                {catData.map((d) => (
+                  <Fragment key={d.categories}>
+                    {d?.count > 0 && (
+                      <>
+                        <div className="header-wrapper">
+                          <div className="title-wrapper">
+                            <h4 className="cat-title">
+                              {topicNames(d.categories)}
+                            </h4>
+                            <div className="quick-search">
+                              <div className="count">{d?.count}</div>
+                              <div className="search-icon">
+                                <SearchIcon />
+                              </div>
+                            </div>
+                          </div>
+                          <Button
+                            type="link"
+                            block
+                            onClick={() => {
+                              handleCategoryFilter(d.categories);
+                            }}
+                          >
+                            See all {`>`}
+                          </Button>
+                        </div>
+                        <ResourceCards
+                          items={d?.data}
+                          showMoreCardAfter={20}
+                          showMoreCardClick={() => {
+                            handleCategoryFilter(d.categories);
+                          }}
+                          showModal={(e) =>
+                            showModal({
+                              e,
+                              type: e.currentTarget.type,
+                              id: e.currentTarget.id,
+                            })
+                          }
+                        />
+                      </>
+                    )}
+                  </Fragment>
+                ))}
               </div>
             )}
-            {catData.map((d) => (
-              <Fragment key={d.categories}>
-                {d?.count > 0 && (
-                  <>
-                    <div className="header-wrapper">
-                      <div className="title-wrapper">
-                        <h4 className="cat-title">
-                          {topicNames(d.categories)}
-                        </h4>
-                        <div className="quick-search">
-                          <div className="count">{d?.count}</div>
-                          <div className="search-icon">
-                            <SearchIcon />
-                          </div>
-                        </div>
-                      </div>
-                      <Button
-                        type="link"
-                        block
-                        onClick={() => {
-                          handleCategoryFilter(d.categories);
-                        }}
-                      >
-                        See all {`>`}
-                      </Button>
-                    </div>
-                    <ResourceCards
-                      items={d?.data}
-                      showMoreCardAfter={20}
-                      showMoreCardClick={() => {
-                        handleCategoryFilter(d.categories);
-                      }}
-                      showModal={(e) =>
-                        showModal({
-                          e,
-                          type: e.currentTarget.type,
-                          id: e.currentTarget.id,
-                        })
-                      }
-                    />
-                  </>
-                )}
-              </Fragment>
-            ))}
-          </div>
+          </>
         )}
       </div>
     </Fragment>
