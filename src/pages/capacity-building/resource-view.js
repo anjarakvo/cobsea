@@ -205,14 +205,6 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
     footerHeight.current = document.getElementById('footer')?.clientHeight;
   }, [])
 
-  if (data.length === 0 && catData.length === 0 && !loading) {
-    return (
-      <div className="no-result" style={{height:`calc(100vh - ${(headerHeight.current + footerHeight.current).toString()}px)`}}>
-        <p>No results</p>
-      </div>
-    );
-  }
-
   return (
     <Fragment>
       <div className="list-content">
@@ -257,6 +249,10 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
         {loading ? (
           <div className="loading" style={{ height: `calc(100vh - ${(headerHeight.current + footerHeight.current)}px)` }}>
             <LoadingOutlined spin />
+          </div>
+        ) : data.length === 0 && catData.length === 0 && !loading ? (
+          <div className="no-result" style={{height:`calc(100vh - ${(headerHeight.current + footerHeight.current).toString()}px)`}}>
+            <p>No results</p>
           </div>
         ) : (
           <>
