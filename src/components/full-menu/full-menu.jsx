@@ -18,7 +18,7 @@ const FullMenu = () => (
         icon={<LibIcn />}
       />
       <Item
-        to="/"
+        to="/case-study"
         title="Case studies"
         subtitle="A map of good practices"
         icon={<CaseStudyIcn />}

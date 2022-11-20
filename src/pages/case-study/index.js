@@ -22,7 +22,7 @@ const popularTags = [
   "source to sea",
 ];
 
-function CapacityBuilding({ setLoginVisible, isAuthenticated }) {
+function CaseStudy({ setLoginVisible, isAuthenticated }) {
   const history = useHistory();
   const box = document.getElementsByClassName("knowledge-lib");
   const [params, setParams] = useState(null);
@@ -71,11 +71,11 @@ function CapacityBuilding({ setLoginVisible, isAuthenticated }) {
     <div id="knowledge-lib">
     <MenuBar />
       <Switch>
-        <Route exact path="/capacity-building">
-          <Redirect to="/capacity-building/category" exact={true} />
+        <Route exact path="/case-study">
+          <Redirect to="/case-study/category" exact={true} />
         </Route>
         <Route
-          path="/capacity-building/:view?/:type?"
+          path="/case-study/:view?/:type?"
           render={(props) => (
             <ResourceView
               {...{ box, history, popularTags, landing, showModal }}
@@ -96,4 +96,4 @@ function CapacityBuilding({ setLoginVisible, isAuthenticated }) {
   );
 }
 
-export default CapacityBuilding;
+export default CaseStudy;

@@ -1,29 +1,18 @@
 import React, { Fragment, useEffect, useState, useMemo } from "react";
 import classNames from "classnames";
 import { CSSTransition } from "react-transition-group";
-import api from "../../utils/api";
-import FilterBar from "./filter-bar";
-import FilterModal from "./filter-modal";
 import ResourceCards, { ResourceCard } from "components/resource-cards";
 import { LoadingOutlined, DownOutlined } from "@ant-design/icons";
+import MenuBar from "components/menu";
+import api from "../../utils/api";
 import { ReactComponent as SortIcon } from "../../images/knowledge-library/sort-icon.svg";
 import { ReactComponent as SearchIcon } from "../../images/search-icon.svg";
 import { Button } from "antd";
 import Maps from "components/map";
-import { isEmpty } from "lodash";
 import { useQuery, topicNames } from "../../utils/misc";
-import TopicView from "./topic-view";
-import { useParams, useLocation, withRouter } from "react-router-dom";
-
-export const resourceTopic = [
-  "action_plan",
-  "initiative",
-  "policy",
-  "technical_resource",
-  "technology",
-  "event",
-  "financing_resource",
-];
+import TopicView from "../knowledge-library/topic-view";
+import { useParams, useLocation, } from "react-router-dom";
+import { resourceTopic } from "../knowledge-library/resource-view"
 
 function ResourceView({ history, popularTags, landing, box, showModal }) {
   const query = useQuery();
@@ -39,6 +28,7 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
   const { type, view } = useParams();
   const { pathname, search } = useLocation();
   const [showFilterModal, setShowFilterModal] = useState(false);
+
 
   const limit = 30;
   const totalItems = resourceTopic.reduce(
@@ -72,6 +62,7 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
     queryParams.set("incCountsForTags", popularTags);
     queryParams.set("limit", limit);
     queryParams.set("transnational", 132);
+    queryParams.set("tag", "case study");
 
     const url = `/browse?${String(queryParams)}`;
     api
@@ -142,6 +133,7 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
 
     const queryParams = new URLSearchParams(filter);
     queryParams.set("transnational", 132);
+    queryParams.set("tag", "case study");
     const promiseArray = resourceTopic.map((url) =>
       api.get(`/browse?topic=${url}&${String(queryParams)}`)
     );
@@ -170,20 +162,6 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
     if (data.length === 0) updateQuery();
   }, [data, view]);
 
-  const clickCountry = (name) => {
-    const val = query["country"];
-    let updateVal = [];
-
-    if (isEmpty(val)) {
-      updateVal = [name];
-    } else if (val.includes(name)) {
-      updateVal = val.filter((x) => x !== name);
-    } else {
-      updateVal = [...val, name];
-    }
-    updateQuery("country", updateVal, true);
-  };
-
   const handleCategoryFilter = (key) => {
     history.push({
       pathname: `/knowledge-library/resource/${
@@ -206,22 +184,6 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
 
   return (
     <Fragment>
-      <FilterBar
-        {...{
-          history,
-          type,
-          view,
-          fetchData,
-          setFilterCountries,
-          setMultiCountryCountries,
-          multiCountryCountries,
-          updateQuery,
-          search,
-          setShowFilterModal,
-          setPageNumber,
-          pathname,
-        }}
-      />
       <div className="list-content">
         <div className="list-toolbar">
           <div className="quick-search">
@@ -294,7 +256,6 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
             query={query}
             box={box}
             countData={countData || []}
-            clickEvents={clickCountry}
             isFilteredCountry={filterCountries}
             data={landing?.map || []}
             countryGroupCounts={landing?.countryGroupCounts || []}
@@ -388,26 +349,12 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
           </div>
         )}
       </div>
-      <FilterModal
-        {...{
-          query,
-          setShowFilterModal,
-          showFilterModal,
-          updateQuery,
-          fetchData,
-          filterCountries,
-          pathname,
-          history,
-          setGridItems,
-          loadAllCat,
-          view,
-        }}
-      />
     </Fragment>
-  );
+  )
 }
 
-export const GridView = ({
+
+const GridView = ({
   gridItems,
   loading,
   updateQuery,
@@ -450,7 +397,7 @@ export const GridView = ({
   );
 };
 
-export const ViewSwitch = ({ type, view, history }) => {
+const ViewSwitch = ({ type, view, history }) => {
   const viewOptions = ["map", "topic", "grid", "category"];
   const [visible, setVisible] = useState(false);
 
@@ -481,7 +428,7 @@ export const ViewSwitch = ({ type, view, history }) => {
                   onClick={() => {
                     setVisible(!visible);
                     history.push({
-                      pathname: `/knowledge-library/resource/${viewOption}/${
+                      pathname: `/case-study/${viewOption}/${
                         type && viewOption !== "category" ? type : ""
                       }`,
                       search: history.location.search,
@@ -498,4 +445,4 @@ export const ViewSwitch = ({ type, view, history }) => {
   );
 };
 
-export default withRouter(ResourceView);
+export default ResourceView;
