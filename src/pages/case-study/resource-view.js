@@ -230,6 +230,16 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
             </div>
           </button>
         </div>
+        {loading ? (
+          <div className="loading" style={{ height: `calc(100vh - ${(headerHeight.current + footerHeight.current)}px)` }}>
+            <LoadingOutlined spin />
+          </div>
+        ) : (data?.results?.length === 0 || data?.length === 0) && catData?.filter((item) => item?.data?.length > 0)?.length === 0 && !loading ? (
+          <div className="no-result" style={{height:`calc(100vh - ${(headerHeight.current + footerHeight.current).toString()}px)`}}>
+            <p>No results</p>
+          </div>
+        ) : (
+          <>
         {(view === "map" || view === "topic") && (
           <div style={{ position: "relative" }}>
             <ResourceCards
@@ -253,16 +263,6 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
             />
           </div>
         )}
-        {loading ? (
-          <div className="loading" style={{ height: `calc(100vh - ${(headerHeight.current + footerHeight.current)}px)` }}>
-            <LoadingOutlined spin />
-          </div>
-        ) : data.length === 0 && catData.length === 0 && !loading ? (
-          <div className="no-result" style={{height:`calc(100vh - ${(headerHeight.current + footerHeight.current).toString()}px)`}}>
-            <p>No results</p>
-          </div>
-        ) : (
-          <>
             {view === "map" && (
               <Maps
                 query={query}

@@ -1,5 +1,6 @@
+import React, { useEffect } from "react";
 import "./App.scss";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, useLocation } from "react-router-dom";
 import Landing from "pages/landing";
 import KnowledgeLibrary from "pages/knowledge-library";
 import CapacityBuilding from "pages/capacity-building";
@@ -45,9 +46,18 @@ Promise.all([
   });
 });
 
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
+
 function App() {
   return (
     <div className="App">
+    <ScrollToTop />
       <Switch>
         <Route path="/" exact component={Landing} />
         <Route path="/knowledge-library" component={KnowledgeLibrary} />
