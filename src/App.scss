@@ -24,6 +24,12 @@ ul {
   }
 }
 
+.App{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .resource-card {
   transition: all ease-out 0.2s;
   position: relative;

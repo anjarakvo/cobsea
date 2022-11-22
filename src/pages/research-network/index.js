@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import MenuBar from "components/menu";
 import "./styles.scss";
 import { Row, Col, Button, Card, Avatar } from "antd";
 import ContactModal from "components/contact-modal";
@@ -9,7 +8,6 @@ function ResearchNetwork() {
 
   return (
     <div>
-      <MenuBar />
       <div id="research-network">
         <div className="header">
           <div className="ui container">

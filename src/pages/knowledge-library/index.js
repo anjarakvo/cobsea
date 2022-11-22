@@ -14,7 +14,6 @@ import {
 } from "react-router-dom";
 import bodyScrollLock from "utils/scroll-utils";
 import DetailModal from "pages/detail/modal";
-import MenuBar from "components/menu";
 
 const popularTags = [
   "plastics",
@@ -98,7 +97,6 @@ function Library({ setLoginVisible, isAuthenticated }) {
 
   return (
     <div id="knowledge-lib">
-      <MenuBar />
       <Switch>
         <Route exact path="/knowledge-library">
           <Redirect to="/knowledge-library/overview" exact={true} />
