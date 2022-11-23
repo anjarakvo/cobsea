@@ -22,6 +22,7 @@ import Humanities from "./Data/Humanities";
 import Policy from "./Data/Policy";
 import Factsheets from "./Factsheets";
 import MenuBar from "components/menu";
+import About from './About'
 
 let theme = createTheme({
   palette: {
@@ -77,6 +78,9 @@ const View = () => {
           <div id="research-db">
             <nav>
               <div className="cnt">
+                <NavLink to="/research/about">
+                  <span>About</span>
+                </NavLink>
                 <NavLink to="/research/map">
                   <MapIcn /> <span>Map</span>
                 </NavLink>
@@ -84,11 +88,16 @@ const View = () => {
                   <DataIcn /> <span>Data & analytics</span>
                 </NavLink>
                 <NavLink to="/research/factsheets">
-                  <FactIcn /> <span>Fact sheet</span>
+                  <FactIcn /> <span>Fact sheets</span>
                 </NavLink>
               </div>
             </nav>
             <Switch>
+              <Route
+                exact
+                path="/research/about"
+                component={About}
+              />
               <Route
                 exact
                 path="/research/map"

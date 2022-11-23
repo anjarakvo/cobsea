@@ -27,7 +27,7 @@ export default function Map({ isDataChanged = false }) {
           gear, Legal/Regulatory, Social/Cultural, Economic/Management, Policy
           Study.
           <br />
-          <br />
+          {/* <br />
           The RRI 2.0 can be accessed&nbsp;
           <Link
             color="secondary"
@@ -37,7 +37,7 @@ export default function Map({ isDataChanged = false }) {
           >
             here
           </Link>
-          .
+          . */}
         </Body>
         <MapGenerator />
       </Container>

@@ -139,7 +139,7 @@ export default function Factsheets() {
   };
 
   return (
-    <div>
+    <div className="body">
       <Container maxWidth="md">
         <Body align="justify">
           The fact sheets below have been developed to provide a summary of the
