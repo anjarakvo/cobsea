@@ -1,194 +1,197 @@
 @import "../../vars.scss";
 
 #research-db {
-  nav:not(.subnav) {
-    background-color: #91c9c1;
-    svg {
-      path {
-        fill: #fff;
-      }
-    }
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    height: 64px;
-    .cnt {
-      margin-top: 8px;
-      display: flex;
-    }
-    a {
-      color: #fff;
-      height: 46px;
-      border: 1px solid #fff;
-      border-radius: 10px;
-      display: block;
-      margin: 0 5px;
-      font-size: 14px;
-      text-transform: uppercase;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 20px;
-      min-width: 160px;
-      svg {
-        margin-right: 10px;
-      }
-      &:hover {
-        background-color: rgba(255, 255, 255, 0.2);
-        transition: background 0.2s ease-out;
-      }
-      &.active {
-        background-color: #fff;
-        color: $secondary;
-        svg {
-          path {
-            fill: $secondary;
-          }
-        }
-      }
-    }
-    @media screen and (max-width: 1024px) {
-      justify-content: start;
-      padding-left: 20px;
-      padding-top: 2px;
-      a {
-        flex-direction: column;
-        min-width: 70px;
-        width: 100px;
-        height: 80px;
-        font-size: 12px;
-        text-align: center;
-        line-height: 14px;
-        padding: 0;
-        span {
-          height: 28px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        svg {
-          margin-right: 0;
-          margin-top: 5px;
-          margin-bottom: 5px;
-        }
-      }
-      height: 100px;
-    }
-  }
-  nav.subnav {
-    background-color: #fff;
-    height: 82px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 30px;
-    .container {
-      display: flex;
-      a {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        height: 64px;
-        min-width: 64px;
-        max-width: 77px;
-        padding: 0 5px;
-        border-radius: 5px;
-        border: 1.5px solid $secondary;
-        color: $secondary;
-        margin: 0 3px;
-        font-size: 11px;
-        font-weight: 550;
-        transition: all 0.2s ease-out;
-        &:hover {
-          background-color: lighten($secondary, 28);
-        }
-        &.active {
-          background-color: $secondary;
-          color: #fff;
-        }
-      }
-    }
-    @media screen and (max-width: 1024px) {
-      overflow-x: scroll;
-      // align-items: flex-start;
-      justify-content: start;
-      padding-left: 20px;
-      padding-right: 10px;
-      padding-bottom: 10px;
-      padding-top: 10px;
-    }
-  }
-  .my-masonry-grid {
-    display: flex;
-    width: auto;
-  }
+	nav:not(.subnav) {
+		background-color: #91c9c1;
+		svg {
+			path {
+				fill: #fff;
+			}
+		}
+		color: #fff;
+		display: flex;
+		justify-content: center;
+		height: 64px;
+		.cnt {
+			margin-top: 8px;
+			display: flex;
+		}
+		a {
+			color: #fff;
+			height: 46px;
+			border: 1px solid #fff;
+			border-radius: 10px;
+			display: block;
+			margin: 0 5px;
+			font-size: 14px;
+			text-transform: uppercase;
+			font-weight: 600;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 0 20px;
+			min-width: 130px;
+			svg {
+				margin-right: 10px;
+			}
+			&:hover {
+				background-color: rgba(255, 255, 255, 0.2);
+				transition: background 0.2s ease-out;
+			}
+			&.active {
+				background-color: #fff;
+				color: $secondary;
+				svg {
+					path {
+						fill: $secondary;
+					}
+				}
+			}
+		}
+		@media screen and (max-width: 1024px) {
+			justify-content: start;
+			padding-left: 20px;
+			padding-top: 2px;
+			a {
+				flex-direction: column;
+				min-width: 70px;
+				width: 100px;
+				height: 80px;
+				font-size: 12px;
+				text-align: center;
+				line-height: 14px;
+				padding: 0;
+				span {
+					height: 28px;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+				}
+				svg {
+					margin-right: 0;
+					margin-top: 5px;
+					margin-bottom: 5px;
+				}
+			}
+			height: 100px;
+		}
+	}
+	nav.subnav {
+		background-color: #fff;
+		height: 82px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 30px;
+		.container {
+			display: flex;
+			a {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				text-align: center;
+				height: 64px;
+				min-width: 64px;
+				max-width: 77px;
+				padding: 0 5px;
+				border-radius: 5px;
+				border: 1.5px solid $secondary;
+				color: $secondary;
+				margin: 0 3px;
+				font-size: 11px;
+				font-weight: 550;
+				transition: all 0.2s ease-out;
+				&:hover {
+					background-color: lighten($secondary, 28);
+				}
+				&.active {
+					background-color: $secondary;
+					color: #fff;
+				}
+			}
+		}
+		@media screen and (max-width: 1024px) {
+			overflow-x: scroll;
+			// align-items: flex-start;
+			justify-content: start;
+			padding-left: 20px;
+			padding-right: 10px;
+			padding-bottom: 10px;
+			padding-top: 10px;
+		}
+	}
+	.my-masonry-grid {
+		display: flex;
+		width: auto;
+	}
+	.body {
+		min-height: calc(100vh - 126px - 174px - 50px);
+	}
 }
 
 .grid-search-input {
-  background-color: #fff;
-  border-radius: 5px;
-  padding-left: 15px;
-  overflow: hidden;
-  svg {
-    color: rgba(0, 0, 0, 0.5);
-    margin-left: 5px;
-  }
-  input {
-    outline: 0 !important;
-    color: #000;
-  }
+	background-color: #fff;
+	border-radius: 5px;
+	padding-left: 15px;
+	overflow: hidden;
+	svg {
+		color: rgba(0, 0, 0, 0.5);
+		margin-left: 5px;
+	}
+	input {
+		outline: 0 !important;
+		color: #000;
+	}
 }
 .MuiDataGrid-row {
-  & > * {
-    border-bottom: none !important;
-  }
-  &:hover {
-    background-color: #fff !important;
-  }
-  &:nth-child(2n) {
-    background-color: #e8f6fc;
-    &:hover {
-      background-color: #e8f6fc !important;
-    }
-  }
+	& > * {
+		border-bottom: none !important;
+	}
+	&:hover {
+		background-color: #fff !important;
+	}
+	&:nth-child(2n) {
+		background-color: #e8f6fc;
+		&:hover {
+			background-color: #e8f6fc !important;
+		}
+	}
 }
 
 .MuiGrid-root {
-  .MuiPaper-root {
-    .item {
-      background-color: $primary !important;
-      border-radius: 3px !important;
-      color: #fff;
-      justify-content: flex-start !important;
-      padding-left: 10px;
-      font-weight: 500;
-    }
-  }
+	.MuiPaper-root {
+		.item {
+			background-color: $primary !important;
+			border-radius: 3px !important;
+			color: #fff;
+			justify-content: flex-start !important;
+			padding-left: 10px;
+			font-weight: 500;
+		}
+	}
 }
 .MuiDataGrid-root {
-  .MuiBox-root {
-    .MuiButton-root {
-      color: #fff !important;
-    }
-  }
+	.MuiBox-root {
+		.MuiButton-root {
+			color: #fff !important;
+		}
+	}
 }
 .my-masonry-grid_columns {
-  .MuiTypography-body1 {
-    color: #000;
-  }
-  .MuiPaper-rounded {
-    background-color: lighten($secondary, 26);
-  }
+	.MuiTypography-body1 {
+		color: #000;
+	}
+	.MuiPaper-rounded {
+		background-color: lighten($secondary, 26);
+	}
 }
 .data-root-nav {
-  .MuiGrid-item {
-    & > div {
-      background-color: #fff;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-      padding: 10px;
-      border-radius: 10px;
-    }
-  }
+	.MuiGrid-item {
+		& > div {
+			background-color: #fff;
+			box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+			padding: 10px;
+			border-radius: 10px;
+		}
+	}
 }

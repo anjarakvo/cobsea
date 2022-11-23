@@ -35,7 +35,7 @@ const FullMenu = () => (
       <Item
         to="/research-network"
         title="RESEARCH NETWORK"
-        subtitle="Directory of organisations"
+        subtitle="Directory of organizations"
         icon={<NetworkSvg />}
       />
     </div>
@@ -43,7 +43,7 @@ const FullMenu = () => (
       <h3>MARINE LITTER CAPACITY BUILDING</h3>
       <Item
         to="/capacity-building"
-        title="LEARNING CENTER"
+        title="LEARNING CENTRE"
         subtitle="Learning and capacity building resources"
         icon={<LearnSvg />}
       />

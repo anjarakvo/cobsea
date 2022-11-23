@@ -54,17 +54,21 @@ const Home = () => {
       <div className="supporters-section">
         <div className="ui container">
           <div className="col">
-            <img src="/sea-circular.png" alt="SEA Circular" width={320} />
+            <a target="_blank" href="http://www.sea-circular.org/">
+              <img src="/sea-circular.png" alt="SEA Circular" width={320} />
+            </a>
           </div>
           <div className="col">
             <img src="/sweden-sverige.png" alt="Sweden Sverige" width={306} />
           </div>
           <div className="col">
-            <img
-              src="/gpml-colorful.svg"
-              alt="GPML"
-              style={{ maxWidth: 380 }}
-            />
+            <a target="_blank" href="https://gpmarinelitter.org/">
+              <img
+                src="/gpml-colorful.svg"
+                alt="GPML"
+                style={{ maxWidth: 380 }}
+              />
+            </a>
           </div>
         </div>
       </div>
