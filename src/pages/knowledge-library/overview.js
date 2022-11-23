@@ -158,7 +158,7 @@ const Featured = ({ showModal, isAuthenticated, setLoginVisible, history }) => {
 					<Link
 						onClick={(e) => {
 							e.preventDefault();
-							window.open('http://localhost:3001/flexible-forms');
+							window.open('https://digital.gpmarinelitter.org/flexible-forms');
 						}}
 					>
 						<div className='add-resource-card'>
