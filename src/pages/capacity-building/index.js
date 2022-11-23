@@ -11,7 +11,6 @@ import {
 } from "react-router-dom";
 import bodyScrollLock from "utils/scroll-utils";
 import DetailModal from "pages/detail/modal";
-import MenuBar from "components/menu";
 
 const popularTags = [
   "plastics",
@@ -69,7 +68,6 @@ function CapacityBuilding({ setLoginVisible, isAuthenticated }) {
 
   return (
     <div id="knowledge-lib">
-    <MenuBar />
       <Switch>
         <Route exact path="/capacity-building">
           <Redirect to="/capacity-building/category" exact={true} />

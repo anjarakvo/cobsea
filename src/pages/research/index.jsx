@@ -21,7 +21,6 @@ import ScientificResearch from "./Data/ScientificResearch";
 import Humanities from "./Data/Humanities";
 import Policy from "./Data/Policy";
 import Factsheets from "./Factsheets";
-import MenuBar from "components/menu";
 import About from './About'
 
 let theme = createTheme({
@@ -72,7 +71,6 @@ const View = () => {
   }, [isDataChanged, isPending]);
   return (
     <>
-      <MenuBar />
       <ThemeProvider theme={theme}>
         <div>
           <div id="research-db">

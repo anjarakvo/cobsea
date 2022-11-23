@@ -54,6 +54,7 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
 
   const fetchData = (searchParams) => {
     setLoading(true);
+    setCatData([]);
     const queryParams = new URLSearchParams(searchParams);
     if (type || history?.location?.state?.type)
       queryParams.set(

@@ -12,6 +12,7 @@ import Research from "./pages/research";
 import ResearchNetwork from "./pages/research-network";
 import CaseStudy from "./pages/case-study";
 import Footer from "footer";
+import MenuBar from "components/menu";
 
 Promise.all([
   api.get("/tag"),
@@ -55,8 +56,10 @@ const ScrollToTop = () => {
 };
 
 function App() {
+  const { pathname } = useLocation();
   return (
     <div className="App">
+    {pathname !== "/" && <MenuBar />}
     <ScrollToTop />
       <Switch>
         <Route path="/" exact component={Landing} />

@@ -69,7 +69,6 @@ function CaseStudy({ setLoginVisible, isAuthenticated }) {
 
   return (
     <div id="knowledge-lib">
-    <MenuBar />
       <Switch>
         <Route exact path="/case-study">
           <Redirect to="/case-study/category" exact={true} />
