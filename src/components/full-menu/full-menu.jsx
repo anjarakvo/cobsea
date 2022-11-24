@@ -7,7 +7,7 @@ import { ReactComponent as LearnSvg } from "../../images/learn-icn.svg";
 import { ReactComponent as EventsSvg } from "../../images/events-icn.svg";
 import "./style.scss";
 
-const FullMenu = () => (
+const FullMenu = ({ toggle }) => (
   <div className="full-menu">
     <div className="col">
       <h3>Marine litter policy and management</h3>
@@ -16,12 +16,14 @@ const FullMenu = () => (
         title="Knowledge library"
         subtitle="National & regional policies and initiatives"
         icon={<LibIcn />}
+        toggle={toggle}
       />
       <Item
         to="/case-study"
         title="Case studies"
         subtitle="A map of good practices"
         icon={<CaseStudyIcn />}
+        toggle={toggle}
       />
     </div>
     <div className="col">
@@ -31,12 +33,14 @@ const FullMenu = () => (
         title="research database"
         subtitle="Datasets on plastic pollution and marine litter"
         icon={<ChartSvg />}
+        toggle={toggle}
       />
       <Item
         to="/research-network"
         title="RESEARCH NETWORK"
         subtitle="Directory of organizations"
         icon={<NetworkSvg />}
+        toggle={toggle}
       />
     </div>
     <div className="col">
@@ -46,19 +50,21 @@ const FullMenu = () => (
         title="LEARNING CENTRE"
         subtitle="Learning and capacity building resources"
         icon={<LearnSvg />}
+        toggle={toggle}
       />
       <Item
         to="/"
         title="EVENTS"
         subtitle="Upcoming sector events"
         icon={<EventsSvg />}
+        toggle={toggle}
       />
     </div>
   </div>
 );
 
-const Item = ({ to, title, subtitle, icon }) => (
-  <Link to={to} className="item">
+const Item = ({ to, title, subtitle, icon, toggle }) => (
+  <Link to={to} className="item" onClick={() => toggle ? toggle(false) : null}>
     <div className="icon">{icon}</div>
     <h4>{title}</h4>
     <h5>{subtitle}</h5>

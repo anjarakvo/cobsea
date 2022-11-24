@@ -2,11 +2,17 @@ import { Link } from "react-router-dom";
 import classNames from "classnames";
 import { Fade as Hamburger } from "hamburger-react";
 import "./style.scss";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import FullMenu from "components/full-menu/full-menu";
 
 const MenuBar = ({ landing }) => {
   const [isOpen, setOpen] = useState(false);
+  let headerHeight = useRef(0);
+
+  useEffect(() => {
+    headerHeight.current = document.getElementById('header')?.clientHeight;
+  }, [])
+
   return (
     <>
       <header id="header" className={classNames("nav-header", { "at-landing": landing })}>
@@ -27,8 +33,8 @@ const MenuBar = ({ landing }) => {
       </header>
       {!landing && <div className="spacer" />}
       {isOpen && (
-        <div className="full-menu-overlay">
-          <FullMenu />
+        <div className="full-menu-overlay"  style={{ top: `${headerHeight.current}px` }}>
+          <FullMenu toggle={setOpen}/>
         </div>
       )}
     </>
