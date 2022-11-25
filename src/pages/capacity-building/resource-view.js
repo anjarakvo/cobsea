@@ -1,19 +1,12 @@
 import React, { Fragment, useEffect, useState, useMemo, useRef } from 'react';
-import classNames from 'classnames';
-import { CSSTransition } from 'react-transition-group';
 import api from 'utils/api';
-// import FilterBar from './filter-bar';
-// import FilterModal from './filter-modal';
-import ResourceCards, { ResourceCard } from 'components/resource-cards';
-import { LoadingOutlined, DownOutlined } from '@ant-design/icons';
+import { Icon } from "components/svg-icon";
+import ResourceCards from 'components/resource-cards';
+import { LoadingOutlined } from '@ant-design/icons';
 import { ReactComponent as SortIcon } from 'images/knowledge-library/sort-icon.svg';
 import { ReactComponent as SearchIcon } from 'images/search-icon.svg';
-import { Button } from 'antd';
-import Maps from 'components/map';
-import { isEmpty } from 'lodash';
-import { useQuery, topicNames } from 'utils/misc';
-import TopicView from '../knowledge-library/topic-view';
-import { useParams, useLocation, withRouter } from 'react-router-dom';
+import { useQuery,  } from 'utils/misc';
+import { useParams, useLocation } from 'react-router-dom';
 import ResourceJson from './resource.json';
 
 const resourceTopic = [
@@ -32,16 +25,12 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
 	const [loading, setLoading] = useState(true);
 	const [data, setData] = useState([]);
 	const [countData, setCountData] = useState([]);
-	const [filterCountries, setFilterCountries] = useState([]);
-	const [multiCountryCountries, setMultiCountryCountries] = useState([]);
 	const [filterType, setFilterType] = useState([]);
 	const [catData, setCatData] = useState([]);
 	const [gridItems, setGridItems] = useState([]);
-	const [pageNumber, setPageNumber] = useState(false);
+	const [selectedCategory, setSelectedCategory] = useState('');
 	const { type, view } = useParams();
 	const { pathname, search } = useLocation();
-
-	console.log(ResourceJson);
 
 	let headerHeight = useRef(0);
 	let footerHeight = useRef(0);
@@ -91,7 +80,6 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
 
 	const updateQuery = (param, value, reset, fetch = true) => {
 		if (!reset) {
-			setPageNumber(null);
 			setGridItems([]);
 		}
 		const newQuery = { ...query };
@@ -100,10 +88,6 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
 		if (param === 'descending' || query.hasOwnProperty('descending')) {
 			newQuery['orderBy'] = 'title';
 		}
-
-		if (newQuery.hasOwnProperty('country'))
-			setFilterCountries(newQuery.country);
-
 		// Remove empty query
 		const arrayOfQuery = Object.entries(newQuery)?.filter(
 			(item) => item[1]?.length !== 0 && typeof item[1] !== 'undefined',
@@ -130,65 +114,18 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
 
 		if (fetch && view !== 'category') fetchData(pureQuery);
 
-		if (view === 'category') loadAllCat(pureQuery);
-
-		if (param === 'country') {
-			setFilterCountries(value);
-		}
 	};
-
-	const loadAllCat = async (filter) => {
-		setLoading(true);
-		const queryParams = new URLSearchParams(filter);
-		queryParams.set('transnational', 132);
-		queryParams.set('capacity_building', ['true']);
-		const promiseArray = resourceTopic.map((url) =>
-			api.get(`/browse?topic=${url}&${String(queryParams)}`),
-		);
-
-		Promise.all(promiseArray)
-			.then((data) => {
-				const newData = resourceTopic.map((categories, idx) => ({
-					categories,
-					data: data[idx].data.results,
-					count: data[idx]?.data?.counts[0]?.count || 0,
-				}));
-				setCatData(newData);
-				setLoading(false);
-			})
-			.catch((err) => {
-				console.log(err);
-				setLoading(false);
-			});
-	};
-
-	useMemo(() => {
-		if ((pathname || search) && !loading) updateQuery('replace');
-	}, [pathname, search]);
 
 	useEffect(() => {
 		if (data.length === 0) {
 			setLoading(false);
 			setData(ResourceJson?.map((item) => item.resource).flat());
-			setFilterType(ResourceJson?.map((item) => item.title));
+			setCatData(ResourceJson);
+			setFilterType(ResourceJson?.map((item) => {
+				return {title: item.title,icon:item.icon}
+			}));
 		}
 	}, [data, view]);
-
-	console.log(data);
-
-	const clickCountry = (name) => {
-		const val = query['country'];
-		let updateVal = [];
-
-		if (isEmpty(val)) {
-			updateVal = [name];
-		} else if (val.includes(name)) {
-			updateVal = val.filter((x) => x !== name);
-		} else {
-			updateVal = [...val, name];
-		}
-		updateQuery('country', updateVal, true);
-	};
 
 	const handleCategoryFilter = (key) => {
 		history.push({
@@ -201,7 +138,6 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
 	};
 
 	const sortResults = (ascending) => {
-		setPageNumber(null);
 		if (!ascending) {
 			updateQuery('descending', 'false', true);
 		} else {
@@ -209,6 +145,11 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
 		}
 		setIsAscending(ascending);
 	};
+
+	const handleSelected = (title) => {
+		setSelectedCategory(title)
+		setCatData(ResourceJson.filter((item) => item.title === title))
+	}
 
 	useEffect(() => {
 		headerHeight.current = document.getElementById('header')?.clientHeight;
@@ -221,31 +162,23 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
 				<ul>
 					{filterType.map((it) => (
 						<li
-							key={it}
+							key={it.title}
 							onClick={() => {
-								if (type === it)
-									history.push({
-										pathname: `/knowledge-library/resource/${
-											view ? view : 'map'
-										}`,
-										search: search,
-									});
-								else
-									history.push({
-										pathname: `/knowledge-library/resource/${
-											view ? (view === 'category' ? 'grid' : view) : 'map'
-										}/${it}/`,
-										search: search,
-										state: { type: it },
-									});
+								if (selectedCategory === it.title) {
+									setSelectedCategory('')
+									setCatData(ResourceJson)
+								}
+								else {
+									handleSelected(it.title)
+								}
 							}}
-							className={type === it ? 'selected' : ''}
+							className={selectedCategory === it.title ? 'selected' : ''}
 						>
 							<div className='img-container'>
-								{/* <Icon name={`resource-types/${it.key}`} fill="#FFF" /> */}
+								<Icon name={`resource-types/${it.icon}`} fill="#FFF" />
 							</div>
 							<div className='label-container'>
-								<span>{it}</span>
+								<span>{it.title}</span>
 							</div>
 						</li>
 					))}
@@ -259,7 +192,7 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
 								? `Showing ${gridItems?.length} of ${totalItems}`
 								: view === 'category'
 								? `${catData?.reduce(
-										(count, current) => count + current?.count,
+										(count, current) => count + current?.resource.length,
 										0,
 								  )}`
 								: `Showing ${!loading ? data?.length : ''}`}
@@ -268,7 +201,7 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
 							<SearchIcon />
 						</div>
 					</div>
-					<ViewSwitch {...{ type, view, history }} />
+					{/* <ViewSwitch {...{ type, view, history }} /> */}
 					<button
 						className='sort-by-button'
 						onClick={() => {
@@ -319,36 +252,27 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
 						{view === 'category' && (
 							<div className='cat-view'>
 								{catData.map((d) => (
-									<Fragment key={d.categories}>
-										{d?.count > 0 && (
+									<Fragment key={d.title}>
+										{d?.resource?.length > 0 && (
 											<>
 												<div className='header-wrapper'>
 													<div className='title-wrapper'>
 														<h4 className='cat-title'>
-															{topicNames(d.categories)}
+															{(d.title)}
 														</h4>
 														<div className='quick-search'>
-															<div className='count'>{d?.count}</div>
+															<div className='count'>{d?.resource?.length}</div>
 															<div className='search-icon'>
 																<SearchIcon />
 															</div>
 														</div>
 													</div>
-													<Button
-														type='link'
-														block
-														onClick={() => {
-															handleCategoryFilter(d.categories);
-														}}
-													>
-														See all {`>`}
-													</Button>
 												</div>
 												<ResourceCards
-													items={d?.data}
-													showMoreCardAfter={20}
+													items={d?.resource}
+													showMoreCardAfter={40}
 													showMoreCardClick={() => {
-														handleCategoryFilter(d.categories);
+														handleCategoryFilter(d.title);
 													}}
 													showModal={(e) =>
 														showModal({
@@ -370,96 +294,5 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
 		</Fragment>
 	);
 }
-
-const GridView = ({
-	gridItems,
-	loading,
-	updateQuery,
-	totalItems,
-	limit,
-	setPageNumber,
-	pageNumber,
-	showModal,
-}) => {
-	return (
-		<div className='grid-view'>
-			<div className='items'>
-				{gridItems?.map((item, index) => (
-					<ResourceCard
-						item={item}
-						key={item.id * index}
-						showModal={(e) =>
-							showModal({
-								e,
-								type: item?.type.replace('_', '-'),
-								id: item?.id,
-							})
-						}
-					/>
-				))}
-			</div>
-			{!loading && gridItems?.length < totalItems && (
-				<Button
-					className='load-more'
-					loading={loading}
-					onClick={() => {
-						setPageNumber((prevNumber) => prevNumber + limit);
-						updateQuery('offset', [pageNumber + limit], true);
-					}}
-				>
-					Load More
-				</Button>
-			)}
-		</div>
-	);
-};
-
-const ViewSwitch = ({ type, view, history }) => {
-	const viewOptions = ['map', 'topic', 'grid', 'category'];
-	const [visible, setVisible] = useState(false);
-
-	return (
-		<div className='view-switch-container'>
-			<div
-				className={classNames('switch-btn', { active: visible })}
-				onClick={() => {
-					setVisible(!visible);
-				}}
-			>
-				<DownOutlined />
-				{view} view
-			</div>
-			<CSSTransition
-				in={visible}
-				timeout={200}
-				unmountOnExit
-				classNames='view-switch'
-			>
-				<div className='view-switch-dropdown'>
-					<ul>
-						{viewOptions
-							.filter((opt) => view !== opt)
-							.map((viewOption) => (
-								<li
-									key={viewOption}
-									onClick={() => {
-										setVisible(!visible);
-										history.push({
-											pathname: `/capacity-building/${viewOption}/${
-												type && viewOption !== 'category' ? type : ''
-											}`,
-											search: history.location.search,
-										});
-									}}
-								>
-									{viewOption} view
-								</li>
-							))}
-					</ul>
-				</div>
-			</CSSTransition>
-		</div>
-	);
-};
 
 export default ResourceView;

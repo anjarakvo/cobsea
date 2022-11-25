@@ -2,7 +2,7 @@ import axios from "axios";
 import humps from "humps";
 
 export const config = {
-  baseURL: "/api",
+  baseURL: "https://digital.gpmarinelitter.org/api",
   headers: {
     "Content-Type": "application/json",
   },
