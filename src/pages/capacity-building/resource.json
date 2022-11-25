@@ -1,6 +1,6 @@
 [
 	{
-		"title": "Workshops / Trainings (in-person)",
+		"title": "Workshops / Trainings",
 		"icon":"webinar",
 		"resource": [
 			{
@@ -188,7 +188,7 @@
 		]
 	},
 	{
-		"title": "Webinars & Recordings (online events)",
+		"title": "Webinars & Recordings",
 		"icon":"recording",
 		"resource": [
 			{
