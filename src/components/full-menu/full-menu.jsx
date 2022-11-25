@@ -19,7 +19,7 @@ const FullMenu = ({ toggle }) => (
         toggle={toggle}
       />
       <Item
-        to="/case-study"
+        to="/knowledge-library/resource/map/case-study"
         title="Case studies"
         subtitle="A map of good practices"
         icon={<CaseStudyIcn />}
