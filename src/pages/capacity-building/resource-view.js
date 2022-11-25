@@ -119,7 +119,6 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
 	useEffect(() => {
 		if (data.length === 0) {
 			setLoading(false);
-			setData(ResourceJson?.map((item) => item.resource).flat());
 			setCatData(ResourceJson);
 			setFilterType(ResourceJson?.map((item) => {
 				return {title: item.title,icon:item.icon}
@@ -137,14 +136,17 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
 		});
 	};
 
-	const sortResults = (ascending) => {
-		if (!ascending) {
-			updateQuery('descending', 'false', true);
-		} else {
-			updateQuery('descending', 'true', true);
-		}
-		setIsAscending(ascending);
-	};
+	function sortArray(array) {
+		console.log(array)
+		array.sort((a, b) => a.title - b.title);
+		array.forEach(a => {
+			if (a.resource && a.resource.length > 0)
+				sortArray(a.children)
+		})
+		return array;
+	}
+	
+
 
 	const handleSelected = (title) => {
 		setSelectedCategory(title)
@@ -201,27 +203,6 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
 							<SearchIcon />
 						</div>
 					</div>
-					{/* <ViewSwitch {...{ type, view, history }} /> */}
-					<button
-						className='sort-by-button'
-						onClick={() => {
-							if (view === 'grid') setGridItems([]);
-							sortResults(!isAscending);
-						}}
-					>
-						<SortIcon
-							style={{
-								transform:
-									!isAscending || isAscending === null
-										? 'initial'
-										: 'rotate(180deg)',
-							}}
-						/>
-						<div className='sort-button-text'>
-							<span>Sort by:</span>
-							<b>{!isAscending ? `A>Z` : 'Z>A'}</b>
-						</div>
-					</button>
 				</div>
 				{loading ? (
 					<div
@@ -234,9 +215,7 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
 					>
 						<LoadingOutlined spin />
 					</div>
-				) : data?.length === 0 &&
-				  catData?.filter((item) => item?.data?.length > 0)?.length === 0 &&
-				  !loading ? (
+				) : catData?.filter((item) => item?.resource?.length > 0)?.length === 0  ? (
 					<div
 						className='no-result'
 						style={{
