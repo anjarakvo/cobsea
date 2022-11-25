@@ -249,10 +249,6 @@ function ResourceView({ history, popularTags, landing, box, showModal }) {
 												</div>
 												<ResourceCards
 													items={d?.resource}
-													showMoreCardAfter={40}
-													showMoreCardClick={() => {
-														handleCategoryFilter(d.title);
-													}}
 													showModal={(e) =>
 														showModal({
 															e,
