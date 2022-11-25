@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import "./styles.scss";
 import { Row, Col, Button, Card, Avatar } from "antd";
+import {ReactComponent as LocPin} from '../../images/loc-pin.svg'
+import {ReactComponent as Contact} from '../../images/contact.svg'
 import ContactModal from "components/contact-modal";
+import data from './data.json'
 
 function ResearchNetwork() {
   const [showContactModal, setShowContactModal] = useState(false);
@@ -46,132 +49,22 @@ function ResearchNetwork() {
         <div className="profile-section">
           <div className="ui container">
             <Row gutter={16}>
-              <Col sm={12} md={12} lg={12} xl={8}>
-                <Card bordered={false}>
-                  <Row type="flex" className="profile-details">
-                    <div className="image-wrapper">
-                      <Avatar />
+              {data.map(item =>
+              <Col sm={24} md={12} lg={12} xl={12}>
+                <Card className="profile-details">
+                  <Row type="flex">
+                    <h4>{item.Institution}</h4>
+                    <div className="loc meta">
+                      <LocPin /><span>{item['Sub-national']} {item.Country}</span>
                     </div>
-                    <div className="details-container">
-                      <h4>Institutions Name</h4>
-                      <p>Prof name 1, research field</p>
-                      <p>Prof name 1, research field</p>
-                    </div>
-                  </Row>
-                </Card>
-              </Col>
-              <Col sm={12} md={12} lg={12} xl={8}>
-                <Card bordered={false}>
-                  <Row type="flex" className="profile-details">
-                    <div className="image-wrapper">
-                      <Avatar />
-                    </div>
-                    <div className="details-container">
-                      <h4>Institutions Name</h4>
-                      <p>Prof name 1, research field</p>
-                      <p>Prof name 1, research field</p>
+                    <p>{item['Area of expertise']}</p>
+                    <div className="contact meta">
+                      <Contact /><span>{item.Name}</span><span className="dot">&#183;</span><a href={`mailto:${item.Contact}`}><Button type="link" size="small">Get in touch</Button></a>
                     </div>
                   </Row>
                 </Card>
               </Col>
-              <Col sm={12} md={12} lg={12} xl={8}>
-                <Card bordered={false}>
-                  <Row type="flex" className="profile-details">
-                    <div className="image-wrapper">
-                      <Avatar />
-                    </div>
-                    <div className="details-container">
-                      <h4>Institutions Name</h4>
-                      <p>Prof name 1, research field</p>
-                      <p>Prof name 1, research field</p>
-                    </div>
-                  </Row>
-                </Card>
-              </Col>
-              <Col sm={12} md={12} lg={12} xl={8}>
-                <Card bordered={false}>
-                  <Row type="flex" className="profile-details">
-                    <div className="image-wrapper">
-                      <Avatar />
-                    </div>
-                    <div className="details-container">
-                      <h4>Institutions Name</h4>
-                      <p>Prof name 1, research field</p>
-                      <p>Prof name 1, research field</p>
-                    </div>
-                  </Row>
-                </Card>
-              </Col>
-              <Col sm={12} md={12} lg={12} xl={8}>
-                <Card bordered={false}>
-                  <Row type="flex" className="profile-details">
-                    <div className="image-wrapper">
-                      <Avatar />
-                    </div>
-                    <div className="details-container">
-                      <h4>Institutions Name</h4>
-                      <p>Prof name 1, research field</p>
-                      <p>Prof name 1, research field</p>
-                    </div>
-                  </Row>
-                </Card>
-              </Col>
-              <Col sm={12} md={12} lg={12} xl={8}>
-                <Card bordered={false}>
-                  <Row type="flex" className="profile-details">
-                    <div className="image-wrapper">
-                      <Avatar />
-                    </div>
-                    <div className="details-container">
-                      <h4>Institutions Name</h4>
-                      <p>Prof name 1, research field</p>
-                      <p>Prof name 1, research field</p>
-                    </div>
-                  </Row>
-                </Card>
-              </Col>
-              <Col sm={12} md={12} lg={12} xl={8}>
-                <Card bordered={false}>
-                  <Row type="flex" className="profile-details">
-                    <div className="image-wrapper">
-                      <Avatar />
-                    </div>
-                    <div className="details-container">
-                      <h4>Institutions Name</h4>
-                      <p>Prof name 1, research field</p>
-                      <p>Prof name 1, research field</p>
-                    </div>
-                  </Row>
-                </Card>
-              </Col>
-              <Col sm={12} md={12} lg={12} xl={8}>
-                <Card bordered={false}>
-                  <Row type="flex" className="profile-details">
-                    <div className="image-wrapper">
-                      <Avatar />
-                    </div>
-                    <div className="details-container">
-                      <h4>Institutions Name</h4>
-                      <p>Prof name 1, research field</p>
-                      <p>Prof name 1, research field</p>
-                    </div>
-                  </Row>
-                </Card>
-              </Col>
-              <Col sm={12} md={12} lg={12} xl={8}>
-                <Card bordered={false}>
-                  <Row type="flex" className="profile-details">
-                    <div className="image-wrapper">
-                      <Avatar />
-                    </div>
-                    <div className="details-container">
-                      <h4>Institutions Name</h4>
-                      <p>Prof name 1, research field</p>
-                      <p>Prof name 1, research field</p>
-                    </div>
-                  </Row>
-                </Card>
-              </Col>
+              )}
             </Row>
           </div>
         </div>
