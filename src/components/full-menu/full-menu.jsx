@@ -29,7 +29,7 @@ const FullMenu = ({ toggle }) => (
     <div className="col">
       <h3>Marine litter science</h3>
       <Item
-        to="/research/map"
+        to="/research/about"
         title="research database"
         subtitle="Datasets on plastic pollution and marine litter"
         icon={<ChartSvg />}
