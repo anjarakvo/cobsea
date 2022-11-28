@@ -418,7 +418,7 @@ const DetailsView = ({
                   ? data?.url
                   : "https://" + data?.url
               }`}
-              target="_blank"
+              target="_blank" rel="noreferrer"
             >
               <img
                 className="resource-image"
