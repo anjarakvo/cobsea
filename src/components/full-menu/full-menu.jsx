@@ -53,7 +53,7 @@ const FullMenu = ({ toggle }) => (
         toggle={toggle}
       />
       <Item
-        to="/"
+        to="/events"
         title="EVENTS"
         subtitle="Upcoming sector events"
         icon={<EventsSvg />}

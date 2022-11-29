@@ -3,15 +3,12 @@ import React, {
   Fragment,
   useState,
   useEffect,
-  useCallback,
-  useRef,
 } from "react";
 import "./styles.scss";
 import {
   Row,
   Col,
   List,
-  Avatar,
   Popover,
   Tag,
   Modal,
@@ -423,7 +420,9 @@ const DetailsView = ({
               <img
                 className="resource-image"
                 id="detail-resource-image"
-                src={data?.image}
+                src={data?.image.startsWith('/image')
+                    ? `https://digital.gpmarinelitter.org${data.image}`
+                    : data?.image}
                 alt={data?.title}
               />
             </a>

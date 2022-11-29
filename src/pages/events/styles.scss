@@ -30,19 +30,25 @@
 		margin-bottom: 20px;
 		.ant-card-body {
 			.ant-card-meta-avatar {
-				max-width: 300px;
+				max-width: 250px;
 				min-width: 250px;
 				max-height: 150px;
 				.ant-avatar {
 					width: 100%;
 					height: 100%;
 					border-radius: 0;
-					img {
-						object-fit: fill;
-					}
+					// img {
+					// 	object-fit: fill;
+					// }
 				}
 			}
 			.ant-card-meta-detail {
+				.ant-card-meta-title {
+					font-weight: 500;
+					font-size: 22px;
+					line-height: 32px;
+					color: #000000;
+				}
 				.date {
 					font-weight: 700;
 					font-size: 16px;
@@ -60,8 +66,10 @@
 					font-weight: 700;
 					font-size: 14px;
 					line-height: 20px;
-					text-align: right;
 					color: #34a6ff;
+					display: inline;
+					cursor: pointer;
+					margin-bottom: 0px;
 				}
 			}
 		}
