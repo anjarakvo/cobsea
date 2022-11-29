@@ -21,12 +21,7 @@ function ResearchNetwork() {
                     What is the Regional Research Network of the Regional Node?
                   </h3>
                   <p>
-                    A network of science and academic institutions and
-                    researchers in the East Asian Seas region that come together
-                    to share findings on marine litter and plastic pollution
-                    research. The network is interdisciplinary and aims to
-                    catalyse collaborative research to address policy priorities
-                    and knowledge needs.
+                    A network of research scientists from research institutions in the East Asian Seas Region that come together to share findings on marine litter and plastic pollution research and develop a regional understanding of knowledge and gaps. The network is interdisciplinary and aims to catalyse collaborative research to inform policy-priorities with science-based information and address knowledge needs.  
                   </p>
                 </div>
               </Col>
