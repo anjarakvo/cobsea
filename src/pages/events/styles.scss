@@ -2,6 +2,9 @@
 	padding: 40px 120px;
 	flex: 1;
 	background: #f5f5f5;
+	@media (max-width: 600px) {
+		padding: 40px 0px;
+	}
 	.year {
 		h3 {
 			font-weight: 700;
@@ -29,6 +32,18 @@
 		border: none;
 		margin-bottom: 20px;
 		.ant-card-body {
+			.ant-card-meta {
+				@media (max-width: 600px) {
+					flex-direction: column;
+				}
+				.ant-card-meta-avatar {
+					@media (max-width: 600px) {
+						max-height: none;
+						max-width: 100%;
+						padding-right: 0px;
+					}
+				}
+			}
 			.ant-card-meta-avatar {
 				max-width: 250px;
 				min-width: 250px;
