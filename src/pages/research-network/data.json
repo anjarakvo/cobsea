@@ -1,142 +1,142 @@
 [
-  {
-    "Country": "Philippines",
-    "Sub-national": "New Visayas",
-    "Institution": "Davao Del Norte State College, Panabo City",
-    "Instn": "DNSC",
-    "Type": "University",
-    "Name": "Neil Abreo",
-    "Contact": "nas.abreo@gmail.com",
-    "Area of expertise": "Accumulation zones and hotspots; Ecological and environmental impact (Ingestion of plastics in the wild); Ecological and environmental impact (Entanglement by plastics in the wild); Ecological and environmental impact (Branchial uptake of plastic in the wild); Surveys and monitoring/pollution status; Research framework and coordination"
-  },
-  {
-    "Country": "Malaysia",
-    "Sub-national": "Sarawak",
-    "Institution": "Swinburne University of Technology, Sarawak",
-    "Instn": "SUT",
-    "Type": "University",
-    "Name": "Moritz Mueller",
-    "Contact": "mmueller@swinburne.edu.my",
-    "Area of expertise": "Adsorption-Desorption of chemicals/pollutants"
-  },
-  {
-    "Country": "Malaysia",
-    "Sub-national": "Penang",
-    "Institution": "Universiti Sains Malaysia",
-    "Instn": "USM",
-    "Type": "USM",
-    "Name": "Japareng Lalung",
-    "Contact": "japareng@usm.my",
-    "Area of expertise": "Survey and monitoring/pollution status"
-  },
-  {
-    "Country": "China",
-    "Sub-national": "Shanghai",
-    "Institution": "East China Normal University",
-    "Instn": "ECNU",
-    "Type": "University",
-    "Name": "Daoji Li",
-    "Contact": "daojili@sklec.ecnu.edu.cn",
-    "Area of expertise": "Survey and monitoring/pollution status; Guidelines, standards and manuals for survey, monitoring and assessment; Accumulation zones and hotspots; Microbial assemblages; Land-based/upstream research/waste management; Legal and regulatory analysis; Policy; Economic loss and cost; Communication and coverage of marine plastic; Methodologies and technologies for research on marine microplastic; Ecological and environmental impact (Ingestion of plastics in the wild); Ecological and environmental impact (Entanglement by plastics in the wild); Ecological and environmental impact (Branchial uptake of plastic in the wild)"
-  },
-  {
-    "Country": "China",
-    "Sub-national": "Shanghai",
-    "Institution": "East China Normal University",
-    "Instn": "ECNU",
-    "Type": "University",
-    "Name": "Zhu Lixin",
-    "Contact": "lixinzhu0305@hotmail.com",
-    "Area of expertise": "Survey and monitoring/pollution status; Guidelines, standards and manuals for survey, monitoring and assessment; Accumulation zones and hotspots; Microbial assemblages; Land-based/upstream research/waste management; Legal and regulatory analysis; Policy; Economic loss and cost; Communication and coverage of marine plastic; Methodologies and technologies for research on marine microplastic; Ecological and environmental impact (Ingestion of plastics in the wild); Ecological and environmental impact (Entanglement by plastics in the wild); Ecological and environmental impact (Branchial uptake of plastic in the wild)"
-  },
-  {
-    "Country": "Indonesia",
-    "Sub-national": "Jakarta",
-    "Institution": "Indonesian Institute of Sciences, Lembaga Ilmu Pengetahuan Indonesia, Jakarta",
-    "Instn": "LIPI",
-    "Type": "University",
-    "Name": "M. Reza Cordova",
-    "Contact": "mrezacordova@gmail.com",
-    "Area of expertise": "Surveys and monitoring/pollution status; Contribution from rivers/ river basin management; Policy"
-  },
-  {
-    "Country": "Thailand",
-    "Sub-national": "Bangkok",
-    "Institution": "Chulalongkorn University, Bangkok",
-    "Instn": "CU",
-    "Type": "University",
-    "Name": "Chawalit Charoenpong",
-    "Contact": "chawalit.net@gmail.com",
-    "Area of expertise": "Survey and monitoring/pollution status"
-  },
-  {
-    "Country": "Myanmar",
-    "Sub-national": "X",
-    "Institution": "Myanmar Ocean Project",
-    "Instn": "MOP",
-    "Type": "NGO",
-    "Name": "Thanda Ko Gyi",
-    "Contact": "thanda@myanmarocean.org",
-    "Area of expertise": "Survey and monitoring/pollution status; Differentiation between plastic sources; Contribution from fisheries/ALDFG"
-  },
-  {
-    "Country": "Malaysia",
-    "Sub-national": "Sarawak",
-    "Institution": "Swinburne University of Technology Sarawak Campus",
-    "Instn": "Swinburne U",
-    "Type": "University",
-    "Name": "Changi Wong",
-    "Contact": "cgwong@swinburne.edu.my",
-    "Area of expertise": "Survey and monitoring/pollution status"
-  },
-  {
-    "Country": "Singapore",
-    "Sub-national": "Singapore",
-    "Institution": "National University of Singapore",
-    "Instn": "NUS",
-    "Type": "University",
-    "Name": "Yulu Liu",
-    "Contact": "cilv109@nus.edu.sg",
-    "Area of expertise": "Survey and monitoring/pollution status; Legal and regulatory analysis; Policy; Compliance and implementation; Action plans; Research framework and coordination; Plastic data repositories"
-  },
-  {
-    "Country": "Singapore",
-    "Sub-national": "Singapore",
-    "Institution": "National University of Singapore",
-    "Instn": "NUS",
-    "Type": "University",
-    "Name": "Youna Lyons",
-    "Contact": "younalyons@nus.edu.sg",
-    "Area of expertise": "Survey and monitoring/pollution status; Accumulation zones and hotspots; Legal and regulatory analysis; Policy; Compliance and implementation; Action plans; Research framework and coordination; Plastic data repositories"
-  },
-  {
-    "Country": "Singapore",
-    "Sub-national": "Singapore",
-    "Institution": "National University of Singapore",
-    "Instn": "NUS",
-    "Type": "University",
-    "Name": "Cheng Ling Lim",
-    "Contact": "cheng.a.ling@gmail.com",
-    "Area of expertise": "Survey and monitoring/pollution status; Compliance and implementation; Research framework and coordination; Plastic data repositories"
-  },
-  {
-    "Country": "Singapore",
-    "Sub-national": "Singapore",
-    "Institution": "National University of Singapore",
-    "Instn": "NUS",
-    "Type": "University",
-    "Name": "Mei Lin Neo",
-    "Contact": "tmsnml@nus.edu.sg",
-    "Area of expertise": "Survey and monitoring/pollution status; Accumulation zones and hotspots; Compliance and implementation; Research framework and coordination; Plastic data repositories"
-  },
-  {
-    "Country": "Vietnam",
-    "Sub-national": "Can Tho City",
-    "Institution": "Can Tho University",
-    "Instn": "CTU",
-    "Type": "University",
-    "Name": "Van Pham Dang Tri",
-    "Contact": "vpdtri@ctu.edu.vn",
-    "Area of expertise": "Survey and monitoring/pollution status; Economic loss and cost; Re-use, recycle and other mitigation measures"
-  }
+	{
+		"Country": "Philippines",
+		"Sub-national": "New Visayas",
+		"Institution": "Neil Abreo",
+		"Instn": "DNSC",
+		"Type": "University",
+		"Name": "Davao Del Norte State College, Panabo City",
+		"Contact": "nas.abreo@gmail.com",
+		"Area of expertise": "Accumulation zones and hotspots; Ecological and environmental impact (Ingestion of plastics in the wild); Ecological and environmental impact (Entanglement by plastics in the wild); Ecological and environmental impact (Branchial uptake of plastic in the wild); Surveys and monitoring/pollution status; Research framework and coordination"
+	},
+	{
+		"Country": "Malaysia",
+		"Sub-national": "Sarawak",
+		"Institution": "Moritz Mueller",
+		"Instn": "SUT",
+		"Type": "University",
+		"Name": "Swinburne University of Technology, Sarawak",
+		"Contact": "mmueller@swinburne.edu.my",
+		"Area of expertise": "Adsorption-Desorption of chemicals/pollutants"
+	},
+	{
+		"Country": "Malaysia",
+		"Sub-national": "Penang",
+		"Institution": "Japareng Lalung",
+		"Instn": "USM",
+		"Type": "USM",
+		"Name": "Universiti Sains Malaysia",
+		"Contact": "japareng@usm.my",
+		"Area of expertise": "Survey and monitoring/pollution status"
+	},
+	{
+		"Country": "China",
+		"Sub-national": "Shanghai",
+		"Institution": "Daoji Li",
+		"Instn": "ECNU",
+		"Type": "University",
+		"Name": "East China Normal University",
+		"Contact": "daojili@sklec.ecnu.edu.cn",
+		"Area of expertise": "Survey and monitoring/pollution status; Guidelines, standards and manuals for survey, monitoring and assessment; Accumulation zones and hotspots; Microbial assemblages; Land-based/upstream research/waste management; Legal and regulatory analysis; Policy; Economic loss and cost; Communication and coverage of marine plastic; Methodologies and technologies for research on marine microplastic; Ecological and environmental impact (Ingestion of plastics in the wild); Ecological and environmental impact (Entanglement by plastics in the wild); Ecological and environmental impact (Branchial uptake of plastic in the wild)"
+	},
+	{
+		"Country": "China",
+		"Sub-national": "Shanghai",
+		"Institution": "Zhu Lixin",
+		"Instn": "ECNU",
+		"Type": "University",
+		"Name": "East China Normal University",
+		"Contact": "lixinzhu0305@hotmail.com",
+		"Area of expertise": "Survey and monitoring/pollution status; Guidelines, standards and manuals for survey, monitoring and assessment; Accumulation zones and hotspots; Microbial assemblages; Land-based/upstream research/waste management; Legal and regulatory analysis; Policy; Economic loss and cost; Communication and coverage of marine plastic; Methodologies and technologies for research on marine microplastic; Ecological and environmental impact (Ingestion of plastics in the wild); Ecological and environmental impact (Entanglement by plastics in the wild); Ecological and environmental impact (Branchial uptake of plastic in the wild)"
+	},
+	{
+		"Country": "Indonesia",
+		"Sub-national": "Jakarta",
+		"Institution": "M. Reza Cordova",
+		"Instn": "LIPI",
+		"Type": "University",
+		"Name": "Indonesian Institute of Sciences, Lembaga Ilmu Pengetahuan Indonesia, Jakarta",
+		"Contact": "mrezacordova@gmail.com",
+		"Area of expertise": "Surveys and monitoring/pollution status; Contribution from rivers/ river basin management; Policy"
+	},
+	{
+		"Country": "Thailand",
+		"Sub-national": "Bangkok",
+		"Institution": "Chawalit Charoenpong",
+		"Instn": "CU",
+		"Type": "University",
+		"Name": "Chulalongkorn University, Bangkok",
+		"Contact": "chawalit.net@gmail.com",
+		"Area of expertise": "Survey and monitoring/pollution status"
+	},
+	{
+		"Country": "Myanmar",
+		"Sub-national": "",
+		"Institution": "Thanda Ko Gyi",
+		"Instn": "MOP",
+		"Type": "NGO",
+		"Name": "Myanmar Ocean Project",
+		"Contact": "thanda@myanmarocean.org",
+		"Area of expertise": "Survey and monitoring/pollution status; Differentiation between plastic sources; Contribution from fisheries/ALDFG"
+	},
+	{
+		"Country": "Malaysia",
+		"Sub-national": "Sarawak",
+		"Institution": "Changi Wong",
+		"Instn": "Swinburne U",
+		"Type": "University",
+		"Name": "Swinburne University of Technology Sarawak Campus",
+		"Contact": "cgwong@swinburne.edu.my",
+		"Area of expertise": "Survey and monitoring/pollution status"
+	},
+	{
+		"Country": "Singapore",
+		"Sub-national": "Singapore",
+		"Institution": "Yulu Liu",
+		"Instn": "NUS",
+		"Type": "University",
+		"Name": "National University of Singapore",
+		"Contact": "cilv109@nus.edu.sg",
+		"Area of expertise": "Survey and monitoring/pollution status; Legal and regulatory analysis; Policy; Compliance and implementation; Action plans; Research framework and coordination; Plastic data repositories"
+	},
+	{
+		"Country": "Singapore",
+		"Sub-national": "Singapore",
+		"Institution": "Youna Lyons",
+		"Instn": "NUS",
+		"Type": "University",
+		"Name": "National University of Singapore",
+		"Contact": "younalyons@nus.edu.sg",
+		"Area of expertise": "Survey and monitoring/pollution status; Accumulation zones and hotspots; Legal and regulatory analysis; Policy; Compliance and implementation; Action plans; Research framework and coordination; Plastic data repositories"
+	},
+	{
+		"Country": "Singapore",
+		"Sub-national": "Singapore",
+		"Institution": "Cheng Ling Lim",
+		"Instn": "NUS",
+		"Type": "University",
+		"Name": "National University of Singapore",
+		"Contact": "cheng.a.ling@gmail.com",
+		"Area of expertise": "Survey and monitoring/pollution status; Compliance and implementation; Research framework and coordination; Plastic data repositories"
+	},
+	{
+		"Country": "Singapore",
+		"Sub-national": "Singapore",
+		"Institution": "Mei Lin Neo",
+		"Instn": "NUS",
+		"Type": "University",
+		"Name": "National University of Singapore",
+		"Contact": "tmsnml@nus.edu.sg",
+		"Area of expertise": "Survey and monitoring/pollution status; Accumulation zones and hotspots; Compliance and implementation; Research framework and coordination; Plastic data repositories"
+	},
+	{
+		"Country": "Vietnam",
+		"Sub-national": "Can Tho City",
+		"Institution": "Van Pham Dang Tri",
+		"Instn": "CTU",
+		"Type": "University",
+		"Name": "Can Tho University",
+		"Contact": "vpdtri@ctu.edu.vn",
+		"Area of expertise": "Survey and monitoring/pollution status; Economic loss and cost; Re-use, recycle and other mitigation measures"
+	}
 ]
