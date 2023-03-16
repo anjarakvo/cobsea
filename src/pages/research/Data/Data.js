@@ -29,7 +29,7 @@ const Tiles = [
   formatter(
     "Research Landscape",
     "/research/data/research-landscape",
-    "Explore charts and graphs on the profile of research conducted on marine plastics in the seas of Southeast and East Asia, including research areas and capability",
+    "Explore charts and graphs on the profile of research conducted on marine plastics in the seas of South-East and East Asia, including research areas and capability",
     "https://github.com/Marine-Litter-Research-Inventory/image/blob/main/resources/Slide2.png?raw=true"
   ),
   formatter(
@@ -47,7 +47,7 @@ const Tiles = [
   formatter(
     "Research in Humanities",
     "/research/data/research-in-humanities",
-    "Explore charts and graphs on the characteristics of research publications in the legal, policy, socio-economic and cultural fields of research",
+    "Explore charts and graphs on the characteristics of research publications in the legal, policy, socioeconomic and cultural fields of research",
     "https://github.com/Marine-Litter-Research-Inventory/image/blob/main/resources/Slide5.png?raw=true"
   ),
   formatter(

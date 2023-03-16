@@ -81,15 +81,15 @@ const Home = () => {
         }}
         footer={null}
       >
-        The East Asian Seas Regional Node of the Global Partnership on Marine
-        Litter (GPML) is a regional marine litter knowledge management and
-        networking hub of the Coordinating Body on the Seas of East Asia
-        (COBSEA). The Regional Node was established by the resumed Twenty-fifth
-        Intergovernmental Meeting (IGM 25) of COBSEA in 2022 to support the
-        achievement of the COBSEA Regional Action Plan on Marine Litter (RAP
-        MALI). The web platform of the Regional Node provides access to marine
-        litter knowledge, resources, good practices, data, networks and learning
-        in the East Asian Seas region.
+        The East Asian Seas Regional Node of the Global Partnership on Plastic
+        Pollution and Marine Litter (GPML) is a regional marine litter knowledge
+        management and networking hub of the Coordinating Body on the Seas of
+        East Asia (COBSEA). The Regional Node was established by the resumed
+        Twenty-fifth Intergovernmental Meeting (IGM 25) of COBSEA in 2022 to
+        support the achievement of the COBSEA Regional Action Plan on Marine
+        Litter (RAP MALI). The web platform of the Regional Node provides access
+        to marine litter knowledge, resources, good practices, data, networks
+        and learning in the East Asian Seas region.
         <br />
         <br />
         The Regional Node brings together resources and stakeholders in the

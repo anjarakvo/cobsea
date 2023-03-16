@@ -31,7 +31,7 @@ const FullMenu = ({ toggle }) => (
       <Item
         to="/research/about"
         title="research database"
-        subtitle="Datasets on plastic pollution and marine litter"
+        subtitle="Data sets on plastic pollution and marine litter"
         icon={<ChartSvg />}
         toggle={toggle}
       />
@@ -44,11 +44,11 @@ const FullMenu = ({ toggle }) => (
       />
     </div>
     <div className="col">
-      <h3>MARINE LITTER CAPACITY BUILDING</h3>
+      <h3>MARINE LITTER CAPACITY-BUILDING</h3>
       <Item
         to="/capacity-building"
         title="LEARNING CENTRE"
-        subtitle="Learning and capacity building resources"
+        subtitle="Learning and capacity-building resources"
         icon={<LearnSvg />}
         toggle={toggle}
       />
@@ -64,7 +64,11 @@ const FullMenu = ({ toggle }) => (
 );
 
 const Item = ({ to, title, subtitle, icon, toggle }) => (
-  <Link to={to} className="item" onClick={() => toggle ? toggle(false) : null}>
+  <Link
+    to={to}
+    className="item"
+    onClick={() => (toggle ? toggle(false) : null)}
+  >
     <div className="icon">{icon}</div>
     <h4>{title}</h4>
     <h5>{subtitle}</h5>

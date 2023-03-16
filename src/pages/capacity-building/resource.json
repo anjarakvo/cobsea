@@ -568,6 +568,34 @@
 				"id": 149,
 				"type": "technical-resource",
 				"image": "https://storage.googleapis.com/akvo-unep-gpml/images/resource-8c9345f3-32b0-4f9a-83d1-7b38159c6d6f-uploaded.jpeg"
+			},
+			{
+				"title": "COBSEA – CSIRO Training on Marine Litter Monitoring Methods",
+				"thumbnail": null,
+				"id": 10783,
+				"type": "technical-resource",
+				"image": "https://storage.googleapis.com/akvo-unep-gpml/images/resource-c45993c0-e8b2-4d87-9f37-ef2065aa981c-uploaded.jpeg"
+			},
+			{
+				"title": "Marine Litter Monitoring Methods Handbook, Part I",
+				"thumbnail": null,
+				"id": 10784,
+				"type": "technical-resource",
+				"image": "https://storage.googleapis.com/akvo-unep-gpml/images/resource-b367a4bb-0669-4db5-89c0-0e2447460e7e-uploaded.jpeg"
+			},
+			{
+				"title": "Marine Litter Monitoring Methods Handbook, Part II",
+				"thumbnail": null,
+				"id": 10785,
+				"type": "technical-resource",
+				"image": "https://storage.googleapis.com/akvo-unep-gpml/images/resource-b32e3736-d2bd-43da-ab95-16a049e4d5a5-uploaded.jpeg"
+			},
+			{
+				"title": "Cities and Marine Plastic Pollution Building a Circular Economy: eLearning by the United Nations ESCAP",
+				"thumbnail": null,
+				"id": 10798,
+				"type": "technical-resource",
+				"image": "https://storage.googleapis.com/akvo-unep-gpml/images/resource-fc0e7979-191f-4cdb-8a50-7fe81242e71d-uploaded.jpeg"
 			}
 		]
 	}
