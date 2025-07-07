@@ -1,137 +1,137 @@
-import humps from "humps";
-import { useLocation } from "react-router-dom";
+import humps from 'humps';
+import { useLocation } from 'react-router-dom';
 
 export const tTypes = [
-  "project",
-  "actionPlan",
-  "policy",
-  "technicalResource",
-  "financingResource",
-  "event",
-  "technology",
-  "organisation",
-  "stakeholder",
+  'project',
+  'actionPlan',
+  'policy',
+  'technicalResource',
+  'financingResource',
+  'event',
+  'technology',
+  'organisation',
+  'stakeholder',
 ];
 
 export const topicTypes = [
-  "project",
-  "actionPlan",
-  "policy",
-  "technicalResource",
-  "financingResource",
-  "event",
-  "technology",
-  "capacityBuilding",
+  'project',
+  'actionPlan',
+  'policy',
+  'technicalResource',
+  'financingResource',
+  'event',
+  'technology',
+  'capacityBuilding',
 ];
 
-export const networkTypes = ["organisation", "stakeholder"];
+export const networkTypes = ['organisation', 'stakeholder'];
 
 export const networkNames = (network) => {
   const names = {
-    organisation: "Entity",
-    stakeholder: "Individual",
+    organisation: 'Entity',
+    stakeholder: 'Individual',
   };
   return names[humps.camelize(network)];
 };
 
-export const topicTypesIncludingOrg = topicTypes.concat(["organisation"]);
+export const topicTypesIncludingOrg = topicTypes.concat(['organisation']);
 
 export const topicTypesApprovedUser = topicTypes.concat([
-  "organisation",
-  "stakeholder",
+  'organisation',
+  'stakeholder',
 ]);
 
 export const topicNames = (topic) => {
   const names = {
-    initiative: "Initiative",
-    actionPlan: "Action Plan",
-    policy: "Policy",
-    technicalResource: "Technical Resource",
-    financingResource: "Financing Resource",
-    event: "Event",
-    technology: "Technology",
-    organisation: "Entity",
-    stakeholder: "Individual",
-    capacityBuilding: "Capacity Building",
+    initiative: 'Initiative',
+    actionPlan: 'Action Plan',
+    policy: 'Policy',
+    technicalResource: 'Technical Resource',
+    financingResource: 'Financing Resource',
+    event: 'Event',
+    technology: 'Technology',
+    organisation: 'Entity',
+    stakeholder: 'Individual',
+    capacityBuilding: 'Capacity Building',
   };
   return names[humps.camelize(topic)];
 };
 
 export const resourceSubTypes = new Set([
-  "financing_resource",
-  "technical_resource",
-  "action_plan",
+  'financing_resource',
+  'technical_resource',
+  'action_plan',
 ]);
 export const resourceTypeToTopicType = (type) =>
-  resourceSubTypes.has(type) ? "resource" : type;
+  resourceSubTypes.has(type) ? 'resource' : type;
 
 export const relationsByTopicType = {
-  resource: ["interested in"],
-  technology: ["interested in"],
-  event: ["interested in"],
-  project: ["interested in"],
-  policy: ["interested in"],
-  stakeholder: ["interested in", "other"],
-  organisation: ["interested in", "other"],
+  resource: ['interested in'],
+  technology: ['interested in'],
+  event: ['interested in'],
+  project: ['interested in'],
+  policy: ['interested in'],
+  stakeholder: ['interested in', 'other'],
+  organisation: ['interested in', 'other'],
 };
 
 export const entityName = (entity) => {
   const names = {
-    partner: "Partner",
-    owner: "GPML Members",
-    implementor: "Center of excellence",
-    donor: "Sponsor",
+    partner: 'Partner',
+    owner: 'GPML Members',
+    implementor: 'Center of excellence',
+    donor: 'Sponsor',
   };
   return names[humps.camelize(entity)];
 };
 
-export const userRoles = ["USER", "REVIEWER", "ADMIN"];
+export const userRoles = ['USER', 'REVIEWER', 'ADMIN'];
 
 export const reviewStatusUIText = {
-  PENDING: "Awaiting Review",
-  ACCEPTED: "Approved",
-  REJECTED: "Declined",
-  ACCEPT: "Approve",
-  APPROVED: "Approved",
-  REJECT: "Decline",
+  PENDING: 'Awaiting Review',
+  ACCEPTED: 'Approved',
+  REJECTED: 'Declined',
+  ACCEPT: 'Approve',
+  APPROVED: 'Approved',
+  REJECT: 'Decline',
 };
 
 export const submissionReviewStatusUIText = {
-  SUBMITTED: "Submitted",
-  APPROVED: "Published",
-  REJECTED: "Declined",
+  SUBMITTED: 'Submitted',
+  APPROVED: 'Published',
+  REJECTED: 'Declined',
 };
 
 export const reviewCommentModalTitle = {
-  ACCEPTED: "Approving",
-  REJECTED: "Declining",
+  ACCEPTED: 'Approving',
+  REJECTED: 'Declining',
 };
 
 export const reviewCommentPlaceholder = {
-  ACCEPTED: "Reason for approving this",
-  REJECTED: "Reason for declining this",
+  ACCEPTED: 'Reason for approving this',
+  REJECTED: 'Reason for declining this',
 };
 
 export const publishStatusUIText = {
-  APPROVED: "Approved",
-  APPROVE: "Approve",
-  REJECTED: "Declined",
-  REJECT: "Decline",
-  UNAPPROVED: "Unapproved",
-  UNAPPROVE: "Unapprove",
+  APPROVED: 'Approved',
+  APPROVE: 'Approve',
+  REJECTED: 'Declined',
+  REJECT: 'Decline',
+  UNAPPROVED: 'Unapproved',
+  UNAPPROVE: 'Unapprove',
 };
 
 export const randomColor = (string) => {
   const colors = [
-    "#FFB800",
-    "#98B527",
-    "#38A259",
-    "#008776",
-    "#006776",
-    "#2F4858",
-    "#FFC1B4",
-    "#FE8A7F",
-    "#C1554E",
+    '#FFB800',
+    '#98B527',
+    '#38A259',
+    '#008776',
+    '#006776',
+    '#2F4858',
+    '#FFC1B4',
+    '#FE8A7F',
+    '#C1554E',
   ];
 
   let hash = 0;
@@ -170,9 +170,9 @@ export const tagsMapExpertise = (array, category, tags) => {
 export const toTitleCase = (phrase) => {
   return phrase
     ?.toLowerCase()
-    .split(" ")
+    .split(' ')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+    .join(' ');
 };
 
 export const useQuery = () => {
@@ -181,51 +181,51 @@ export const useQuery = () => {
   for (var key of srcParams.keys()) {
     ret[key] = srcParams
       .get(key)
-      .split(",")
-      .filter((it) => it !== "");
+      .split(',')
+      .filter((it) => it !== '');
   }
   return ret;
 };
 
 export const getTypeByResource = (type) => {
-  let t = "";
-  let name = "";
-  let translations = "";
+  let t = '';
+  let name = '';
+  let translations = '';
   switch (type) {
-    case "action_plan":
-      t = "action";
-      name = "Action Plan";
-      translations = "resource";
+    case 'action_plan':
+      t = 'action';
+      name = 'Action Plan';
+      translations = 'resource';
       break;
-    case "event":
-      t = "event_flexible";
-      name = "Event";
-      translations = "event";
+    case 'event':
+      t = 'event_flexible';
+      name = 'Event';
+      translations = 'event';
       break;
-    case "initiative":
-      t = "initiative";
-      name = "Initiative";
-      translations = "initiative";
+    case 'initiative':
+      t = 'initiative';
+      name = 'Initiative';
+      translations = 'initiative';
       break;
-    case "policy":
-      t = "policy";
-      name = "Policy";
-      translations = "policy";
+    case 'policy':
+      t = 'policy';
+      name = 'Policy';
+      translations = 'policy';
       break;
-    case "financing_resource":
-      t = "financing";
-      name = "Financing Resource";
-      translations = "resource";
+    case 'financing_resource':
+      t = 'financing';
+      name = 'Financing Resource';
+      translations = 'resource';
       break;
-    case "technical_resource":
-      t = "technical";
-      name = "Technical Resource";
-      translations = "resource";
+    case 'technical_resource':
+      t = 'technical';
+      name = 'Technical Resource';
+      translations = 'resource';
       break;
-    case "technology":
-      t = "technology";
-      name = "Technology";
-      translations = "technology";
+    case 'technology':
+      t = 'technology';
+      name = 'Technology';
+      translations = 'technology';
       break;
   }
   return { type: t, name: name, translations: translations };
@@ -233,39 +233,57 @@ export const getTypeByResource = (type) => {
 
 export const languageOptions = [
   {
-    label: "Arabic",
-    key: "0",
-    value: "ar",
-    dbValue: "ar",
+    label: 'Arabic',
+    key: '0',
+    value: 'ar',
+    dbValue: 'ar',
   },
   {
-    label: "Chinese",
-    key: "1",
-    value: "cn",
-    dbValue: "zh",
+    label: 'Chinese',
+    key: '1',
+    value: 'cn',
+    dbValue: 'zh',
   },
   {
-    label: "French",
-    key: "3",
-    value: "fr",
-    dbValue: "fr",
+    label: 'French',
+    key: '3',
+    value: 'fr',
+    dbValue: 'fr',
   },
   {
-    label: "Russian",
-    key: "4",
-    value: "ru",
-    dbValue: "ru",
+    label: 'Russian',
+    key: '4',
+    value: 'ru',
+    dbValue: 'ru',
   },
   {
-    label: "Spanish",
-    key: "5",
-    value: "es",
-    dbValue: "es",
+    label: 'Spanish',
+    key: '5',
+    value: 'es',
+    dbValue: 'es',
   },
   {
-    label: "English",
-    key: "6",
-    value: "en",
-    dbValue: "en",
+    label: 'English',
+    key: '6',
+    value: 'en',
+    dbValue: 'en',
   },
 ];
+
+export function stripHtml(html) {
+  let tmp = document.createElement('DIV');
+  tmp.innerHTML = html;
+  return tmp.textContent || tmp.innerText || '';
+}
+
+export function transformStrapiResponse(value) {
+  return value.map((item) => {
+    return { id: item.id, ...item.attributes };
+  });
+}
+
+export const getApiUrl = () => {
+  return (
+    process.env.REACT_APP_API_URL || 'https://unep-gpml.akvotest.org/strapi'
+  );
+};

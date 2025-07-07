@@ -1,9 +1,24 @@
-import { Button, Divider, Modal } from "antd";
-import FullMenu from "../../components/full-menu/full-menu";
-import MenuBar from "../../components/menu";
-import ContactModal from "components/contact-modal";
-import React, { useState } from "react";
-import "./style.scss";
+import { Button, Divider, Modal, Card } from 'antd';
+import { Link } from 'react-router-dom';
+import MenuBar from '../../components/menu';
+import ContactModal from 'components/contact-modal';
+import React, { useEffect, useState } from 'react';
+import './style.scss';
+import { KnowledgeLibrary } from 'components/icons';
+import { CaseStudy } from 'components/icons';
+import { LearningCenter } from 'components/icons';
+import { Database } from 'components/icons';
+import { Dashboard } from 'components/icons';
+import { Map } from 'components/icons';
+import { Network } from 'components/icons';
+import { Events } from 'components/icons';
+import { Search } from 'components/icons';
+import { stripHtml } from 'utils/misc';
+import { getApiUrl } from 'utils/misc';
+import { transformStrapiResponse } from 'utils/misc';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper';
+import { ArrowRightOutlined } from '@ant-design/icons';
 
 const Home = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -12,11 +27,16 @@ const Home = () => {
     <div id="landing">
       <div className="hero">
         <MenuBar landing />
-        <div className="ui container">
-          <h1>East Asian Seas Regional Node</h1>
+        <div className="ui container landing-content">
+          <span className="sub-heading">REGIONAL NODE</span>
+          <h1>East Asian Seas</h1>
           <div className="gpml">
-            <span>of the</span>
-            <img src="/gpml.svg" alt="GPML" />
+            <div>
+              <img src="/unep-landing.svg" alt="GPML" />
+            </div>
+            <div>
+              <img src="/plastic-hub.svg" alt="GPML" />
+            </div>
           </div>
           <h4>
             The web platform of the Regional Node provides stakeholders in the
@@ -33,15 +53,15 @@ const Home = () => {
           >{`Read more`}</Button>
         </div>
       </div>
-      <div className="menu-section">
-        <div className="ui container">
-          <FullMenu />
-        </div>
+      <div className="highlights">
+        <FeatureCards />
+        <LatestNews />
       </div>
       <div className="contact-section">
         <div className="ui container">
           <h5>Don’t hesitate to give us feedback or get involved</h5>
           <Button
+            type="ghost"
             size="large"
             onClick={() => {
               setShowContactModal(true);
@@ -53,22 +73,47 @@ const Home = () => {
       </div>
       <div className="supporters-section">
         <div className="ui container">
+          <h5>Our partners and sponsors</h5>
+        </div>
+        <div className="ui container">
           <div className="col">
-            <a target="_blank" href="http://www.sea-circular.org/">
-              <img src="/sea-circular.png" alt="SEA Circular" width={320} />
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://gpmarinelitter.org/"
+            >
+              <img src="/unep-combined.svg" alt="GPML" width={280} />
             </a>
           </div>
           <div className="col">
-            <img src="/sweden-sverige.png" alt="Sweden Sverige" width={306} />
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://gpmarinelitter.org/"
+            >
+              <img src="/giz.svg" alt="GPML" width={280} />
+            </a>
           </div>
           <div className="col">
-            <a target="_blank" href="https://gpmarinelitter.org/">
-              <img
-                src="/gpml-colorful.svg"
-                alt="GPML"
-                style={{ maxWidth: 380 }}
-              />
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://gpmarinelitter.org/"
+            >
+              <img src="/giz-buv.svg" alt="GPML" width={250} />
             </a>
+          </div>
+          <div className="col">
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="http://www.sea-circular.org/"
+            >
+              <img src="/sea-circular.svg" alt="SEA Circular" width={250} />
+            </a>
+          </div>
+          <div className="col">
+            <img src="/sweden-sverige.svg" alt="Sweden Sverige" width={280} />
           </div>
         </div>
       </div>
@@ -109,8 +154,12 @@ const Home = () => {
         knowledge, capacity and networking needs and priorities, leveraging
         engagement across stakeholder groups and building on and providing
         linkages to the global-level framework provided by the GPML. The
-        Regional Node is linked to the{" "}
-        <a href="https://digital.gpmarinelitter.org/" target="_blank">
+        Regional Node is linked to the{' '}
+        <a
+          href="https://digital.gpmarinelitter.org/"
+          target="_blank"
+          rel="noreferrer"
+        >
           Global Digital Platform of the GPML
         </a>
         .
@@ -128,7 +177,7 @@ const Home = () => {
         UNEP Ecosystems Division in Nairobi.
         <br />
         <br />
-        <a href="www.cobsea.org" target="_blank">
+        <a href="www.cobsea.org" target="_blank" rel="noreferrer">
           www.cobsea.org
         </a>
       </Modal>
@@ -139,6 +188,333 @@ const Home = () => {
           setShowContactModal,
         }}
       />
+    </div>
+  );
+};
+
+const FeatureCards = () => {
+  return (
+    <div className="feature-cards">
+      <div className="ui container">
+        <span className="label">FEATURES</span>
+        <h3>Explore The Platform</h3>
+        <div className="feature-container">
+          <Link to="/knowledge-hub" className="feature-card">
+            <div className="img">
+              <img
+                src="/knowledge-hub.svg"
+                width={250}
+                height={180}
+                alt="knowledge hub"
+              />
+            </div>
+            <div className="cnt">
+              <h5>Knowledge Hub</h5>
+              <div className="feature-items">
+                <div className="feature-item">
+                  <div className="icon">
+                    <KnowledgeLibrary />
+                  </div>
+                  <div className="content">
+                    <h6>Knowledge library</h6>
+                    <p>National & regional policies and initiatives</p>
+                  </div>
+                </div>
+                <div className="feature-item">
+                  <div className="icon">
+                    <CaseStudy />
+                  </div>
+                  <div className="content">
+                    <h6>Case studies</h6>
+                    <p>A map of good practices</p>
+                  </div>
+                </div>
+                <div className="feature-item">
+                  <div className="icon">
+                    <LearningCenter />
+                  </div>
+                  <div className="content">
+                    <h6>Learning centre</h6>
+                    <p>Learning and capacity-building resources</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Link>
+
+          <Link to="/data/maps" className="feature-card">
+            <div className="img">
+              <img
+                src="/data-hub.svg"
+                width={250}
+                height={180}
+                alt="data hub"
+              />
+            </div>
+            <div className="cnt">
+              <h5>Data Hub</h5>
+              <div className="feature-items">
+                <div className="feature-item">
+                  <div className="icon">
+                    <Database />
+                  </div>
+                  <div className="content">
+                    <h6>Research database</h6>
+                    <p>Data sets on plastic pollution and marine litter</p>
+                  </div>
+                </div>
+                <div className="feature-item">
+                  <div className="icon">
+                    <Map />
+                  </div>
+                  <div className="content">
+                    <h6>Maps</h6>
+                    <p>Visual map of location-specific data</p>
+                  </div>
+                </div>
+                <div className="feature-item">
+                  <div className="icon">
+                    <Dashboard />
+                  </div>
+                  <div className="content">
+                    <h6>Country dashboard</h6>
+                    <p>A snapshot of plastic flows</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Link>
+
+          <Link to="/community-hub" className="feature-card">
+            <div className="img">
+              <img
+                src="/community-hub.svg"
+                width={250}
+                height={180}
+                alt="community"
+              />
+            </div>
+            <div className="cnt">
+              <h5>Community Hub</h5>
+              <div className="feature-items">
+                <div className="feature-item">
+                  <div className="icon">
+                    <Search />
+                  </div>
+                  <div className="content">
+                    <h6>Research network</h6>
+                    <p>Directory of organizations</p>
+                  </div>
+                </div>
+                <div className="feature-item">
+                  <div className="icon">
+                    <Events />
+                  </div>
+                  <div className="content">
+                    <h6>Events</h6>
+                    <p>Upcoming sector events</p>
+                  </div>
+                </div>
+                <div className="feature-item">
+                  <div className="icon">
+                    <Network />
+                  </div>
+                  <div className="content">
+                    <h6>Partner network</h6>
+                    <p>Partners collaborating through joint action</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const LatestNews = () => {
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+  const apiUrl = getApiUrl();
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const response = await fetch(
+          `${apiUrl}/api/posts?populate=cover&sort=id:desc&pagination[limit]=8`
+        );
+        const data = await response.json();
+        setItems(transformStrapiResponse(data.data || data));
+      } catch (error) {
+        console.error('Error fetching news:', error);
+        setItems([
+          {
+            id: 1,
+            title: 'Marine Conservation Initiative Launched',
+            content:
+              'A new comprehensive marine conservation program has been launched to protect coral reefs and marine biodiversity in the East Asian Seas region.',
+            slug: 'marine-conservation-initiative',
+            cover: {
+              data: {
+                attributes: { formats: { medium: { url: '/news-1.jpg' } } },
+              },
+            },
+          },
+          {
+            id: 2,
+            title: 'Plastic Pollution Research Update',
+            content:
+              'Recent research reveals significant progress in understanding microplastic distribution patterns across Southeast Asian coastal waters.',
+            slug: 'plastic-pollution-research-update',
+            cover: {
+              data: {
+                attributes: { formats: { medium: { url: '/news-2.jpg' } } },
+              },
+            },
+          },
+          {
+            id: 3,
+            title: 'Regional Partnership Summit 2025',
+            content:
+              'The annual COBSEA partnership summit brings together stakeholders from nine countries to discuss marine litter action plans.',
+            slug: 'regional-partnership-summit-2025',
+            cover: {
+              data: {
+                attributes: { formats: { medium: { url: '/news-3.jpg' } } },
+              },
+            },
+          },
+          {
+            id: 4,
+            title: 'New Data Dashboard Released',
+            content:
+              'Interactive country dashboard now available providing real-time insights into plastic flows and marine pollution indicators.',
+            slug: 'new-data-dashboard-released',
+            cover: {
+              data: {
+                attributes: { formats: { medium: { url: '/news-4.jpg' } } },
+              },
+            },
+          },
+        ]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchNews();
+  }, [apiUrl]);
+
+  console.log('Latest news items:', items);
+
+  if (loading) {
+    return (
+      <div className="latest-news">
+        <div className="ui container">
+          <div className="loading-state">Loading latest news...</div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="latest-news">
+      <div className="ui container">
+        <div className="news-wrapper">
+          <span className="label">HIGHLIGHTS</span>
+          <h3>Latest news</h3>
+        </div>
+
+        <Swiper
+          slidesPerView={isMobile ? 1 : Math.min(items.length, 4)}
+          spaceBetween={20}
+          modules={[Pagination]}
+          pagination={{
+            clickable: true,
+          }}
+          breakpoints={{
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 20,
+            },
+            1024: {
+              slidesPerView: 4,
+              spaceBetween: 20,
+            },
+          }}
+        >
+          {items.map((item, index) => (
+            <SwiperSlide key={item.id || index}>
+              <Card
+                bordered={false}
+                cover={
+                  <div className="cover-image-container">
+                    <div className="cover-image-overlay"></div>
+                    <Link to={`/post/${item.id}-${item.slug}`}>
+                      <div
+                        style={{
+                          width: '100%',
+                          height: '220px',
+                          background: item.cover?.data?.attributes?.formats
+                            ?.medium?.url
+                            ? `url(${item.cover.data.attributes.formats.medium.url})`
+                            : 'linear-gradient(135deg, #91CAC1 0%, #5D8D94 100%)',
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          color: 'white',
+                          fontSize: '18px',
+                          fontWeight: '600',
+                          textAlign: 'center',
+                          padding: '20px',
+                          borderRadius: '16px',
+                        }}
+                      >
+                        {!item.cover?.data?.attributes?.formats?.medium
+                          ?.url && <span>Latest News</span>}
+                      </div>
+                    </Link>
+                  </div>
+                }
+                className="news-card"
+              >
+                <Link
+                  to={`/post/${item.id}-${item.slug}`}
+                  className="news-title-link"
+                >
+                  <h5 className="bold news-title">{item.title}</h5>
+                </Link>
+                <p className="news-excerpt">
+                  {stripHtml(item.content)?.substring(0, 150)}...
+                </p>
+                <Link to={`/post/${item.id}-${item.slug}`}>
+                  <Button type="link" className="read-more-btn">
+                    Read More <ArrowRightOutlined />
+                  </Button>
+                </Link>
+              </Card>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </div>
   );
 };
