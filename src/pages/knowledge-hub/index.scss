@@ -59,6 +59,16 @@
                 border-bottom: 1px solid #ccc;
                 padding-bottom: 20px;
 
+                .ant-collapse-expand-icon {
+                    rotate: 180deg;
+                }
+
+                &.ant-collapse-item-active {
+                    .ant-collapse-expand-icon {
+                        rotate: 360deg;
+                    }
+                }
+
                 .ant-collapse-header {
                     background-color: transparent;
                     padding: 0;
@@ -69,6 +79,11 @@
                     .ant-collapse-expand-icon {
                         position: absolute;
                         right: -10px;
+
+                        path {
+                            stroke: $primaryDarkBlue;
+                            stroke-width: 2;
+                        }
                     }
                 }
 

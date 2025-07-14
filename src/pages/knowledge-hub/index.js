@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import './index.scss';
-import { Check2, Search } from '../../components/icons';
+import { Check2, DropdownIcon, Search } from '../../components/icons';
 import api from '../../utils/api';
 import {
   Collapse,
@@ -372,7 +372,13 @@ const KnowledgeHub = ({ setLoginVisible, isAuthenticated }) => {
             onChange={handleSearchChange}
           />
           <div className="caps-heading-xs">browse resources by</div>
-          <Collapse onChange={handleCollapseChange} activeKey={collapseKeys}>
+          <Collapse
+            onChange={handleCollapseChange}
+            activeKey={collapseKeys}
+            expandIcon={({ isActive }) =>
+              isActive ? <DropdownIcon /> : <DropdownIcon />
+            }
+          >
             <Collapse.Panel
               key="p1"
               header={<h4 className="h-xs w-semi">Life Cycle Stage</h4>}
