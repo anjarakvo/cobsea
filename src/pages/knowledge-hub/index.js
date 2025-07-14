@@ -16,10 +16,10 @@ import {
 import { debounce } from 'lodash';
 import { UIStore } from '../../store';
 import { DownOutlined, LoadingOutlined } from '@ant-design/icons';
-import { ResourceCard } from 'components/resource-cards';
 import DetailModal from 'pages/detail/modal';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import bodyScrollLock from 'utils/scroll-utils';
+import ResourceCard from 'components/resource-card';
 
 const lifecycleStageTags = [
   `Production`,
@@ -262,9 +262,8 @@ const KnowledgeHub = ({ setLoginVisible, isAuthenticated }) => {
     updateParams({ tag: allTags.length > 0 ? allTags.join(',') : undefined });
   };
 
-  const showModal = ({ e, type, id }) => {
-    console.log('showModal', type, id);
-    return false;
+  const showModal = ({ e, item }) => {
+    const { type, id } = item;
     e.preventDefault();
     if (type && id) {
       const detailUrl = `/${type}/${id}`;
@@ -473,19 +472,14 @@ const KnowledgeHub = ({ setLoginVisible, isAuthenticated }) => {
         )}
         <div className="results">
           {results?.map((result) => (
-            <div
-              key={result.id}
+            <Link
+              to={`/${result.type.replace(/_/g, '-')}/${result.id}`}
               onClick={(e) => {
                 e.preventDefault();
-                showModal({
-                  e,
-                  type: result.type,
-                  id: result.id,
-                });
               }}
             >
-              <ResourceCard item={result} />
-            </div>
+              <ResourceCard item={result} onClick={showModal} />
+            </Link>
           ))}
           {results?.length === 0 && !loading && (
             <>
