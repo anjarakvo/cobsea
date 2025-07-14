@@ -1,25 +1,24 @@
-import React from "react";
-import "./style.scss";
-import { Col, Avatar } from "antd";
-import { ArrowRightOutlined } from "@ant-design/icons";
-import technicalResource from "../../images/placeholders/technical-resource-placeholder.png";
-import actionPlan from "../../images/placeholders/action-plan-placeholder.png";
-import policy from "../../images/placeholders/policy-placeholder.png";
-import financingResource from "../../images/placeholders/financing-resource-placeholder.png";
-import technology from "../../images/placeholders/technology-placeholder.png";
-import initiative from "../../images/placeholders/initiative-placeholder.png";
-import event from "../../images/placeholders/event-placeholder.png";
-import { topicNames } from "../../utils/misc";
+import React from 'react';
+import './style.scss';
+import { Avatar } from 'antd';
+import { ArrowRightOutlined } from '@ant-design/icons';
+import technicalResource from '../../images/placeholders/technical-resource-placeholder.png';
+import actionPlan from '../../images/placeholders/action-plan-placeholder.png';
+import policy from '../../images/placeholders/policy-placeholder.png';
+import financingResource from '../../images/placeholders/financing-resource-placeholder.png';
+import technology from '../../images/placeholders/technology-placeholder.png';
+import initiative from '../../images/placeholders/initiative-placeholder.png';
+import event from '../../images/placeholders/event-placeholder.png';
+import { topicNames } from '../../utils/misc';
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination as SwiperPagination, Navigation } from "swiper";
-// swiper bundle styles
-import "swiper/swiper.min.css";
-import "swiper/modules/free-mode/free-mode.min.css";
-import "swiper/modules/navigation/navigation.scss";
-import "swiper/modules/pagination/pagination.min.css";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination as SwiperPagination, Navigation } from 'swiper';
+import 'swiper/swiper.min.css';
+import 'swiper/modules/free-mode/free-mode.min.css';
+import 'swiper/modules/navigation/navigation.scss';
+import 'swiper/modules/pagination/pagination.min.css';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const Card = ({ showMoreCardClick, showMoreCardHref, children }) => {
   if (showMoreCardClick) {
@@ -69,7 +68,7 @@ const ResourceCards = ({
     <Swiper
       spaceBetween={0}
       slidesPerGroup={4}
-      slidesPerView={"auto"}
+      slidesPerView={'auto'}
       pagination={{
         clickable: true,
       }}
@@ -95,28 +94,28 @@ const ResourceCards = ({
 };
 
 const getType = (type) => {
-  let t = "";
+  let t = '';
   switch (type) {
-    case "Action Plan":
-      t = "action_plan";
+    case 'Action Plan':
+      t = 'action_plan';
       break;
-    case "Event":
-      t = "event";
+    case 'Event':
+      t = 'event';
       break;
-    case "Initiative":
-      t = "initiative";
+    case 'Initiative':
+      t = 'initiative';
       break;
-    case "Policy":
-      t = "policy";
+    case 'Policy':
+      t = 'policy';
       break;
-    case "Financing Resource":
-      t = "financing_resource";
+    case 'Financing Resource':
+      t = 'financing_resource';
       break;
-    case "Technical Resource":
-      t = "technical_resource";
+    case 'Technical Resource':
+      t = 'technical_resource';
       break;
-    case "Technology":
-      t = "technology";
+    case 'Technology':
+      t = 'technology';
       break;
     default:
       t = type;
@@ -128,35 +127,35 @@ const getThumbnail = (item) => {
   if (item?.thumbnail) return item.thumbnail;
   if (item?.image) return item.image;
   if (
-    item?.type === "action_plan" ||
-    item?.type?.toLowerCase() === "action plan"
+    item?.type === 'action_plan' ||
+    item?.type?.toLowerCase() === 'action plan'
   ) {
     return actionPlan;
   }
-  if (item?.type?.toLowerCase() === "policy") {
+  if (item?.type?.toLowerCase() === 'policy') {
     return policy;
   }
-  if (item?.type?.toLowerCase() === "technology") {
+  if (item?.type?.toLowerCase() === 'technology') {
     return technology;
   }
-  if (item?.type?.toLowerCase() === "event") {
+  if (item?.type?.toLowerCase() === 'event') {
     return event;
   }
   if (
-    item?.type?.toLowerCase() === "initiative" ||
-    item?.type?.toLowerCase() === "initiative"
+    item?.type?.toLowerCase() === 'initiative' ||
+    item?.type?.toLowerCase() === 'initiative'
   ) {
     return initiative;
   }
   if (
-    item?.type === "technical_resource" ||
-    item?.type?.toLowerCase() === "technical resource"
+    item?.type === 'technical_resource' ||
+    item?.type?.toLowerCase() === 'technical resource'
   ) {
     return technicalResource;
   }
   if (
-    item?.type === "financing_resource" ||
-    item?.type?.toLowerCase() === "financing resource"
+    item?.type === 'financing_resource' ||
+    item?.type?.toLowerCase() === 'financing resource'
   ) {
     return financingResource;
   }
@@ -166,23 +165,23 @@ export const ResourceCard = ({ item, index, showModal }) => {
   return (
     <div className="resource-card" key={index}>
       <Link
-        to={`/${getType(item?.type)?.replace("_", "-")}/${item.id}`}
+        to={`/${getType(item?.type)?.replace('_', '-')}/${item.id}`}
         id={item.id}
-        type={getType(item?.type)?.replace("_", "-")}
+        type={getType(item?.type)?.replace('_', '-')}
         className="description-holder"
         style={{
           backgroundImage: `linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url(${getThumbnail(
             item
           )})`,
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
         }}
         onClick={showModal}
       >
         <div>
           <h3>{item.title}</h3>
-          <h4>{item?.type ? topicNames(item?.type) : ""}</h4>
+          <h4>{item?.type ? topicNames(item?.type) : ''}</h4>
         </div>
         <div className="bottom-panel">
           <div>
@@ -190,15 +189,15 @@ export const ResourceCard = ({ item, index, showModal }) => {
               maxCount={2}
               size="large"
               maxStyle={{
-                color: "#f56a00",
-                backgroundColor: "#fde3cf",
-                cursor: "pointer",
+                color: '#f56a00',
+                backgroundColor: '#fde3cf',
+                cursor: 'pointer',
               }}
             >
               {item?.entityConnections?.map((connection, index) => (
                 <Avatar
                   className="related-content-avatar"
-                  style={{ border: "none" }}
+                  style={{ border: 'none' }}
                   key={item?.entity || index}
                   src={
                     connection?.image ? (
@@ -208,8 +207,8 @@ export const ResourceCard = ({ item, index, showModal }) => {
                     ) : (
                       <Avatar
                         style={{
-                          backgroundColor: "#09689A",
-                          verticalAlign: "middle",
+                          backgroundColor: '#09689A',
+                          verticalAlign: 'middle',
                         }}
                         size={40}
                       >
