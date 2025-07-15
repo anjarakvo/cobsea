@@ -1,18 +1,19 @@
-import React from "react";
-import "./styles.scss";
-import { Col, Popover, Input, Button, Select } from "antd";
+import React, { useState } from 'react';
+import './styles.scss';
+import { Col, Popover, Input, Button, Select } from 'antd';
 import {
   EyeFilled,
   HeartTwoTone,
   MailTwoTone,
   PlayCircleTwoTone,
-} from "@ant-design/icons";
+} from '@ant-design/icons';
 import {
   resourceTypeToTopicType,
   topicNames,
   languageOptions,
-} from "utils/misc";
-import classNames from "classnames";
+} from 'utils/misc';
+import classNames from 'classnames';
+import { ArrowRight } from 'components/icons';
 
 export const HeaderButtons = ({
   data,
@@ -34,7 +35,7 @@ export const HeaderButtons = ({
   const bookmarked =
     relation &&
     relation.association &&
-    relation.association.indexOf("interested in") !== -1;
+    relation.association.indexOf('interested in') !== -1;
 
   const handleChangeRelation = (relationType) => {
     let association = relation ? [...relation.association] : [];
@@ -46,7 +47,7 @@ export const HeaderButtons = ({
     handleRelationChange({
       topicId: parseInt(id),
       association,
-      topic: resourceTypeToTopicType(type.replace("-", "_")),
+      topic: resourceTypeToTopicType(type.replace('-', '_')),
     });
   };
 
@@ -58,172 +59,60 @@ export const HeaderButtons = ({
     <Col className="tool-buttons">
       {data?.url && (
         <Button
-          className="view-button "
-          icon={<EyeFilled />}
-          type="primary"
-          shape="round"
-          size="middle"
+          size="small"
+          className="view-button"
           onClick={(e) => {
             e.preventDefault();
             window.open(
               `${
-                data?.url && data?.url?.includes("https://")
+                data?.url && data?.url?.includes('https://')
                   ? data?.url
                   : data?.languages
                   ? data?.languages[0]?.url
-                  : data?.url?.includes("http://")
+                  : data?.url?.includes('http://')
                   ? data?.url
-                  : "https://" + data?.url
+                  : 'https://' + data?.url
               }`,
-              "_blank"
+              '_blank'
             );
           }}
         >
-          View
+          View Source
+          <ArrowRight />
         </Button>
       )}
       {data?.recording && (
         <Button
           className="recording-button two-tone-button"
           icon={<PlayCircleTwoTone twoToneColor="#09689a" />}
-          type="primary"
-          shape="round"
-          size="middle"
+          size="small"
           ghost
           onClick={() => {
             window.open(
-              data?.recording.includes("https://")
+              data?.recording.includes('https://')
                 ? data?.recording
-                : "https://" + data?.recording,
-              "_blank"
+                : 'https://' + data?.recording,
+              '_blank'
             );
           }}
         >
           Recording
         </Button>
       )}
-      {data?.url && (
-        <Popover
-          placement="top"
-          overlayStyle={{
-            width: "22vw",
-          }}
-          overlayClassName="popover-share"
-          content={
-            <Input.Group compact>
-              <Input
-                style={{ width: "calc(100% - 20%)" }}
-                defaultValue={`${
-                  data?.url && data?.url?.includes("https://")
-                    ? data?.url
-                    : data?.languages
-                    ? data?.languages[0]?.url
-                    : data?.url && data?.url?.includes("http://")
-                    ? data?.url
-                    : data?.url
-                    ? "https://" + data?.url
-                    : "https://"
-                }`}
-                disabled
-              />
-              <Button
-                style={{ width: "20%" }}
-                type="primary"
-                disabled={!data?.url}
-                onClick={() => {
-                  navigator.clipboard.writeText(
-                    data?.url && data?.url?.includes("https://")
-                      ? data?.languages
-                        ? data?.languages[0]?.url
-                        : data?.url
-                      : "https://" + data?.url
-                  );
-                  handleVisibleChange();
-                }}
-              >
-                Copy
-              </Button>
-            </Input.Group>
-          }
-          trigger="click"
-          visible={visible}
-          onVisibleChange={handleVisibleChange}
-        >
-          <div>
-            <Button
-              className="share-button two-tone-button"
-              icon={<MailTwoTone twoToneColor="#09689a" />}
-              type="primary"
-              shape="round"
-              size="middle"
-              ghost
-              onClick={() => {
-                navigator.clipboard.writeText(
-                  data?.url && data?.url?.includes("https://")
-                    ? data?.languages
-                      ? data?.languages[0]?.url
-                      : data?.url
-                    : "https://" + data?.url
-                );
-                handleVisibleChange();
-              }}
-            >
-              Share
-            </Button>
-          </div>
-        </Popover>
-      )}
-      <Button
-        className={classNames("bookmark-button two-tone-button", {
-          bookmarked,
-        })}
-        icon={<HeartTwoTone />}
-        type="primary"
-        shape="round"
-        size="middle"
-        ghost
-        onClick={() => {
-          handleChangeRelation("interested in");
-        }}
-      >
-        {bookmarked ? "Bookmarked" : "Bookmark"}
-      </Button>
-      {canEdit() && (
-        <Button
-          className="edit-button two-tone-button"
-          type="primary"
-          shape="round"
-          size="middle"
-          ghost
-          onClick={handleEditBtn}
-        >
-          Edit
-        </Button>
-      )}
-      {canDelete() && (
-        <Button
-          className="delete-button two-tone-button"
-          type="primary"
-          shape="round"
-          size="middle"
-          ghost
-          onClick={handleDeleteBtn}
-        >
-          Delete
-        </Button>
-      )}
-      {translations && translations.hasOwnProperty("title") && (
+
+      <ShareBtn data={data} />
+      {translations && translations.hasOwnProperty('title') && (
         <div className="language-select">
           <Select
-            defaultValue={"en"}
+            defaultValue={'en'}
             placeholder="Select language"
             onChange={(v) => {
-              if (v === "en") setLanguage("");
+              if (v === 'en') setLanguage('');
               else setLanguage(v);
             }}
             dropdownClassName="language-select-menu"
           >
-            {["en"]
+            {['en']
               .concat(Object.keys(translations.title))
               .filter((item) => item !== selectedLanguage)
               .map((lang) => (
@@ -280,27 +169,27 @@ const Header = ({
     relation,
     handleRelationChange
   ) => {
-    const noEditTopics = new Set(["stakeholder"]);
+    const noEditTopics = new Set(['stakeholder']);
 
     const resourceOwners = data?.stakeholderConnections
-      ?.filter((stakeholder) => stakeholder?.role?.toLowerCase() === "owner")
+      ?.filter((stakeholder) => stakeholder?.role?.toLowerCase() === 'owner')
       .map((stakeholder) => stakeholder?.stakeholderId);
 
-    const find = resourceOwners.includes(profile?.id);
+    const find = resourceOwners?.includes(profile?.id);
 
     const canEdit = () =>
       isAuthenticated &&
-      profile.reviewStatus === "APPROVED" &&
-      (profile.role === "ADMIN" ||
+      profile.reviewStatus === 'APPROVED' &&
+      (profile.role === 'ADMIN' ||
         profile.id === params.createdBy ||
         data.owners.includes(profile.id) ||
         find) &&
-      ((params.type !== "initiative" && !noEditTopics.has(params.type)) ||
-        (params.type === "initiative" && params.id > 10000));
+      ((params.type !== 'initiative' && !noEditTopics.has(params.type)) ||
+        (params.type === 'initiative' && params.id > 10000));
 
     const canDelete = () =>
       isAuthenticated &&
-      ((profile.reviewStatus === "APPROVED" && profile.role === "ADMIN") ||
+      ((profile.reviewStatus === 'APPROVED' && profile.role === 'ADMIN') ||
         find);
 
     return (
@@ -349,6 +238,80 @@ const Header = ({
       )}
     </div>
   );
+};
+
+const ShareBtn = ({ data }) => {
+  const [visible, setVisible] = useState(false);
+  if (data?.url) {
+    return (
+      <Popover
+        placement="top"
+        overlayStyle={{
+          width: '22vw',
+        }}
+        overlayClassName="popover-share"
+        content={
+          <Input.Group compact>
+            <Input
+              size="small"
+              style={{ width: 'calc(100% - 20%)' }}
+              defaultValue={`${
+                data?.url && data?.url?.includes('https://')
+                  ? data?.url
+                  : data?.languages
+                  ? data?.languages[0]?.url
+                  : data?.url && data?.url?.includes('http://')
+                  ? data?.url
+                  : data?.url
+                  ? 'https://' + data?.url
+                  : 'https://'
+              }`}
+              disabled
+            />
+            <Button
+              size="small"
+              disabled={!data?.url}
+              onClick={() => {
+                navigator.clipboard.writeText(
+                  data?.url && data?.url?.includes('https://')
+                    ? data?.languages
+                      ? data?.languages[0]?.url
+                      : data?.url
+                    : 'https://' + data?.url
+                );
+                setVisible(false);
+              }}
+            >
+              Copy
+            </Button>
+          </Input.Group>
+        }
+        trigger="click"
+        visible={visible}
+        onVisibleChange={() => {
+          setVisible(!visible);
+        }}
+      >
+        <Button
+          className="share-button two-tone-button"
+          ghost
+          size="small"
+          onClick={() => {
+            navigator.clipboard.writeText(
+              data?.url && data?.url?.includes('https://')
+                ? data?.languages
+                  ? data?.languages[0]?.url
+                  : data?.url
+                : 'https://' + data?.url
+            );
+          }}
+        >
+          Share
+        </Button>
+      </Popover>
+    );
+  }
+  return null;
 };
 
 export default Header;

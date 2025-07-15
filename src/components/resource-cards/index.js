@@ -9,7 +9,7 @@ import financingResource from '../../images/placeholders/financing-resource-plac
 import technology from '../../images/placeholders/technology-placeholder.png';
 import initiative from '../../images/placeholders/initiative-placeholder.png';
 import event from '../../images/placeholders/event-placeholder.png';
-import { topicNames } from '../../utils/misc';
+import { pagination, topicNames } from '../../utils/misc';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination as SwiperPagination, Navigation } from 'swiper';
@@ -39,7 +39,7 @@ const Card = ({ showMoreCardClick, showMoreCardHref, children }) => {
 };
 
 const ResourceCards = ({
-  items = [],
+  items,
   showMoreCard,
   showMoreCardAfter = 0,
   showMoreCardClick,
@@ -69,23 +69,19 @@ const ResourceCards = ({
       spaceBetween={0}
       slidesPerGroup={4}
       slidesPerView={'auto'}
-      pagination={{
-        clickable: true,
-      }}
+      pagination={pagination}
       navigation={true}
       modules={[SwiperPagination, Navigation]}
-      className="resource-cards"
+      className={` resource-cards`}
     >
       {firstCard && <SwiperSlide>{firstCard}</SwiperSlide>}
-      {(showMoreCardAfter > 0 ? items?.slice(0, showMoreCardAfter) : items).map(
-        (item) => {
-          return (
-            <SwiperSlide key={item?.id}>
-              <ResourceCard item={item} showModal={showModal} />
-            </SwiperSlide>
-          );
-        }
-      )}
+      {items?.slice(0, showMoreCardAfter).map((item) => {
+        return (
+          <SwiperSlide key={item?.id}>
+            <ResourceCard item={item} showModal={showModal} />
+          </SwiperSlide>
+        );
+      })}
       {showMoreCard && (
         <SwiperSlide className="show-more-card">{showMoreCard}</SwiperSlide>
       )}
@@ -162,29 +158,12 @@ const getThumbnail = (item) => {
 };
 
 export const ResourceCard = ({ item, index, showModal }) => {
-  return (
-    <div className="resource-card" key={index}>
-      <Link
-        to={`/${getType(item?.type)?.replace('_', '-')}/${item.id}`}
-        id={item.id}
-        type={getType(item?.type)?.replace('_', '-')}
-        className="description-holder"
-        style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url(${getThumbnail(
-            item
-          )})`,
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-        }}
-        onClick={showModal}
-      >
-        <div>
-          <h3>{item.title}</h3>
-          <h4>{item?.type ? topicNames(item?.type) : ''}</h4>
-        </div>
-        <div className="bottom-panel">
-          <div>
+  const innerContent = (
+    <>
+      <h3>{item.title}</h3>
+      <div className="bottom-panel">
+        {item?.entityConnections?.length > 0 && (
+          <div className="connections">
             <Avatar.Group
               maxCount={2}
               size="large"
@@ -220,13 +199,62 @@ export const ResourceCard = ({ item, index, showModal }) => {
               ))}
             </Avatar.Group>
           </div>
-          <div className="read-more">
-            Read More <ArrowRightOutlined />
-          </div>
-        </div>
+        )}
+        <h4>{item?.type ? topicNames(item?.type) : ''}</h4>
+      </div>
+    </>
+  );
+  let thumbnail = item.thumbnail;
+  if (
+    (!thumbnail && item.type === 'financing_resource') ||
+    item.type === 'policy' ||
+    item.type === 'action_plan' ||
+    item.type === 'technical_resource'
+  ) {
+    thumbnail = item.image;
+  }
+  if (!thumbnail || thumbnail == null) {
+    return (
+      <div className="resource-card nothumb" key={item.id}>
+        <Link
+          to={`/${getType(item?.type)?.replace('_', '-')}/${item.id}`}
+          legacyBehavior
+        >
+          <a
+            id={item.id}
+            type={getType(item?.type)?.replace('_', '-')}
+            onClick={showModal}
+            className="nothumb-container"
+          >
+            {innerContent}
+          </a>
+        </Link>
+      </div>
+    );
+  }
+  return (
+    <div className="resource-card" key={item.id}>
+      <Link
+        to={`/${getType(item?.type)?.replace('_', '-')}/${item.id}`}
+        legacyBehavior
+      >
+        <a
+          id={item.id}
+          type={getType(item?.type)?.replace('_', '-')}
+          className="description-holder"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url(${thumbnail})`,
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+          }}
+          onClick={showModal}
+        >
+          {innerContent}
+        </a>
       </Link>
       <div className="thumb-container">
-        <img src={getThumbnail(item)} alt={item?.type} />
+        <img src={thumbnail} alt={item?.type} />
       </div>
     </div>
   );

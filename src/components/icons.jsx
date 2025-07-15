@@ -174,6 +174,7 @@ export const Network = () => (
     />
   </svg>
 );
+
 export const DropdownIcon = () => (
   <svg
     width="14"
@@ -183,5 +184,29 @@ export const DropdownIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
   >
     <path d="M1 0.999999L7 7L13 1" stroke="white" stroke-width="2" />
+  </svg>
+);
+
+export const ArrowRight = ({
+  width = 20,
+  height = 24,
+  viewBox = '0 0 20 24',
+}) => (
+  <svg
+    width={width}
+    height={height}
+    viewBox={viewBox}
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g clipPath="url(#clip0_1_4249)">
+      <path d="M9.75 18L15.75 12L9.75 6" stroke="#020A5B" strokeWidth="1.5" />
+      <path d="M0.75 12L15.75 12" stroke="#020A5B" strokeWidth="1.5" />
+    </g>
+    <defs>
+      <clipPath id="clip0_1_4249">
+        <rect width="19" height="24" fill="white" transform="translate(0.75)" />
+      </clipPath>
+    </defs>
   </svg>
 );

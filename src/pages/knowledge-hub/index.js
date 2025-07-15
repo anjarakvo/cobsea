@@ -266,9 +266,9 @@ const KnowledgeHub = ({ setLoginVisible, isAuthenticated }) => {
     const { type, id } = item;
     e.preventDefault();
     if (type && id) {
-      const detailUrl = `/${type}/${id}`;
+      const detailUrl = `/${type.replace(/_/g, '-')}/${id}`;
       e.preventDefault();
-      setParams({ type, id });
+      setParams({ type: type.replace(/_/g, '-'), id, item });
       window.history.pushState(
         { urlPath: `/${detailUrl}` },
         '',

@@ -8,7 +8,6 @@ import {
   useLocation,
 } from 'react-router-dom';
 import Landing from 'pages/landing';
-import KnowledgeLibrary from 'pages/knowledge-library';
 import CapacityBuilding from 'pages/capacity-building';
 import api from 'utils/api';
 import { UIStore } from './store.js';

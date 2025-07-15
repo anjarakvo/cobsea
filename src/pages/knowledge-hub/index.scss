@@ -4,10 +4,6 @@
     display: flex;
     padding-top: 110px;
 
-    .caps-heading-xs {
-        margin-bottom: 30px;
-    }
-
     @media screen and (max-width: $bpMobile) {
         flex-direction: column;
     }
