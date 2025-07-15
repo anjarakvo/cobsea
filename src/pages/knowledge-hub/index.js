@@ -496,7 +496,7 @@ const KnowledgeHub = ({ setLoginVisible, isAuthenticated }) => {
           )}
         </div>
         {hasMore && results.length > 0 && (
-          <Button size="large" ghost onClick={loadMore} className="load-more">
+          <Button size="xs" ghost onClick={loadMore} className="load-more">
             Load More
           </Button>
         )}
