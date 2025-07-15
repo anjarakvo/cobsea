@@ -2,7 +2,7 @@ import axios from 'axios';
 import humps from 'humps';
 
 export const config = {
-  baseURL: 'https://unep-gpml.akvotest.org/api',
+  baseURL: 'https://globalplasticshub.org/api',
   headers: {
     'Content-Type': 'application/json',
   },

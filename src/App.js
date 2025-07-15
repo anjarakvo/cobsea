@@ -8,7 +8,6 @@ import {
   useLocation,
 } from 'react-router-dom';
 import Landing from 'pages/landing';
-import KnowledgeLibrary from 'pages/knowledge-library';
 import CapacityBuilding from 'pages/capacity-building';
 import api from 'utils/api';
 import { UIStore } from './store.js';
@@ -20,6 +19,7 @@ import CaseStudy from './pages/case-study';
 import Events from './pages/events';
 import Footer from 'footer';
 import MenuBar from 'components/menu';
+import KnowledgeHub from 'pages/knowledge-hub';
 
 Promise.all([
   api.get('/tag'),
@@ -65,7 +65,7 @@ function App() {
       <ScrollToTop />
       <Switch>
         <Route path="/" exact component={Landing} />
-        <Route path="/knowledge-library" component={KnowledgeLibrary} />
+        <Route path="/knowledge-hub" component={KnowledgeHub} />
         <Route
           path="/capacity-building/:view?/:type?"
           component={CapacityBuilding}

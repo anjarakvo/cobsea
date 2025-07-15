@@ -53,6 +53,8 @@ export const topicNames = (topic) => {
     organisation: 'Entity',
     stakeholder: 'Individual',
     capacityBuilding: 'Capacity Building',
+    caseStudy: 'Case Study',
+    project: 'Project',
   };
   return names[humps.camelize(topic)];
 };
@@ -286,4 +288,19 @@ export const getApiUrl = () => {
   return (
     process.env.REACT_APP_API_URL || 'https://unep-gpml.akvotest.org/strapi'
   );
+};
+
+export const lifecycleStageTags = [
+  'Production',
+  'Consumption',
+  'Waste Management',
+  'Legacy Plastics',
+  'Full Life Cycle',
+];
+
+export const pagination = {
+  clickable: true,
+  renderBullet: function (index, className) {
+    return '<div class="' + className + '">' + '<span/>' + '</div>';
+  },
 };

@@ -16,9 +16,11 @@ $green07: #357079;
 $green0: #91C9C147;
 $green01: #DAF9F4;
 $lightGreen: #C6E3DE;
+$lightGreen01: #DAF9F4B2;
 $darkGreen: #162F33;
 $darkGreenBlue400: #5D8D94;
 $darkGreenBlue100: #91CAC1;
+$darkBlue03: #99A0B7;
 
 $blue01: #00aeef;
 $blue02: #09689a;
@@ -34,6 +36,7 @@ $blue11: #374a59;
 $blue12: #18162f;
 
 $primaryDark: #000647;
+$primaryDarkBlue: #020A5B;
 
 $grey01: #d3dee7;
 $grey02: #e9eff3;
@@ -43,6 +46,8 @@ $grey05: #edf2f7;
 
 $orange01: #F0C8B6;
 $orange02: #E8A384;
+$orange03: #F1C7B780;
+$orange04: #F1C7B7;
 
 $bg-dark-primary: #005b70;
 $bg-course-n-training: #1f213d;
@@ -50,3 +55,44 @@ $bg-tools-n-resources: #6d3c3c;
 $bg-education-n-outreach: #2b4937;
 $bg-case-studies: #89662c;
 $bg-events: #5f4373;
+
+$systemError: #b70707;
+$systemWarning5: #f5970a;
+$systemError4: #cc0808;
+$systemError3: #e00909;
+$systemInfo3: #1d90f5;
+$systemInfo5: #0F69B8;
+$systemSuccess4: #06d1a7;
+$systemWarning4: #f5a609;
+
+$inputBg: #F4FFFD;
+
+
+$ff1: var(--font-archia), sans-serif;
+$ff2: var(--font-dm-sans), sans-serif;
+
+// Headings
+$fzXXXL: 64px;
+$lhXXXL: 72px;
+$fzXXL: 48px;
+$lhXXL: 56px;
+$fwXXL: 700;
+$fzXL: 38px;
+$lhXL: 48px;
+$fzL: 32px;
+$lhL: 36px;
+$fzM: 24px;
+$lhM: 28px;
+$fzS: 18px;
+$lhS: 24px;
+$fzXS: 16px;
+$lhXS: 22px;
+$fzXXS: 14px;
+$lhXXS: 20px;
+
+// Paragraph
+$pfL: 22px;
+$plhL: 34px;
+$pfS: 16px;
+$plhS: 22px;
+$bpMobile: 768px;
