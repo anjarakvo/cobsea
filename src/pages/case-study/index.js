@@ -26,12 +26,19 @@ function CaseStudy({ initialItems = [] }) {
             `${strapiURL}/api/cobsea-case-studies?populate=image&populate=cobsea_case_study_tag&populate=pdf`
           );
           const simplifiedItems = response.data.data.map((item) => {
-            const { title, url, cobsea_case_study_tag, description, image } =
-              item.attributes;
+            const {
+              title,
+              url,
+              cobsea_case_study_tag,
+              description,
+              image,
+              pdf,
+            } = item.attributes;
             return {
               title,
               url,
               description,
+              pdf: pdf?.data?.attributes?.url || '',
               category:
                 cobsea_case_study_tag?.data?.attributes?.name ||
                 'Uncategorized',
@@ -147,7 +154,7 @@ const CaseStudyCard = ({ data, loading }) => {
         <Masonry gutter="30px">
           {data.map((item) => (
             <a
-              href={item.url}
+              href={item.pdf || item.url}
               className="learning-centre-card"
               key={item.title}
               target="_blank"
