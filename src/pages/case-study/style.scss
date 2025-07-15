@@ -11,6 +11,30 @@
         color: #000;
     }
 
+    .category-dropdown {
+        .ant-select-selector {
+            border: none;
+            height: auto;
+            border-radius: 4px;
+
+            .ant-select-selection-search-input {
+                height: 100%;
+            }
+
+            .ant-select-selection-item {
+                color: $green07;
+                font-family: var(--font-archia), sans-serif;
+                font-weight: 700;
+                height: 40px;
+                line-height: 40px;
+            }
+
+            .ant-select-selection-item-content {
+                text-transform: uppercase;
+            }
+        }
+    }
+
     .header {
         display: flex;
         justify-content: space-between;
@@ -135,9 +159,7 @@
             img {
                 width: 100%;
                 height: auto;
-                max-height: 300px;
                 display: block;
-                object-fit: cover;
             }
 
             .content {
