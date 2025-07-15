@@ -8,7 +8,7 @@ import {
   useLocation,
 } from 'react-router-dom';
 import Landing from 'pages/landing';
-import CapacityBuilding from 'pages/capacity-building';
+
 import api from 'utils/api';
 import { UIStore } from './store.js';
 import uniqBy from 'lodash/uniqBy';
@@ -20,6 +20,7 @@ import Events from './pages/events';
 import Footer from 'footer';
 import MenuBar from 'components/menu';
 import KnowledgeHub from 'pages/knowledge-hub';
+import CapacityBuilding from 'pages/learning-centre';
 
 Promise.all([
   api.get('/tag'),
@@ -66,10 +67,7 @@ function App() {
       <Switch>
         <Route path="/" exact component={Landing} />
         <Route path="/knowledge-hub" component={KnowledgeHub} />
-        <Route
-          path="/capacity-building/:view?/:type?"
-          component={CapacityBuilding}
-        />
+        <Route path="/knowledge/learning-centre" component={CapacityBuilding} />
         <Route path="/research" component={Research} />
         <Route path="/research-network" component={ResearchNetwork} />
         <Route path="/case-study/:view?/:type?" component={CaseStudy} />
