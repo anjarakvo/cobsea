@@ -4,6 +4,7 @@ import { Empty, Select, Spin, notification } from 'antd';
 import axios from 'axios';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import { DropdownIcon } from 'components/icons';
+import { getStrapiUrl } from 'utils/misc';
 
 function CaseStudy({ initialItems = [] }) {
   const [items, setItems] = useState(initialItems);
@@ -11,7 +12,7 @@ function CaseStudy({ initialItems = [] }) {
   const [loading, setLoading] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('All categories');
 
-  const strapiURL = 'https://globalplasticshub.org/strapi';
+  const strapiURL = getStrapiUrl();
 
   const handleCategoryChange = (value) => {
     setSelectedCategory(value || 'All categories');
@@ -77,7 +78,6 @@ function CaseStudy({ initialItems = [] }) {
           };
         });
 
-        console.log(categoryList);
         setCategories([
           { label: 'All categories', value: 'All categories' },
           ...categoryList.map((cat) => ({
