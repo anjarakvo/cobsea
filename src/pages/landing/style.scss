@@ -30,6 +30,7 @@
 
   .landing-content {
     padding: 20px 0;
+    padding-bottom: 30px;
 
     .ant-btn {
       font-family: var(--font-archia), sans-serif;
@@ -42,7 +43,7 @@
     color: $orange01;
     font-family: var(--font-archia), sans-serif;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     display: block;
   }
 
@@ -52,6 +53,7 @@
     font-size: 52px;
     font-weight: bold;
     line-height: 40px;
+    margin-bottom: 30px;
   }
 
   .gpml {
@@ -71,8 +73,8 @@
   }
 
   h4 {
-    margin-top: 20px;
-    padding-bottom: 30px;
+    margin-top: 30px;
+    padding-bottom: 40px;
     margin-bottom: 0;
     color: $orange01;
     font-family: var(--font-archia), sans-serif;
@@ -90,7 +92,7 @@
 
 .highlights {
   position: relative;
-  padding: 40px 0;
+  padding: 70px 0;
   background: $green01;
   position: relative;
   font-family: var(--font-archia), sans-serif;
@@ -102,15 +104,17 @@
     letter-spacing: 0.2px;
     text-transform: uppercase;
     display: block;
+    padding-bottom: 15px;
   }
 
   h3 {
     font-size: 48px;
     font-weight: 700;
     color: $primaryDark;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
     text-align: left;
     max-width: 600px;
+    line-height: 50px;
   }
 
   &:before {
@@ -127,7 +131,7 @@
 }
 
 .latest-news {
-  padding: 80px 0px;
+  padding: 100px 0px;
 
   @media (max-width: 480px) {
     padding: 40px 0px;
@@ -265,7 +269,7 @@
 .feature-card {
   background: #EEFCFA;
   border-radius: 24px;
-  padding: 40px 30px;
+  padding: 25px;
   text-decoration: none;
   color: inherit;
   transition: all 0.3s ease;
@@ -276,7 +280,8 @@
 
   .img {
     text-align: center;
-    margin-bottom: 30px;
+    margin-top: 15px;
+    margin-bottom: 50px;
     height: 160px;
     display: flex;
     align-items: center;
@@ -293,7 +298,7 @@
       font-size: 36px;
       font-weight: 700;
       color: $green07;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
       text-align: center;
     }
   }
@@ -302,7 +307,7 @@
 .feature-items {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 10px;
 }
 
 .feature-item {
@@ -313,10 +318,10 @@
   border-radius: 16px;
   transition: all 0.2s ease;
   border: 1px solid $lightGreen;
+  cursor: pointer;
 
   &:hover {
     background: $green01;
-    transform: translateX(4px);
   }
 
   .icon {
@@ -481,7 +486,7 @@
   }
 
   background-color: $darkGreenBlue100;
-  padding: 50px 0 90px;
+  padding: 60px 0 70px;
   color: white;
 
   h5 {

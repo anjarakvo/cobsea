@@ -5,6 +5,7 @@ import './style.scss';
 import { useState, useEffect, useRef } from 'react';
 import { Dropdown, Menu, Drawer, Button } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
+import { DropdownIcon } from 'components/icons';
 
 const menuList = [
   {
@@ -146,7 +147,7 @@ const MenuBar = ({ landing }) => {
             cursor: 'pointer',
           }}
         >
-          {item.key} <DownOutlined />
+          {item.key} <DropdownIcon />
         </button>
       </Dropdown>
     ));

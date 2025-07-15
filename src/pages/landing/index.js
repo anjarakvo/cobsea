@@ -82,7 +82,7 @@ const Home = () => {
               rel="noreferrer"
               href="https://gpmarinelitter.org/"
             >
-              <img src="/unep-combined.svg" alt="GPML" width={280} />
+              <img src="/unep-combined.svg" alt="GPML" width={160} />
             </a>
           </div>
           <div className="col">
@@ -91,7 +91,7 @@ const Home = () => {
               rel="noreferrer"
               href="https://gpmarinelitter.org/"
             >
-              <img src="/giz.svg" alt="GPML" width={280} />
+              <img src="/giz.svg" alt="GPML" width={199} />
             </a>
           </div>
           <div className="col">
@@ -100,7 +100,7 @@ const Home = () => {
               rel="noreferrer"
               href="https://gpmarinelitter.org/"
             >
-              <img src="/giz-buv.svg" alt="GPML" width={250} />
+              <img src="/giz-buv.svg" alt="GPML" width={150} />
             </a>
           </div>
           <div className="col">
@@ -109,11 +109,11 @@ const Home = () => {
               rel="noreferrer"
               href="http://www.sea-circular.org/"
             >
-              <img src="/sea-circular.svg" alt="SEA Circular" width={250} />
+              <img src="/sea-circular.svg" alt="SEA Circular" width={115} />
             </a>
           </div>
           <div className="col">
-            <img src="/sweden-sverige.svg" alt="Sweden Sverige" width={280} />
+            <img src="/sweden-sverige.svg" alt="Sweden Sverige" width={163} />
           </div>
         </div>
       </div>
@@ -199,7 +199,7 @@ const FeatureCards = () => {
         <span className="label">FEATURES</span>
         <h3>Explore The Platform</h3>
         <div className="feature-container">
-          <Link to="/knowledge-hub" className="feature-card">
+          <div className="feature-card">
             <div className="img">
               <img
                 src="/knowledge-hub.svg"
@@ -240,9 +240,9 @@ const FeatureCards = () => {
                 </div>
               </div>
             </div>
-          </Link>
+          </div>
 
-          <Link to="/data/maps" className="feature-card">
+          <div className="feature-card">
             <div className="img">
               <img
                 src="/data-hub.svg"
@@ -283,9 +283,9 @@ const FeatureCards = () => {
                 </div>
               </div>
             </div>
-          </Link>
+          </div>
 
-          <Link to="/community-hub" className="feature-card">
+          <div className="feature-card">
             <div className="img">
               <img
                 src="/community-hub.svg"
@@ -326,7 +326,7 @@ const FeatureCards = () => {
                 </div>
               </div>
             </div>
-          </Link>
+          </div>
         </div>
       </div>
     </div>
@@ -416,8 +416,6 @@ const LatestNews = () => {
 
     fetchNews();
   }, [apiUrl]);
-
-  console.log('Latest news items:', items);
 
   if (loading) {
     return (
