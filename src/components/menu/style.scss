@@ -180,11 +180,15 @@
 
 
 .ant-dropdown {
+
   .ant-dropdown-menu-item {
+    padding: 8px 20px;
+
     a {
       font-size: 16px;
+      line-height: 22px;
       color: $green07;
-      font-weight: 500;
+      font-weight: 600;
       font-family: var(--font-archia), sans-serif;
     }
 
