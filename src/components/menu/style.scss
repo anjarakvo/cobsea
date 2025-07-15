@@ -26,12 +26,24 @@
     justify-content: space-between;
     width: 100%;
     gap: 20px;
+
+    @media screen and (max-width: $bpMobile) {
+      gap: 6px;
+    }
   }
 
   .container {
     display: flex;
     position: relative;
     width: 100%;
+
+    @media screen and (max-width: $bpMobile) {
+      align-items: center;
+
+      .hamburger-react {
+        margin-right: -10px;
+      }
+    }
 
     .unep {
       transform: translateY(3px);
