@@ -3,45 +3,61 @@ import './style.scss';
 import { Empty, Select, Spin, notification } from 'antd';
 import axios from 'axios';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
-import { DropdownIcon } from 'components/icons';
+import { Search } from 'components/icons';
+import { CloseOutlined } from '@ant-design/icons';
 import { getStrapiUrl } from 'utils/misc';
 
-function CaseStudy({ initialItems = [] }) {
+function CapacityBuilding({ initialItems = [] }) {
   const [items, setItems] = useState(initialItems);
-  const [categories, setCategories] = useState([]);
+  const [tags, setTags] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState('All categories');
+  const [selectedTags, setSelectedTags] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('all');
+
+  const categories = [
+    'All',
+    'Online Course',
+    'Masterclass',
+    'Webinar',
+    'Other',
+  ];
 
   const strapiURL = getStrapiUrl();
 
-  const handleCategoryChange = (value) => {
-    setSelectedCategory(value || 'All categories');
+  const handleTagChange = (value) => {
+    setSelectedTags(value);
+  };
+
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category.toLowerCase());
   };
 
   useEffect(() => {
-    const fetchCaseStudies = async () => {
+    const fetchLearningCentres = async () => {
       if (initialItems.length === 0) {
         setLoading(true);
         try {
           const response = await axios.get(
-            `${strapiURL}/api/cobsea-case-studies?populate=image&populate=cobsea_case_study_tag&populate=pdf`
+            `${strapiURL}/api/learning-centres?populate=learning_centre_tags,image`
           );
           const simplifiedItems = response.data.data.map((item) => {
             const {
               title,
               url,
-              cobsea_case_study_tag,
+              Category,
               description,
               image,
-              pdf,
+              learning_centre_tags,
             } = item.attributes;
             return {
               title,
               url,
               description,
-              pdf: pdf?.data?.attributes?.url || '',
-              category: cobsea_case_study_tag?.data?.attributes?.name,
+              category: Category,
               ...(image?.data && { image: image.data.attributes.url }),
+              learning_centre_tags: learning_centre_tags.data.map(
+                (tag) => tag.attributes.name
+              ),
             };
           });
           setItems(simplifiedItems);
@@ -59,30 +75,22 @@ function CaseStudy({ initialItems = [] }) {
       }
     };
 
-    fetchCaseStudies();
+    fetchLearningCentres();
   }, []);
 
   useEffect(() => {
-    const fetchCategories = async () => {
+    const fetchLearningCentresTags = async () => {
       try {
         const response = await axios.get(
-          `${strapiURL}/api/cobsea-case-study-tags`
+          `${strapiURL}/api/learning-centre-tags`
         );
-        const categoryList = response.data.data.map((item) => {
+        const simplifiedItems = response.data.data.map((item) => {
           const { name } = item.attributes;
           return {
-            label: name,
-            value: name,
+            name,
           };
         });
-
-        setCategories([
-          { label: 'All categories', value: 'All categories' },
-          ...categoryList.map((cat) => ({
-            label: cat.label,
-            value: cat.label,
-          })),
-        ]);
+        setTags(simplifiedItems);
       } catch (error) {
         if (error) {
           notification.error({
@@ -94,39 +102,63 @@ function CaseStudy({ initialItems = [] }) {
       }
     };
 
-    fetchCategories();
+    fetchLearningCentresTags();
   }, []);
 
   const filteredItems = items.filter((item) => {
+    const tagMatch =
+      selectedTags.length === 0 ||
+      selectedTags.every((tag) => item.learning_centre_tags.includes(tag));
     const categoryMatch =
-      selectedCategory === 'All categories' ||
-      item.category.toLowerCase() === selectedCategory.toLowerCase();
-    return categoryMatch;
+      selectedCategory === 'all' ||
+      item.category.toLowerCase() === selectedCategory;
+    return tagMatch && categoryMatch;
   });
 
   return (
     <div className="learning-centre container">
-      <h1>Case Studies</h1>
+      <h1>Learning Centre</h1>
       <div className="header">
-        <div className="category-dropdown">
+        <div className="categories">
+          <ul>
+            {categories.map((category) => (
+              <li
+                key={category}
+                className={`${
+                  selectedCategory.toLowerCase() === category.toLowerCase()
+                    ? 'selected'
+                    : ''
+                }`}
+                onClick={() => handleCategoryChange(category)}
+              >
+                {category}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="filter">
           <Select
+            allowClear
             showSearch
             showArrow
-            value={selectedCategory}
-            style={{ width: 300 }}
-            placeholder="Select category"
-            onChange={handleCategoryChange}
-            suffixIcon={selectedCategory ? <DropdownIcon /> : null}
-            options={categories}
+            mode="tags"
+            placeholder="Filter by tag"
+            options={tags.map((item) => ({
+              value: item.name,
+              label: item.name,
+            }))}
+            suffixIcon={selectedTags.length === 0 ? <Search /> : null}
+            clearIcon={<CloseOutlined />}
+            onChange={handleTagChange}
           />
         </div>
       </div>
-      <CaseStudyCard data={filteredItems} loading={loading} />
+      <LearningCentreCard data={filteredItems} loading={loading} />
     </div>
   );
 }
 
-const CaseStudyCard = ({ data, loading }) => {
+const LearningCentreCard = ({ data, loading }) => {
   if (loading) {
     return (
       <div className="flex-container">
@@ -152,7 +184,7 @@ const CaseStudyCard = ({ data, loading }) => {
         <Masonry gutter="30px">
           {data.map((item) => (
             <a
-              href={item.pdf || item.url}
+              href={item.url}
               className="learning-centre-card"
               key={item.title}
               target="_blank"
@@ -163,6 +195,11 @@ const CaseStudyCard = ({ data, loading }) => {
                 <p className="category">{item.category}</p>
                 <h2>{item.title}</h2>
                 <p className="description">{item.description}</p>
+                <div className="tags">
+                  {item.learning_centre_tags.map((tag, index) => (
+                    <span key={`${tag}-${index}`}>{tag}</span>
+                  ))}
+                </div>
               </div>
             </a>
           ))}
@@ -172,4 +209,4 @@ const CaseStudyCard = ({ data, loading }) => {
   );
 };
 
-export default CaseStudy;
+export default CapacityBuilding;
