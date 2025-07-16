@@ -54,7 +54,7 @@ function CapacityBuilding({ initialItems = [] }) {
               url,
               description,
               category: Category,
-              image: image?.data ? image?.data?.attributes.url : '',
+              ...(image?.data && { image: image.data.attributes.url }),
               learning_centre_tags: learning_centre_tags.data.map(
                 (tag) => tag.attributes.name
               ),
@@ -190,7 +190,7 @@ const LearningCentreCard = ({ data, loading }) => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={item.image} alt={item.title} />
+              {item.image ? <img src={item.image} alt={item.title} /> : null}
               <div className="content">
                 <p className="category">{item.category}</p>
                 <h2>{item.title}</h2>
