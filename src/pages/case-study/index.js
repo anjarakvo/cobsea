@@ -40,10 +40,8 @@ function CaseStudy({ initialItems = [] }) {
               url,
               description,
               pdf: pdf?.data?.attributes?.url || '',
-              category:
-                cobsea_case_study_tag?.data?.attributes?.name ||
-                'Uncategorized',
-              image: image?.data ? image?.data?.attributes.url : '',
+              category: cobsea_case_study_tag?.data?.attributes?.name,
+              ...(image?.data && { image: image.data.attributes.url }),
             };
           });
           setItems(simplifiedItems);
@@ -160,7 +158,7 @@ const CaseStudyCard = ({ data, loading }) => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={item.image} alt={item.title} />
+              {item.image && <img src={item.image} alt={item.title} />}
               <div className="content">
                 <p className="category">{item.category}</p>
                 <h2>{item.title}</h2>
