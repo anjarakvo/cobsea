@@ -190,7 +190,7 @@ const LearningCentreCard = ({ data, loading }) => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={item.image} alt={item.title} />
+              {item.image && <img src={item.image} alt={item.title} />}
               <div className="content">
                 <p className="category">{item.category}</p>
                 <h2>{item.title}</h2>
