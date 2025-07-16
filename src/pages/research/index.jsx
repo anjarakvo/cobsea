@@ -1,58 +1,58 @@
-import React from "react";
-import { ReactComponent as MapIcn } from "../../images/map-icn.svg";
-import { ReactComponent as DataIcn } from "../../images/data-icn.svg";
-import { ReactComponent as FactIcn } from "../../images/fact-icn.svg";
-import "./styles.scss";
-import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { Route, Switch } from "react-router-dom";
-import Map from "./Map";
-import { createTheme, responsiveFontSizes } from "@mui/material/styles";
-import { ThemeProvider } from "@mui/material";
+import React from 'react';
+import { ReactComponent as MapIcn } from '../../images/map-icn.svg';
+import { ReactComponent as DataIcn } from '../../images/data-icn.svg';
+import { ReactComponent as FactIcn } from '../../images/fact-icn.svg';
+import './styles.scss';
+import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
+import Map from './Map';
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material';
 // import ScrollToTop from 'components/utils/ScrollToTop';
 // import Layout from 'components/Layout/Layout';
-import useFetch from "ssfa-components/utils/useFetch";
-import { setPositionValue, getFromStorage } from "ssfa-components/utils/utils";
-import Data from "./Data/Data";
-import DataExtraction from "./Data/DataExtraction";
-import ResearchLandscape from "./Data/ResearchLandscape";
-import Methodology from "./Data/Methodology";
-import ScientificResearch from "./Data/ScientificResearch";
-import Humanities from "./Data/Humanities";
-import Policy from "./Data/Policy";
-import Factsheets from "./Factsheets";
-import About from './About'
+import useFetch from 'ssfa-components/utils/useFetch';
+import { setPositionValue, getFromStorage } from 'ssfa-components/utils/utils';
+import Data from './Data/Data';
+import DataExtraction from './Data/DataExtraction';
+import ResearchLandscape from './Data/ResearchLandscape';
+import Methodology from './Data/Methodology';
+import ScientificResearch from './Data/ScientificResearch';
+import Humanities from './Data/Humanities';
+import Policy from './Data/Policy';
+import Factsheets from './Factsheets';
+import About from './About';
 
 let theme = createTheme({
   palette: {
     primary: {
-      main: "#EDEEEE",
+      main: '#EDEEEE',
     },
     secondary: {
-      main: "#f0c8b6",
+      main: '#f0c8b6',
     },
     tertiary: {
-      main: "#475657",
+      main: '#475657',
     },
     quaternary: {
-      main: "#c8a464",
+      main: '#c8a464',
     },
     error: {
-      main: "#c53655",
+      main: '#c53655',
     },
     warning: {
-      main: "#cf5500",
+      main: '#cf5500',
     },
     info: {
-      main: "#89bc00",
+      main: '#89bc00',
     },
     success: {
-      main: "#34bd6f",
+      main: '#34bd6f',
     },
-    divider: "rgba(0, 0, 0, 0.3)",
+    divider: 'rgba(0, 0, 0, 0.3)',
   },
   typography: {
-    fontFamily: "Jost",
+    fontFamily: 'Jost',
   },
 });
 
@@ -66,7 +66,7 @@ const View = () => {
   useFetch(databaseLink);
 
   React.useEffect(() => {
-    if (!Boolean(getFromStorage("position")) && !isPending) setPositionValue();
+    if (!Boolean(getFromStorage('position')) && !isPending) setPositionValue();
     else if (isDataChanged) setPositionValue();
   }, [isDataChanged, isPending]);
   return (
@@ -91,11 +91,7 @@ const View = () => {
               </div>
             </nav>
             <Switch>
-              <Route
-                exact
-                path="/research/about"
-                component={About}
-              />
+              <Route exact path="/research/about" component={About} />
               <Route
                 exact
                 path="/research/map"
