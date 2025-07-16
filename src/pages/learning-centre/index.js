@@ -54,7 +54,7 @@ function CapacityBuilding({ initialItems = [] }) {
               url,
               description,
               category: Category,
-              image: image?.data ? image?.data?.attributes.url : '',
+              ...(image?.data && { image: image.data.attributes.url }),
               learning_centre_tags: learning_centre_tags.data.map(
                 (tag) => tag.attributes.name
               ),
