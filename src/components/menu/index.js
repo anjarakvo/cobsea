@@ -48,12 +48,12 @@ const menuList = [
       {
         key: 'Maps',
         id: 'Maps',
-        to: '/data/maps',
+        to: '/research/map',
       },
       {
         key: 'Country dashboard',
         id: 'Country dashboard',
-        to: '/country-dashboard',
+        to: '/research/data',
       },
     ],
   },
@@ -85,12 +85,12 @@ const menuList = [
       {
         key: 'About Us',
         id: 'About Us',
-        to: '/page/who-we-are',
+        to: '/about-us',
       },
       {
         key: 'Contact Us',
         id: 'Contact Us',
-        to: '/page/contact-us',
+        to: '/contact-us',
       },
     ],
   },

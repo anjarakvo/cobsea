@@ -211,33 +211,42 @@ const FeatureCards = () => {
             <div className="cnt">
               <h5>Knowledge Hub</h5>
               <div className="feature-items">
-                <div className="feature-item">
-                  <div className="icon">
-                    <KnowledgeLibrary />
+                <Link to="/knowledge-hub" className="feature-item-link">
+                  <div className="feature-item">
+                    <div className="icon">
+                      <KnowledgeLibrary />
+                    </div>
+                    <div className="content">
+                      <h6>Knowledge library</h6>
+                      <p>National & regional policies and initiatives</p>
+                    </div>
                   </div>
-                  <div className="content">
-                    <h6>Knowledge library</h6>
-                    <p>National & regional policies and initiatives</p>
+                </Link>
+                <Link to="/case-studies" className="feature-item-link">
+                  <div className="feature-item">
+                    <div className="icon">
+                      <CaseStudy />
+                    </div>
+                    <div className="content">
+                      <h6>Case studies</h6>
+                      <p>A map of good practices</p>
+                    </div>
                   </div>
-                </div>
-                <div className="feature-item">
-                  <div className="icon">
-                    <CaseStudy />
+                </Link>
+                <Link
+                  to="/knowledge/learning-centre"
+                  className="feature-item-link"
+                >
+                  <div className="feature-item">
+                    <div className="icon">
+                      <LearningCenter />
+                    </div>
+                    <div className="content">
+                      <h6>Learning centre</h6>
+                      <p>Learning and capacity-building resources</p>
+                    </div>
                   </div>
-                  <div className="content">
-                    <h6>Case studies</h6>
-                    <p>A map of good practices</p>
-                  </div>
-                </div>
-                <div className="feature-item">
-                  <div className="icon">
-                    <LearningCenter />
-                  </div>
-                  <div className="content">
-                    <h6>Learning centre</h6>
-                    <p>Learning and capacity-building resources</p>
-                  </div>
-                </div>
+                </Link>
               </div>
             </div>
           </div>
@@ -254,33 +263,39 @@ const FeatureCards = () => {
             <div className="cnt">
               <h5>Data Hub</h5>
               <div className="feature-items">
-                <div className="feature-item">
-                  <div className="icon">
-                    <Database />
+                <Link to="/research/about" className="feature-item-link">
+                  <div className="feature-item">
+                    <div className="icon">
+                      <Database />
+                    </div>
+                    <div className="content">
+                      <h6>Research database</h6>
+                      <p>Data sets on plastic pollution and marine litter</p>
+                    </div>
                   </div>
-                  <div className="content">
-                    <h6>Research database</h6>
-                    <p>Data sets on plastic pollution and marine litter</p>
+                </Link>
+                <Link to="/research/map" className="feature-item-link">
+                  <div className="feature-item">
+                    <div className="icon">
+                      <Map />
+                    </div>
+                    <div className="content">
+                      <h6>Maps</h6>
+                      <p>Visual map of location-specific data</p>
+                    </div>
                   </div>
-                </div>
-                <div className="feature-item">
-                  <div className="icon">
-                    <Map />
+                </Link>
+                <Link to="/research/data" className="feature-item-link">
+                  <div className="feature-item">
+                    <div className="icon">
+                      <Dashboard />
+                    </div>
+                    <div className="content">
+                      <h6>Country dashboard</h6>
+                      <p>A snapshot of plastic flows</p>
+                    </div>
                   </div>
-                  <div className="content">
-                    <h6>Maps</h6>
-                    <p>Visual map of location-specific data</p>
-                  </div>
-                </div>
-                <div className="feature-item">
-                  <div className="icon">
-                    <Dashboard />
-                  </div>
-                  <div className="content">
-                    <h6>Country dashboard</h6>
-                    <p>A snapshot of plastic flows</p>
-                  </div>
-                </div>
+                </Link>
               </div>
             </div>
           </div>
@@ -297,24 +312,28 @@ const FeatureCards = () => {
             <div className="cnt">
               <h5>Community Hub</h5>
               <div className="feature-items">
-                <div className="feature-item">
-                  <div className="icon">
-                    <Search />
+                <Link to="/research-network" className="feature-item-link">
+                  <div className="feature-item">
+                    <div className="icon">
+                      <Search />
+                    </div>
+                    <div className="content">
+                      <h6>Research network</h6>
+                      <p>Directory of organizations</p>
+                    </div>
                   </div>
-                  <div className="content">
-                    <h6>Research network</h6>
-                    <p>Directory of organizations</p>
+                </Link>
+                <Link to="/events" className="feature-item-link">
+                  <div className="feature-item">
+                    <div className="icon">
+                      <Events />
+                    </div>
+                    <div className="content">
+                      <h6>Events</h6>
+                      <p>Upcoming sector events</p>
+                    </div>
                   </div>
-                </div>
-                <div className="feature-item">
-                  <div className="icon">
-                    <Events />
-                  </div>
-                  <div className="content">
-                    <h6>Events</h6>
-                    <p>Upcoming sector events</p>
-                  </div>
-                </div>
+                </Link>
                 <div className="feature-item">
                   <div className="icon">
                     <Network />

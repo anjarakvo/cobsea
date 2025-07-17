@@ -21,6 +21,8 @@ import MenuBar from 'components/menu';
 import KnowledgeHub from 'pages/knowledge-hub';
 import CapacityBuilding from 'pages/learning-centre';
 import CaseStudy from 'pages/case-study';
+import AboutUs from 'pages/about-us';
+import ContactUs from 'pages/contact-us';
 
 Promise.all([
   api.get('/tag'),
@@ -64,16 +66,23 @@ function App() {
     <div className="App">
       {pathname !== '/' && <MenuBar />}
       <ScrollToTop />
-      <Switch>
-        <Route path="/" exact component={Landing} />
-        <Route path="/knowledge-hub" component={KnowledgeHub} />
-        <Route path="/knowledge/learning-centre" component={CapacityBuilding} />
-        <Route path="/research" component={Research} />
-        <Route path="/research-network" component={ResearchNetwork} />
-        <Route path="/case-study/:view?/:type?" component={CaseStudy} />
-        <Route path="/case-studies" component={CaseStudy} />
-        <Route path="/events" component={Events} />
-      </Switch>
+      <div className="main-content">
+        <Switch>
+          <Route path="/" exact component={Landing} />
+          <Route path="/knowledge-hub" component={KnowledgeHub} />
+          <Route
+            path="/knowledge/learning-centre"
+            component={CapacityBuilding}
+          />
+          <Route path="/research" component={Research} />
+          <Route path="/research-network" component={ResearchNetwork} />
+          <Route path="/case-study/:view?/:type?" component={CaseStudy} />
+          <Route path="/case-studies" component={CaseStudy} />
+          <Route path="/events" component={Events} />
+          <Route path="/about-us" component={AboutUs} />
+          <Route path="/contact-us" component={ContactUs} />
+        </Switch>
+      </div>
       <Footer />
     </div>
   );

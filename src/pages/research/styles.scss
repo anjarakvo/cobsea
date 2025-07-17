@@ -1,28 +1,60 @@
 @import "../../vars.scss";
 
 #research-db {
+	margin-top: 110px;
+
+	.container {
+		padding: 0px 150px;
+
+		@media screen and (max-width: $bpMobile) {
+			padding: 0px 20px;
+		}
+
+		.wrapper {
+			padding: 40px 0;
+			max-width: 100%;
+			font-size: 20px;
+			line-height: 30px;
+			color: #000;
+		}
+	}
+
 	nav:not(.subnav) {
+		padding: 15px 150px;
 		background-color: #91c9c1;
+
+		@media screen and (max-width: $bpMobile) {
+			padding: 10px 20px;
+		}
+
 		svg {
 			path {
 				fill: #fff;
 			}
 		}
+
 		color: #fff;
 		display: flex;
-		justify-content: center;
-		height: 64px;
+
 		.cnt {
-			margin-top: 8px;
 			display: flex;
+			gap: 10px;
+
+			@media screen and (max-width: $bpMobile) {
+				padding: 0 20px;
+				justify-content: start;
+				overflow-x: auto;
+				overflow-y: hidden;
+				width: 100%;
+			}
 		}
+
 		a {
 			color: #fff;
 			height: 46px;
 			border: 1px solid #fff;
 			border-radius: 10px;
 			display: block;
-			margin: 0 5px;
 			font-size: 14px;
 			text-transform: uppercase;
 			font-weight: 600;
@@ -31,16 +63,20 @@
 			justify-content: center;
 			padding: 0 20px;
 			min-width: 130px;
+
 			svg {
 				margin-right: 10px;
 			}
+
 			&:hover {
 				background-color: rgba(255, 255, 255, 0.2);
 				transition: background 0.2s ease-out;
 			}
+
 			&.active {
 				background-color: #fff;
 				color: $secondary;
+
 				svg {
 					path {
 						fill: $secondary;
@@ -48,10 +84,10 @@
 				}
 			}
 		}
+
 		@media screen and (max-width: 1024px) {
 			justify-content: start;
-			padding-left: 20px;
-			padding-top: 2px;
+
 			a {
 				flex-direction: column;
 				min-width: 70px;
@@ -61,21 +97,23 @@
 				text-align: center;
 				line-height: 14px;
 				padding: 0;
+
 				span {
 					height: 28px;
 					display: flex;
 					justify-content: center;
 					align-items: center;
 				}
+
 				svg {
 					margin-right: 0;
 					margin-top: 5px;
 					margin-bottom: 5px;
 				}
 			}
-			height: 100px;
 		}
 	}
+
 	nav.subnav {
 		background-color: #fff;
 		height: 82px;
@@ -83,8 +121,10 @@
 		align-items: center;
 		justify-content: center;
 		margin-bottom: 30px;
+
 		.container {
 			display: flex;
+
 			a {
 				display: flex;
 				justify-content: center;
@@ -101,15 +141,18 @@
 				font-size: 11px;
 				font-weight: 550;
 				transition: all 0.2s ease-out;
+
 				&:hover {
 					background-color: lighten($secondary, 28);
 				}
+
 				&.active {
 					background-color: $secondary;
 					color: #fff;
 				}
 			}
 		}
+
 		@media screen and (max-width: 1024px) {
 			overflow-x: scroll;
 			// align-items: flex-start;
@@ -120,10 +163,13 @@
 			padding-top: 10px;
 		}
 	}
+
 	.my-masonry-grid {
 		display: flex;
 		width: auto;
+		padding-bottom: 80px;
 	}
+
 	.body {
 		min-height: calc(100vh - 126px - 174px);
 	}
@@ -134,24 +180,30 @@
 	border-radius: 5px;
 	padding-left: 15px;
 	overflow: hidden;
+
 	svg {
 		color: rgba(0, 0, 0, 0.5);
 		margin-left: 5px;
 	}
+
 	input {
 		outline: 0 !important;
 		color: #000;
 	}
 }
+
 .MuiDataGrid-row {
-	& > * {
+	&>* {
 		border-bottom: none !important;
 	}
+
 	&:hover {
 		background-color: #fff !important;
 	}
+
 	&:nth-child(2n) {
 		background-color: #e8f6fc;
+
 		&:hover {
 			background-color: #e8f6fc !important;
 		}
@@ -170,6 +222,7 @@
 		}
 	}
 }
+
 .MuiDataGrid-root {
 	.MuiBox-root {
 		.MuiButton-root {
@@ -177,17 +230,20 @@
 		}
 	}
 }
+
 .my-masonry-grid_columns {
 	.MuiTypography-body1 {
 		color: #000;
 	}
+
 	.MuiPaper-rounded {
 		background-color: lighten($secondary, 26);
 	}
 }
+
 .data-root-nav {
 	.MuiGrid-item {
-		& > div {
+		&>div {
 			background-color: #fff;
 			box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 			padding: 10px;

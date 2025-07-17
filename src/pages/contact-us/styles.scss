@@ -1,0 +1,217 @@
+@import "../../vars.scss";
+
+.contact-us-page {
+    padding: 40px 150px;
+    margin-top: 110px;
+
+    @media screen and (max-width: $bpMobile) {
+        padding: 20px;
+    }
+
+    .contact-us-content {
+        background: white;
+        border-radius: 8px;
+        font-family: var(--font-archia), sans-serif;
+
+        @media (max-width: 1024px) {
+            padding: 40px 60px;
+        }
+
+        @media (max-width: 768px) {
+            padding: 30px 24px;
+        }
+
+        @media (max-width: 480px) {
+            padding: 20px 16px;
+        }
+    }
+
+    .contact-us-title {
+        font-size: 38px;
+        font-weight: 600;
+        color: #000;
+        margin-bottom: 20px;
+        line-height: 48px;
+        font-family: var(--font-archia), sans-serif;
+
+        @media (max-width: 768px) {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 480px) {
+            font-size: 1.75rem;
+            margin-bottom: 16px;
+        }
+    }
+
+    .contact-intro {
+        margin-bottom: 40px;
+        font-family: var(--font-dm-sans), sans-serif;
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #666;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            margin-bottom: 30px;
+
+            p {
+                font-size: 1rem;
+            }
+        }
+    }
+
+    .contact-form-container {
+        .form-section {
+            h3 {
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: #333;
+                margin-bottom: 24px;
+                font-family: var(--font-archia), sans-serif;
+            }
+        }
+
+        .contact-form {
+            font-family: var(--font-dm-sans), sans-serif;
+
+            .ant-form-item-label>label {
+                font-weight: 600;
+                color: #333;
+                font-size: 0.95rem;
+            }
+
+            .ant-input,
+            .ant-input-affix-wrapper {
+                border-radius: 6px;
+                border: 1px solid #d9d9d9;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    border-color: #40a9ff;
+                }
+
+                &:focus,
+                &.ant-input-affix-wrapper-focused {
+                    border-color: #1890ff;
+                    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+                }
+            }
+
+            .ant-input::placeholder {
+                color: #bfbfbf;
+            }
+
+            .ant-form-item-has-error {
+
+                .ant-input,
+                .ant-input-affix-wrapper {
+                    border-color: #ff4d4f;
+                }
+            }
+        }
+
+        .contact-info {
+            background: #f8f9fa;
+            padding: 32px 24px;
+            border-radius: 8px;
+            height: fit-content;
+
+            @media (max-width: 991px) {
+                margin-top: 40px;
+            }
+
+            h3 {
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: #333;
+                margin-bottom: 24px;
+                font-family: var(--font-archia), sans-serif;
+            }
+
+            .contact-details {
+                .contact-item {
+                    margin-bottom: 32px;
+                    font-family: var(--font-dm-sans), sans-serif;
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+
+                    h4 {
+                        font-size: 1.1rem;
+                        font-weight: 600;
+                        color: #1890ff;
+                        margin-bottom: 8px;
+                        font-family: var(--font-archia), sans-serif;
+                    }
+
+                    p {
+                        color: #666;
+                        line-height: 1.6;
+                        margin: 0;
+                        font-size: 0.95rem;
+                    }
+                }
+            }
+        }
+    }
+
+    .ant-btn-loading {
+        pointer-events: none;
+    }
+
+    .ant-form-item-explain-error {
+        font-size: 0.875rem;
+        color: #ff4d4f;
+    }
+
+    @media (max-width: 768px) {
+        .contact-form-container {
+
+            .form-section h3,
+            .contact-info h3 {
+                font-size: 1.25rem;
+                margin-bottom: 20px;
+            }
+
+            .contact-info {
+                padding: 24px 20px;
+
+                .contact-details .contact-item {
+                    margin-bottom: 24px;
+
+                    h4 {
+                        font-size: 1rem;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 480px) {
+        .contact-form-container {
+            .contact-form {
+                .submit-button {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+.ant-notification-notice {
+    border-radius: 8px;
+}
+
+.ant-notification-notice-success {
+    border-left: 4px solid #52c41a;
+}
+
+.ant-notification-notice-error {
+    border-left: 4px solid #ff4d4f;
+}
