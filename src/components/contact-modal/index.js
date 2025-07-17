@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import "./styles.scss";
-import api from "utils/api";
-import { Row, Form, Input, Button, Modal, notification } from "antd";
+import React, { useEffect, useState } from 'react';
+import './styles.scss';
+import api from 'utils/api';
+import { Row, Form, Input, Button, Modal, notification } from 'antd';
 const { TextArea } = Input;
 
 const ContactModal = ({ showContactModal, setShowContactModal }) => {
@@ -10,19 +10,19 @@ const ContactModal = ({ showContactModal, setShowContactModal }) => {
     setLoading(true);
     const data = {
       ...values,
-      source: "cobsea",
+      source: 'cobsea',
     };
 
     api
-      .post("/contact", data)
+      .post('/contact', data)
       .then((res) => {
         notification.success({
-          message: "Contact form successfully submitted",
+          message: 'Contact form successfully submitted',
         });
         setLoading(false);
       })
       .catch(() => {
-        notification.error({ message: "An error occured" });
+        notification.error({ message: 'An error occured' });
         setLoading(false);
       })
       .finally(() => {
@@ -31,7 +31,7 @@ const ContactModal = ({ showContactModal, setShowContactModal }) => {
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    console.log('Failed:', errorInfo);
   };
 
   return (
@@ -74,33 +74,33 @@ const ContactModal = ({ showContactModal, setShowContactModal }) => {
         >
           <Form.Item
             name="name"
-            rules={[{ required: true, message: "Please input your name!" }]}
+            rules={[{ required: true, message: 'Please input your name!' }]}
           >
             <Input placeholder="Name" />
           </Form.Item>
           <Form.Item
             name="email"
-            rules={[{ required: true, message: "Please input your email!" }]}
+            rules={[{ required: true, message: 'Please input your email!' }]}
           >
             <Input placeholder="Email" />
           </Form.Item>
           <Form.Item
             name="organization"
             rules={[
-              { required: true, message: "Please input your organisation!" },
+              { required: true, message: 'Please input your organisation!' },
             ]}
           >
             <Input placeholder="Organisation" />
           </Form.Item>
           <Form.Item
             name="subject"
-            rules={[{ required: true, message: "Please input your subject!" }]}
+            rules={[{ required: true, message: 'Please input your subject!' }]}
           >
             <Input placeholder="Subject" />
           </Form.Item>
           <Form.Item
             name="message"
-            rules={[{ required: true, message: "Please input your message!" }]}
+            rules={[{ required: true, message: 'Please input your message!' }]}
           >
             <TextArea rows={4} placeholder="Your message" />
           </Form.Item>

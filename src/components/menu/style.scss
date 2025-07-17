@@ -1,3 +1,5 @@
+@import "../../vars.scss";
+
 .nav-header {
   &:not(.at-landing) {
     background: url(../../images/waves.svg) repeat center #357079;
@@ -5,39 +7,156 @@
     z-index: 999;
     width: 100%;
   }
+
   height: 110px;
   display: flex;
   align-items: center;
+
+  .container-fluid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .combined {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+
+    @media screen and (max-width: $bpMobile) {
+      gap: 6px;
+    }
+  }
+
   .container {
     display: flex;
     position: relative;
     width: 100%;
+
+    @media screen and (max-width: $bpMobile) {
+      align-items: center;
+
+      .hamburger-react {
+        margin-right: -10px;
+      }
+    }
+
     .unep {
       transform: translateY(3px);
       margin-right: 10px;
       display: inline-block;
     }
+
     nav {
       display: flex;
       color: white;
       margin-left: 40px;
       margin-top: 10px;
+
       a {
         text-decoration: underline;
       }
     }
   }
+
   .hamburger-react {
     // position: absolute!impor;
     // right: 0;
     margin-left: auto;
     color: white;
   }
+
+  .ant-menu {
+    background: transparent;
+    border: none;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    line-height: normal;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 40px;
+    box-shadow: none;
+
+    .ant-menu-submenu {
+      &::after {
+        content: none;
+      }
+    }
+
+    .ant-menu-submenu-title {
+      &:hover {
+        color: #fff;
+      }
+    }
+
+    .ant-dropdown-trigger {
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 600;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-archia), sans-serif;
+
+      .anticon {
+        font-size: 16px;
+      }
+
+    }
+
+    li {
+      line-height: normal;
+      height: fit-content;
+
+      &.selected {
+        a {
+          span::after {
+            width: 100%;
+          }
+
+          svg {
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      a {
+        font-family: var(--font-archia), sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        color: white;
+        cursor: pointer;
+        display: inline-block;
+        display: flex;
+
+        span {
+          &::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 3px;
+            transform: translateY(3px);
+            transition: width 0.3s;
+          }
+        }
+      }
+    }
+  }
 }
+
 .spacer {
   width: 100%;
   height: 110px;
 }
+
 .full-menu-overlay {
   position: fixed;
   z-index: 200;
@@ -45,18 +164,22 @@
   width: 100%;
   height: 100%;
   color: white;
+
   .full-menu {
     margin-top: 50px;
     color: #fff;
+
     h3,
     h4,
     h5 {
       color: #fff;
     }
+
     .col {
       &:before {
         background-color: rgba(255, 255, 255, 0.2);
       }
+
       .item {
         .icon {
           border: 2px solid rgba(255, 255, 255, 0.5);
@@ -65,9 +188,52 @@
     }
   }
 }
+
+
+.ant-dropdown {
+
+  .ant-dropdown-menu-item {
+    padding: 8px 20px;
+
+    a {
+      font-size: 16px;
+      line-height: 22px;
+      color: $green07;
+      font-weight: 600;
+      font-family: var(--font-archia), sans-serif;
+    }
+
+    &:hover {
+      background-color: $green0;
+    }
+  }
+
+  .ant-dropdown-menu-item-selected {
+    color: $green07;
+    background-color: $green0;
+  }
+}
+
+
 @media screen and (max-width: 1024px) {
   .full-menu-overlay {
     overflow-y: scroll;
     padding-bottom: 150px;
+  }
+}
+
+.ant-drawer {
+
+  .ant-menu-item:active,
+  .ant-menu-submenu-title:active {
+    background: $green0;
+
+    .ant-menu-title-content {
+      color: $green07;
+    }
+
+    a {
+      color: $green07;
+    }
   }
 }

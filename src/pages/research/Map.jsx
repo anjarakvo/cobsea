@@ -1,19 +1,19 @@
 // import React, { useEffect, useState } from "react";
-import React from "react";
-import { Container, Link } from "@mui/material";
-import { useSelector } from "react-redux";
-import Header from "ssfa-components/StyledComponents/Header";
-import Body from "ssfa-components/StyledComponents/Body";
+import React from 'react';
+import { Container, Link } from '@mui/material';
+import { useSelector } from 'react-redux';
+import Header from 'ssfa-components/StyledComponents/Header';
+import Body from 'ssfa-components/StyledComponents/Body';
 
-import MapGenerator from "ssfa-components/Map/MapGenerator";
+import MapGenerator from 'ssfa-components/Map/MapGenerator';
 
 export default function Map({ isDataChanged = false }) {
   const { databaseLink } = useSelector((state) => state.dataExtraction);
 
   return (
     <>
-      <Container maxWidth="md">
-        <Body component="div" variant="body1" style={{ marginTop: 20 }}>
+      <div className="container">
+        <div className="wrapper">
           This interactive map provides a visual representation of the
           geographic extent of RRI 2.0 as well as an extract of data analysis.
           When clicking on a country/territory, the following information is
@@ -38,9 +38,9 @@ export default function Map({ isDataChanged = false }) {
             here
           </Link>
           . */}
-        </Body>
+        </div>
         <MapGenerator />
-      </Container>
+      </div>
     </>
   );
 }

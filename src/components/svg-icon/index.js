@@ -1,11 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
-const useDynamicSVGImport = (name, options = {}) => {
+export const Icon = ({ name, ...rest }) => {
   const ImportedIconRef = useRef();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState();
-
-  const { onCompleted, onError } = options;
+  const [loading, setLoading] = React.useState(false);
   useEffect(() => {
     setLoading(true);
     const importIcon = async () => {
@@ -15,37 +12,18 @@ const useDynamicSVGImport = (name, options = {}) => {
             `!!@svgr/webpack?-svgo,+titleProp,+ref!../../images/${name}.svg`
           )
         ).default;
-        if (onCompleted) {
-          onCompleted(name, ImportedIconRef.current);
-        }
       } catch (err) {
-        if (onError) {
-          onError(err);
-        }
-        setError(err);
+        throw err;
       } finally {
         setLoading(false);
       }
     };
     importIcon();
-  }, [name, onCompleted, onError]);
+  }, [name]);
 
-  return { error, loading, SvgIcon: ImportedIconRef.current };
-};
-
-export const Icon = ({ name, onCompleted, onError, ...rest }) => {
-  const { error, loading, SvgIcon } = useDynamicSVGImport(name, {
-    onCompleted,
-    onError,
-  });
-  if (error) {
-    return error.message;
-  }
-  if (loading) {
-    return null;
-  }
-  if (SvgIcon) {
-    return <SvgIcon {...rest} />;
+  if (!loading && ImportedIconRef.current) {
+    const { current: ImportedIcon } = ImportedIconRef;
+    return <ImportedIcon {...rest} />;
   }
   return null;
 };
